@@ -39,9 +39,13 @@ return new class extends Migration
             'label'=>'حذف  تخصص'
         ]);
 
-    $role = \Spatie\Permission\Models\Role::where('name','admin')->get();
+    $roles = \Spatie\Permission\Models\Role::where('name','admin')->get();
 
-    $role->givePermissionTo($view_specialities);
+
+    foreach ($roles as $role){
+
+        $role->givePermissionTo('view specialities');
+    }
 
     }
 

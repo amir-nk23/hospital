@@ -11,7 +11,7 @@ class OperationUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,18 @@ class OperationUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>'required',
+            'price'=>'required|numeric',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required'=>'لطفا اسم عمل را وارد کنید',
+            'price.required'=>'لطفا اسم قیمت عمل را وارد کنید',
+            'price.numeric'=>'لطفا قیمت را با فورمت صحیح وارد کنید',
+
         ];
     }
 }

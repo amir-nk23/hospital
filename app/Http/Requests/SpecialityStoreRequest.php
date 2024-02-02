@@ -11,7 +11,7 @@ class SpecialityStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class SpecialityStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'=>'required|unique:specialities',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+          'title.required'=>'لطفا نام تخصص را وارد کنید',
+          'title.unique'=>'این تخصص قبلا ثبت شده است'
+
         ];
     }
 }

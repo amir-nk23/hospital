@@ -9,10 +9,10 @@
                     <div class="card">
                         <div class="card-header d-xl-flex d-block">
 
-                            <h3 class="card-title">ادمین</h3>
+                            <h3 class="card-title">تخصص</h3>
                             <div class="page-leftheader mr-md-auto">
                                 <div class="btn btn-success d-flex align-items-end flex-wrap my-auto right-content">
-                                    <a href="{{route('superadmin.create')}}" class="text-white">ثبت ادمین</a>
+                                    <a href="{{route('speciality.create')}}"  class="text-white">ثبت تخصص</a>
                                     <i class="feather feather-plus fs-15 my-auto mr-2"></i>
                                 </div>
                             </div>
@@ -24,44 +24,52 @@
                             <thead class="bg-primary text-white">
                             <tr>
                                 <th class="text-white">ردیف</th>
-                                <th class="text-white">نام و نام خانوادگی</th>
-                                <th class="text-white">ادرس ایمیل</th>
+                                <th class="text-white">نام تخصص</th>
+                                <th class="text-white">وضعیت</th>
                                 <th class="text-white">تاریخ ثبت</th>
                                 <th class="text-white">عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            @foreach($users as $user)
+                            @foreach($specialities as $speciality)
 
-                                @if($user->id != \Illuminate\Support\Facades\Auth::id())
 
                                     <tr>
                                         <th scope="row">{{$loop->index+1}}</th>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td>{{$user->created_at}}</td>
+                                        <td>{{$speciality->title}}</td>
+                                        @if($speciality->status==1)
+                                            <td class="mt-2 badge badge-success">فعال</td>
+                                        @endif
+                                        @if($speciality->status==0)
+                                            <td class="mt-2 badge badge-danger">غیر فعال</td>
+                                        @endif
+                                        <td>{{$speciality->created_at}}</td>
                                         <td>
 
-                                            <a href="{{route('superadmin.edit',$user->id)}}" class="btn btn-warning">
+                                            @can('update specialities')
+
+                                            <a href="{{route('speciality.edit',$speciality->id)}}" class="btn btn-warning">
                                                 <i class="feather feather-edit"></i>
                                             </a>
+                                            @endcan
 
-                                            <a href="{{route('superadmin.destroy',$user->id)}}" class="btn btn-danger">
+                                            @can('delete specialities')
+                                            <a href="{{route('speciality.destroy',$speciality->id)}}" class="btn btn-danger">
                                                 <i class="feather feather-trash"></i>
                                             </a>
 
-
+                                                @endcan
                                         </td>
                                     </tr>
 
-                                @endif
 
 
                             @endforeach
 
                             </tbody>
                         </table>
+
                     </div>
                     <!-- table-responsive -->
                 </div>
@@ -69,6 +77,7 @@
         </div>
     </div>
     </div>
+
 
 @endsection
 

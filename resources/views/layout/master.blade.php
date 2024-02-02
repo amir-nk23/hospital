@@ -62,6 +62,7 @@
             </div>
 		</div>
 
+
 		<div class="page">
 			<div class="page-main">
 
@@ -75,6 +76,8 @@
 
 
 						@yield('content')
+
+
 
 					</div>
 				</div><!-- end app-content-->
@@ -111,6 +114,7 @@
 {{--			</div>--}}
 {{--			<!-- End Change password Modal  -->--}}
 
+
 		</div>
 
         <!-- Back to top -->
@@ -144,5 +148,35 @@
 
         <!-- Custom js-->
         <script src="{{asset('style/assets/js/custom.js')}}"></script>
+
+        <script>
+
+            function conertToToman(goalInput,GoalId){
+                let txt=document.getElementById(goalInput)
+                let txtValue= txt.value;
+                const f = new Intl.NumberFormat('fa-IR', {
+                    style: 'currency',
+                    currency: 'IRR'
+                });
+                const number = parseFloat(txtValue);
+                if (!isNaN(number)) {
+                    const formattedNumber = f.format(number);
+                    const formattedTomans = formattedNumber.replace(/ریال/g, 'تومان');
+                    // Display the formatted number in the "result" div
+                    let result = document.getElementById(GoalId);
+                    result.innerText =  formattedTomans;
+                }
+            }
+
+
+
+
+            const f = new Intl.NumberFormat('es-us',{
+
+            })
+
+        </script>
+
+
 	</body>
 </html>

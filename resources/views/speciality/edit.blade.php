@@ -9,11 +9,12 @@
 
         <div>
 
-            <h2>ثبت تخصص</h2>
+            <h2>ویرایش تخصص</h2>
 
         </div>
 
-        <form method="post" action="{{route('speciality.store')}}">
+        <form method="post" action="{{route('speciality.update',$speciality->id)}}">
+            @method('patch')
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -33,7 +34,7 @@
                     <label  class="label">نام تخصص</label>
                     <span style="color: red">*</span>
 
-                    <input type="text" value="{{old('title')}}" name="title" class="form-control">
+                    <input type="text" value="{{$speciality->title}}" name="title" class="form-control">
 
                 </div>
 
@@ -45,8 +46,8 @@
 
                     <select name="status" class="form-control">
 
-                        <option value="1">فعال</option>
-                        <option value="0">غیر فعال</option>
+                        <option {{$speciality->status==1 ? 'selected' :''}} value="1">فعال</option>
+                        <option {{$speciality->status==0 ? 'selected' :''}} value="0">غیر فعال</option>
 
                     </select>
 
@@ -56,7 +57,7 @@
 
                     <div class="mt-5 ml-5" style="text-align: left;">
 
-                        <button class="btn btn-success">ثبت و ذخیره</button>
+                        <button class="btn btn-warning">ویرایش</button>
 
 
                     </div>
@@ -65,9 +66,6 @@
 
 
             </div>
-
-
-
 
 
         </form>

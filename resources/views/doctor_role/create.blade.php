@@ -9,11 +9,11 @@
 
         <div>
 
-            <h2>ثبت تخصص</h2>
+            <h2>ثبت نقش</h2>
 
         </div>
 
-        <form method="post" action="{{route('speciality.store')}}">
+        <form method="post" action="{{route('doctor.role.store')}}">
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -30,7 +30,7 @@
 
                 <div class="col-6 form-group">
 
-                    <label  class="label">نام تخصص</label>
+                    <label  class="label">نام نقش</label>
                     <span style="color: red">*</span>
 
                     <input type="text" value="{{old('title')}}" name="title" class="form-control">

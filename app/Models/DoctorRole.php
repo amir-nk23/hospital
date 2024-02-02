@@ -9,5 +9,11 @@ class DoctorRole extends Model
 {
     use HasFactory;
 
-    protected $table = ''
+    protected $table = 'doctor_role';
+
+    protected $fillable=[
+
+        'title',
+        'status',
+    ];
 }

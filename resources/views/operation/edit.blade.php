@@ -13,8 +13,9 @@
 
         </div>
 
-        <form method="post" action="{{route('operation.store')}}">
+        <form method="post" action="{{route('operation.update',$operation->id)}}">
 
+            @method('patch')
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -33,7 +34,7 @@
                     <label  class="label">اسم عمل</label>
                     <span style="color: red">*</span>
 
-                    <input type="text" value="{{old('title')}}" name="name" class="form-control">
+                    <input type="text" value="{{$operation->name}}" name="name" class="form-control">
 
                 </div>
 
@@ -42,7 +43,7 @@
                     <label  class="label">قیمت</label>
                     <span style="color: red">*</span>
 
-                    <input type="text" id="price" oninput="conertToToman('price','result')" value="{{old('title')}}" name="price" class="form-control">
+                    <input type="text" id="price" oninput="conertToToman('price','result')" value="{{$operation->price}}" name="price" class="form-control">
 
                     <div class="bold" id="result">
 
@@ -59,8 +60,8 @@
 
                     <select name="status" class="form-control">
 
-                        <option value="1">فعال</option>
-                        <option value="0">غیر فعال</option>
+                        <option {{$operation->status == 1 ? 'selected':""}} value="1">فعال</option>
+                        <option {{$operation->status == 0 ? 'selected':""}} value="0">غیر فعال</option>
 
                     </select>
 
@@ -70,7 +71,7 @@
 
                     <div class="mt-5 ml-5" style="text-align: left;">
 
-                        <button class="btn btn-success">ثبت و ذخیره</button>
+                        <button class="btn btn-warning">ویرایش</button>
 
 
                     </div>

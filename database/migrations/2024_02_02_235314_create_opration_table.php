@@ -9,12 +9,29 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
+    use \App\Traits\HasPermission;
     public function up(): void
     {
-        Schema::create('opration', function (Blueprint $table) {
+        Schema::create('operations', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->bigInteger('price');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
+
+        $permissions = [
+
+            'view operation'=>'نماش عمل ها',
+            'create operation'=>'ساختعمل ها',
+            'update operation'=>'اپدیت عمل ها',
+            'delete operation'=>'حذف عمل ها'
+        ];
+
+        $permissionNames = $this->createPermissions($permissions);
+
+        $this->assignPermissions($permissionNames,'admin');
     }
 
     /**

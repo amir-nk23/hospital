@@ -9,11 +9,11 @@
 
         <div>
 
-            <h2>ثبت تخصص</h2>
+            <h2>ویرایش نقش</h2>
 
         </div>
 
-        <form method="post" action="{{route('speciality.update',$speciality->id)}}">
+        <form method="post" action="{{route('doctor.role.update',$doctorRole->id)}}">
             @method('patch')
 
             @if ($errors->any())
@@ -31,10 +31,10 @@
 
                 <div class="col-6 form-group">
 
-                    <label  class="label">نام تخصص</label>
+                    <label  class="label">نام نقش</label>
                     <span style="color: red">*</span>
 
-                    <input type="text" value="{{$speciality->title}}" name="title" class="form-control">
+                    <input type="text" value="{{$doctorRole->title}}" name="title" class="form-control">
 
                 </div>
 
@@ -46,8 +46,8 @@
 
                     <select name="status" class="form-control">
 
-                        <option {{$speciality->status==1 ? 'selected' :''}} value="1">فعال</option>
-                        <option {{$speciality->status==0 ? 'selected' :''}} value="0">غیر فعال</option>
+                        <option {{$doctorRole->status==1 ? 'selected' :''}} value="1">فعال</option>
+                        <option {{$doctorRole->status==0 ? 'selected' :''}} value="0">غیر فعال</option>
 
                     </select>
 

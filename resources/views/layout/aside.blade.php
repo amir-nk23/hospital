@@ -29,10 +29,42 @@
             </li>
             @endcan
 
+
+            <li class="slide">
+
+                <a class="side-menu__item" data-toggle="slide" href="#">
+                    <i class="feather  feather-users sidemenu_icon"></i>
+                    <span class="side-menu__label">پزشک</span><i class="angle fa fa-angle-left"></i>
+                </a>
+
+                @can('view specialities')
+                <ul class="slide-menu">
+                    <li><a href="{{route('speciality.index')}}" class="slide-item">تخصص</a></li>
+                    {{--                    <li><a href="employee-attendance.html" class="slide-item">دکتر</a></li>--}}
+                </ul>
+                @endcan
+
+                @can('view doctor_role')
+                <ul class="slide-menu">
+                    <li><a href="{{route('doctor.role.index')}}" class="slide-item">نقش</a></li>
+                    {{--                    <li><a href="employee-attendance.html" class="slide-item">دکتر</a></li>--}}
+                </ul>
+
+                @endcan
+
+                @can('view operation')
+                <ul class="slide-menu">
+                    <li><a href="{{route('operation.index')}}" class="slide-item">عمل ها</a></li>
+                    {{--                    <li><a href="employee-attendance.html" class="slide-item">دکتر</a></li>--}}
+                </ul>
+
+                @endcan
+            </li>
+
 {{--            <li class="slide">--}}
 {{--                <a class="side-menu__item"  href="chat-livechat.html">--}}
 {{--                    <i class="feather feather-message-square sidemenu_icon"></i>--}}
-{{--                    <span class="side-menu__label">Chat</span>--}}
+{{--                    <span class="side-menu__label"></span>--}}
 {{--                </a>--}}
 {{--            </li>--}}
         </ul>
