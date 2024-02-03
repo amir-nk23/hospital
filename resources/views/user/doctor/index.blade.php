@@ -9,10 +9,10 @@
                     <div class="card">
                         <div class="card-header d-xl-flex d-block">
 
-                            <h3 class="card-title">ادمین</h3>
+                            <h3 class="card-title">پزشک ها</h3>
                             <div class="page-leftheader mr-md-auto">
                                 <div class="btn btn-success d-flex align-items-end flex-wrap my-auto right-content">
-                                    <a href="{{route('superadmin.create')}}" class="text-white">ثبت ادمین</a>
+                                    <a href="{{route('doctor.create')}}" class="text-white">ثبت پزشک</a>
                                     <i class="feather feather-plus fs-15 my-auto mr-2"></i>
                                 </div>
                             </div>
@@ -25,37 +25,47 @@
                             <tr>
                                 <th class="text-white">ردیف</th>
                                 <th class="text-white">نام و نام خانوادگی</th>
-                                <th class="text-white">ادرس ایمیل</th>
+                                <th class="text-white">تخصص</th>
+                                <th class="text-white">کد ملی</th>
+                                <th class="text-white">کد نظام پزشکی</th>
+                                <th class="text-white">موبایل</th>
+                                <th class="text-white">وضعیت</th>
                                 <th class="text-white">تاریخ ثبت</th>
                                 <th class="text-white">عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            @foreach($users as $user)
+                            @foreach($doctors as $doctor)
 
-                                @if($user->id != \Illuminate\Support\Facades\Auth::id())
 
                                     <tr>
                                         <th scope="row">{{$loop->index+1}}</th>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td>{{$user->created_at}}</td>
+                                        <td>{{$doctor->name}}</td>
+                                        <td>{{$doctor->speciality_id}}</td>
+                                        <td>{{$doctor->national_code}}</td>
+                                        <td>{{$doctor->medical_number}}</td>
+                                        <td>{{$doctor->mobile}}</td>
+                                        @if($doctor->status==1)
+                                            <td class="mt-2 badge badge-success">فعال</td>
+                                        @endif
+                                        @if($doctor->status==0)
+                                            <td class="mt-2 badge badge-danger">غیر فعال</td>
+                                        @endif
+                                        <td>{{$doctor->created_at}}</td>
                                         <td>
 
-                                            <a href="{{route('superadmin.edit',$user->id)}}" class="btn btn-warning">
+                                            <a href="{{route('superadmin.edit',$doctor->id)}}" class="btn btn-warning">
                                                 <i class="feather feather-edit"></i>
                                             </a>
 
-                                            <a href="{{route('superadmin.destroy',$user->id)}}" class="btn btn-danger">
+                                            <a href="{{route('superadmin.destroy',$doctor->id)}}" class="btn btn-danger">
                                                 <i class="feather feather-trash"></i>
                                             </a>
 
 
                                         </td>
                                     </tr>
-
-                                @endif
 
 
                             @endforeach

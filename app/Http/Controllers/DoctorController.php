@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
+use App\Models\Speciality;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -11,7 +13,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        //
+        $doctors = Doctor::query()->get();
+        return view('user.doctor.index',compact('doctors'));
     }
 
     /**
@@ -19,7 +22,9 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+
+        $specialities = Speciality::query()->get();
+        return view('user.doctor.create',compact('specialities'));
     }
 
     /**
@@ -27,7 +32,21 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Doctor::query()->create([
+
+            'name'=>$request->name,
+            'speciality_id'=>$request->speciality_id,
+            'national_code'=>$request->national_code,
+            'medical_number'=>$request->medical_number,
+            'mobile'=>$request->mobile,
+            'status'=>$request->status,
+            'password'=>bcrypt($request->password),
+
+        ]);
+        toastr()->success('دکتر با موفقیت ثبت شد');
+        return redirect()->route('doctor.index');
+
     }
 
     /**

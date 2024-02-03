@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class OperationUpdateRequest extends FormRequest
 {
@@ -21,19 +22,13 @@ class OperationUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+
+        $this->dd($this->route('operation'));
         return [
+
             'name'=>'required',
+            Rule::unique('operations')->ignore($this->operation->id),
             'price'=>'required|numeric',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'name.required'=>'لطفا اسم عمل را وارد کنید',
-            'price.required'=>'لطفا اسم قیمت عمل را وارد کنید',
-            'price.numeric'=>'لطفا قیمت را با فورمت صحیح وارد کنید',
-
         ];
     }
 }

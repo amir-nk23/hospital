@@ -7,6 +7,7 @@ use App\Http\Requests\OperationUpdateRequest;
 use App\Models\Operation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class OperationController extends Controller
 {
@@ -62,9 +63,20 @@ class OperationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(OperationUpdateRequest $request, Operation $operation)
+    public function update(Request $request, Operation $operation)
     {
-        Operation::query()->update($request->except(['_method','_token']));
+      $validation =  $request->validate([
+            'name'=>['required',
+                Rule::unique('operations')->ignore($operation->id),
+
+                ],
+
+            'price'=>'required|numeric',
+        ]);
+
+
+
+        $operation->update($request->except(['_method','_token']));
         Toastr()->info('تخصص با موفقیت ویرایش شد');
         return redirect()->route('operation.index');
     }

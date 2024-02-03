@@ -27,16 +27,4 @@ class OperationStoreRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return [
-
-            'name.required'=>'لطفا اسم عمل را وارد کنید',
-            'name.unique'=>'این عمل قبلا ثیت شده است',
-            'price.required'=>'لطفا اسم قیمت عمل را وارد کنید',
-            'price.numeric'=>'لطفا قیمت را با فورمت صحیح وارد کنید',
-
-
-        ];
-    }
 }

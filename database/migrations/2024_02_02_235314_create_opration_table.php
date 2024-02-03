@@ -24,7 +24,7 @@ return new class extends Migration
         $permissions = [
 
             'view operation'=>'نماش عمل ها',
-            'create operation'=>'ساختعمل ها',
+            'create operation'=>'ساخت عمل ها',
             'update operation'=>'اپدیت عمل ها',
             'delete operation'=>'حذف عمل ها'
         ];

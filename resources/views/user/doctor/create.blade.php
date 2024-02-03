@@ -9,11 +9,11 @@
 
         <div>
 
-            <h2>ثبت ادمین</h2>
+            <h2>ثبت دکتر</h2>
 
         </div>
 
-        <form method="post" action="{{route('superadmin.store')}}">
+        <form method="post" action="{{route('doctor.store')}}">
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -47,15 +47,54 @@
 
                 </div>
 
+                <div class="col-4 form-group">
+
+                    <label class="label">تخصص</label>
+                    <span style="color: red">*</span>
+                    <select class="form-control" name="speciality_id">
+                        @foreach($specialities as $speciality)
+
+                            <option value="{{$speciality->id}}" >{{$speciality->title}}</option>
+
+                        @endforeach
+
+                    </select>
+
+                </div>
 
 
                 <div class="col-4 form-group">
 
-                    <label class="label">ایمیل</label>
+                    <label class="label">کد ملی</label>
 
-                    <input name="email" value="{{old('email')}}" type="text" class="form-control">
+                    <input name="national_code" value="{{old('national_code')}}" type="text" class="form-control">
 
                 </div>
+
+
+
+
+
+                <div class="col-4 form-group">
+
+                    <label class="label">کد نظام پزشکی</label>
+
+                    <input name="medical_number" value="{{old('medical_number')}}" type="text" class="form-control">
+
+                </div>
+
+                <div class="col-4 form-group">
+
+                    <label class="label"> شماره تلفن </label>
+
+                    <input name="national_code" value="{{old('national_code')}}" type="text" class="form-control">
+
+                </div>
+
+
+
+
+
 
                 <div class="col-4 form-group">
 
@@ -76,39 +115,33 @@
                 </div>
 
 
-            </div>
+                <div class="col-4 form-group">
+
+                    <label class="label">وضعیت</label>
+                    <span style="color: red">*</span>
+                    <select class="form-control" name="status">
+                        <option value="1">فعال</option>
+                        <option value="0">غیر فعال</option>
+
+                    </select>
+
+                </div>
+
+                <div  class="col-12">
+
+                    <div class="mt-5 ml-5" style="text-align: left;">
+
+                        <button class="btn btn-success">ثبت و ذخیره</button>
 
 
-            <div  class="mt-3">
-
-                <label>مجوزها</label>
-                <span style="color: red">*</span>
-
-
-                <div style="display: flex;flex-wrap: wrap;">
-
-
-                    @foreach($permissions as $permission)
-
-                        <div  style="flex-basis: 16.66%">
-                            <label>{{$permission->label}}</label>
-                            <input type="checkbox" name="permissions[]" value="{{$permission->name}}" class="box-content">
-                        </div>
-
-                    @endforeach
+                    </div>
 
                 </div>
 
 
-                <div class="mt-5 ml-5" style="text-align: left;">
 
-                    <button class="btn btn-success">ثبت و ذخیره</button>
-
-
-                </div>
 
             </div>
-
 
         </form>
 

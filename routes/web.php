@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorRoleController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\SpecialityController;
@@ -76,6 +77,17 @@ Route::prefix('operation')->middleware('auth')->group(function ()
     Route::patch('/{operation}',[OperationController::class,'update'])->name('operation.update');
     Route::get('/{id}',[OperationController::class,'destroy'])->name('operation.destroy')->middleware('can:delete operation');;
 
+});
+
+
+Route::prefix('doctor')->middleware('auth')->group(function ()
+{
+    Route::get('/index',[DoctorController::class,'index'])->name('doctor.index')->middleware('can:view doctor');
+    Route::get('/create',[DoctorController::class,'create'])->name('doctor.create')->middleware('can:create doctor');
+    Route::post('',[DoctorController::class,'store'])->name('doctor.store');
+    Route::get('/edit/{operation}',[DoctorController::class,'edit'])->name('doctor.edit')->middleware('can:update doctor');
+    Route::patch('/{operation}',[DoctorController::class,'update'])->name('doctor.update');
+    Route::get('/{id}',[DoctorController::class,'destroy'])->name('doctor.destroy')->middleware('can:delete doctor');;
 });
 
 

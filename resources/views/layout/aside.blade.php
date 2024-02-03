@@ -32,10 +32,20 @@
 
             <li class="slide">
 
+
                 <a class="side-menu__item" data-toggle="slide" href="#">
                     <i class="feather  feather-users sidemenu_icon"></i>
                     <span class="side-menu__label">پزشک</span><i class="angle fa fa-angle-left"></i>
                 </a>
+
+
+                @can('view doctor')
+                    <ul class="slide-menu">
+                        <li><a href="{{route('doctor.index')}}" class="slide-item">پزشک</a></li>
+                        {{--                    <li><a href="employee-attendance.html" class="slide-item">دکتر</a></li>--}}
+                    </ul>
+
+                @endcan
 
                 @can('view specialities')
                 <ul class="slide-menu">
@@ -59,6 +69,7 @@
                 </ul>
 
                 @endcan
+
             </li>
 
 {{--            <li class="slide">--}}
