@@ -42,7 +42,11 @@ class SurgeryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+
+        return redirect()->route('surgery.index');
+
     }
 
     /**
