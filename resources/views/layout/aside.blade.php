@@ -78,6 +78,13 @@
                     <span class="side-menu__label">بیمه</span>
                 </a>
             </li>
+
+            <li class="slide">
+                <a class="side-menu__item"  href="{{route('surgery.index')}}">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">جراحی</span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>

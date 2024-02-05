@@ -26,12 +26,12 @@ body * {
 
 * {
     box-sizing: border-box;
-  
+
     &::before, &::after {
       box-sizing: border-box;
     }
   }
-  
+
   html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
@@ -39,17 +39,28 @@ body * {
     -ms-overflow-style: scrollbar;
     -webkit-tap-highlight-color: transparent;
   }
-  
+
   @-ms-viewport {
     width: device-width;
   }
-  
+
   article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: block;
   }
+
+@font-face {
+    font-family: Vazirmatn;
+    src: url('../../../../fonts/webfonts/Vazirmatn[wght].woff2') format('woff2 supports variations'),
+    url('../../../../fonts/webfonts/Vazirmatn[wght].woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+
   body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: Vazirmatn ;!important;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
@@ -68,18 +79,22 @@ hr {
     height: 0;
     overflow: visible;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     margin-bottom: 0.66em;
+    font-family: Vazirmatn !important;
   }
+
 
   p {
     margin-top: 0;
     margin-bottom: 1rem;
     font-weight: 400;
+      font-family: Vazirmatn !important;
+
   }
-  
+
   abbr {
     &[title], &[data-original-title] {
       text-decoration: underline;
@@ -89,81 +104,93 @@ hr {
       border-bottom: 0;
     }
   }
-  
+
   address {
     margin-bottom: 1rem;
     font-style: normal;
     line-height: inherit;
   }
-  
+
   ol, ul, dl {
     margin-top: 0;
     margin-bottom: 1rem;
+      font-family: Vazirmatn !important;
+
   }
-  
+
   ol ol, ul ul, ol ul, ul ol {
     margin-bottom: 0;
+      font-family: Vazirmatn !important;
+
   }
-  
+
   dt {
     font-weight: 700;
   }
-  
+
   dd {
     margin-bottom: .5rem;
     margin-right: 0;
   }
-  
+
   blockquote {
     margin: 0 0 1rem;
   }
-  
+
   dfn {
     font-style: italic;
   }
-  
+
   b, strong {
     font-weight: bolder;
+      font-family: Vazirmatn !important;
+
   }
-  
+
   small {
     font-size: 80%;
+      font-family: Vazirmatn !important;
+
   }
-  
+
   sub, sup {
     position: relative;
     font-size: 75%;
     line-height: 0;
     vertical-align: baseline;
+      font-family: Vazirmatn !important;
+
   }
-  
+
   sub {
     bottom: -.25em;
   }
-  
+
   sup {
     top: -.5em;
   }
-  
+
   a {
     color: #1a1630;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
-  
+      font-family: Vazirmatn !important;
+
+
     &:hover {
       text-decoration: none;
     }
-  
+
     &:not([href]):not([tabindex]) {
       color: inherit;
       text-decoration: none;
-  
+
       &:hover {
         color: inherit;
         text-decoration: none;
       }
-  
+
       &:focus {
         color: inherit;
         text-decoration: none;
@@ -171,12 +198,14 @@ hr {
       }
     }
   }
-  
+
   pre, code, kbd, samp {
     font-family: monospace, monospace;
     font-size: 1em;
+      font-family: Vazirmatn !important;
+
   }
-  
+
   pre {
     margin-top: 0;
     margin-bottom: 1rem;
@@ -185,25 +214,29 @@ hr {
     display: block;
     font-size: 85%;
     color: #282d3c;
+      font-family: Vazirmatn !important;
+
   }
-  
+
   figure {
     margin: 0 0 1rem;
   }
-  
+
   img {
     vertical-align: middle;
     border-style: none;
   }
-  
+
   svg:not(:root) {
     overflow: hidden;
   }
-  
+
   table {
     border-collapse: collapse;
+      font-family: Vazirmatn !important;
+
   }
-  
+
   caption {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
@@ -211,76 +244,79 @@ hr {
     text-align: right;
     caption-side: bottom;
   }
-  
+
   th {
     text-align: inherit;
   }
-  
+
   label {
     display: inline-block;
     margin-bottom: 0.5rem;
+      font-family: Vazirmatn !important;
+
   }
-  
+
   button {
     border-radius: 0;
-  
+
     &:focus {
       outline: 1px dotted;
       outline: 5px auto -webkit-focus-ring-color;
     }
   }
-  
+
   input, button, select, optgroup, textarea {
     margin: 0;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+
   }
-  
+
   button, input {
     overflow: visible;
   }
-  
+
   button, select {
     text-transform: none;
   }
-  
+
   button, html [type="button"], [type="reset"], [type="submit"] {
     -webkit-appearance: button;
   }
-  
+
   button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner {
     padding: 0;
     border-style: none;
   }
-  
+
   button:focus, textarea:focus {
     outline: 0;
   }
-  
+
   input {
     &[type="radio"], &[type="checkbox"] {
       box-sizing: border-box;
       padding: 0;
     }
-  
+
     &[type="date"], &[type="time"], &[type="datetime-local"], &[type="month"] {
       -webkit-appearance: listbox;
     }
   }
-  
+
   textarea {
     overflow: auto;
     resize: vertical;
   }
-  
+
   fieldset {
     min-width: 0;
     padding: 0;
     margin: 0;
     border: 0;
   }
-  
+
   legend {
     display: block;
     width: 100%;
@@ -292,80 +328,82 @@ hr {
     color: inherit;
     white-space: normal;
   }
-  
+
 progress {
     vertical-align: baseline;
   }
-  
+
   [type="number"] {
     &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
       height: auto;
     }
   }
-  
+
   [type="search"] {
     outline-offset: -2px;
     -webkit-appearance: none;
-  
+
     &::-webkit-search-cancel-button, &::-webkit-search-decoration {
       -webkit-appearance: none;
     }
   }
-  
+
   ::-webkit-file-upload-button {
     font: inherit;
     -webkit-appearance: button;
   }
-  
+
   output {
     display: inline-block;
   }
-  
+
   summary {
     display: list-item;
     cursor: pointer;
   }
-  
+
   template {
     display: none;
   }
-  
+
   [hidden] {
     display: none !important;
   }
-  
+
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-bottom: 0.66em;
-    font-family: 'Roboto', sans-serif;
+      font-family: Vazirmatn !important;
     font-weight: 500;
     line-height: 1.1;
     color: inherit;
+
+
   }
-  
+
   h1, .h1 {
     font-size: 2rem;
   }
-  
+
   h2, .h2 {
     font-size: 1.75rem;
   }
-  
+
   h3, .h3 {
     font-size: 1.5rem;
   }
-  
+
   h4, .h4 {
     font-size: 1.125rem;
   }
-  
+
   h5, .h5 {
     font-size: 1rem;
   }
-  
+
   h6, .h6 {
     font-size: 0.875rem;
   }
-  
+
   .lead {
     font-size: 1.171875rem;
     font-weight: 300;
@@ -376,21 +414,21 @@ progress {
     border: 0;
     border-top: 1px solid #ebecf1;
   }
-  
+
   small, .small {
     font-size: 87.5%;
     font-weight: 400;
   }
-  
+
   mark, .mark {
     padding: 0.2em;
     background-color: #fcf8e3;
   }
-  
+
   .list-unstyled {
     padding-right: 0;
     list-style: none;
-  
+
     li {
       border-bottom: 1px solid #ebecf1;
     }
@@ -399,40 +437,40 @@ progress {
     padding-right: 0;
     list-style: none;
   }
-  
+
   .list-inline-item {
     display: inline-block;
-  
+
     &:not(:last-child) {
       margin-left: 0.5rem;
     }
   }
-  
+
   .initialism {
     font-size: 90%;
     text-transform: uppercase;
   }
-  
+
   .blockquote {
     margin-bottom: 1rem;
     font-size: 1.171875rem;
   }
-  
+
   .blockquote-footer {
     display: block;
     font-size: 80%;
     color: #868e96;
-  
+
     &::before {
       content: "\2014 \00A0";
     }
   }
-  
+
   .img-fluid {
     max-width: 100%;
     height: auto;
   }
-  
+
   .img-thumbnail {
     padding: 0.25rem;
     background-color: $white;
@@ -441,56 +479,56 @@ progress {
     max-width: 100%;
     height: auto;
   }
-  
+
   .figure {
     display: inline-block;
   }
-  
+
   .figure-img {
     margin-bottom: 0.5rem;
     line-height: 1;
   }
-  
+
   .figure-caption {
     font-size: 90%;
     color: #868e96;
   }
-    
-  
+
+
 code, kbd, pre, samp {
     font-family: Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
-  
+
   code {
     font-size: 85%;
     color: inherit;
     word-break: break-word;
   }
-  
+
   a > code {
     color: inherit;
   }
-  
+
   kbd {
     padding: 0.2rem 0.4rem;
     font-size: 85%;
     color: $white;
     background-color: #343a40;
     border-radius: 3px;
-  
+
     kbd {
       padding: 0;
       font-size: 100%;
       font-weight: 700;
     }
   }
-  
+
   pre code {
     font-size: inherit;
     color: inherit;
     word-break: normal;
   }
-  
+
 .wrap {
 	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px $black-2, 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 	border-radius: 4px;
@@ -505,6 +543,7 @@ ul li ul:hover {
 	visibility: visible;
 	opacity: 1;
 	display: block;
+    font-family: Vazirmatn !important;
 }
 
 @media print {

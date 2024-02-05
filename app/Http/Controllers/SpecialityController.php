@@ -72,7 +72,8 @@ class SpecialityController extends Controller
         [
             'title.required'=>'لطفا نام تخصص را وارد کنید'
         ]);
-        Speciality::query()->update($request->except(['_method','_token']));
+
+        $speciality->update($request->only(['title','status']));
         Toastr()->info('تخصص با موفقیت ویرایش شد');
         return redirect()->route('speciality.index');
     }

@@ -16,4 +16,10 @@ class Insurance extends Model
         'percentage',
         'status',
     ];
+
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(Surgery::class);
+    }
 }

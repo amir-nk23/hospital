@@ -8,6 +8,7 @@ use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\SpecialityController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\SurgeryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,8 +53,8 @@ Route::prefix('speciality/')->middleware('auth')->group(function ()
     Route::get('/create',[SpecialityController::class,'create'])->name('speciality.create')->middleware('can:create specialities');
     Route::post('',[SpecialityController::class,'store'])->name('speciality.store');
     Route::get('/edit/{speciality}',[SpecialityController::class,'edit'])->name('speciality.edit')->middleware('can:update specialities');
-    Route::patch('/{user}',[SpecialityController::class,'update'])->name('speciality.update');
-    Route::get('/{id}',[SpecialityController::class,'destroy'])->name('speciality.destroy')->middleware('can:delete specialities');
+    Route::patch('/{speciality}',[SpecialityController::class,'update'])->name('speciality.update');
+    Route::get('/{speciality}',[SpecialityController::class,'destroy'])->name('speciality.destroy')->middleware('can:delete specialities');
 
 });
 
@@ -101,6 +102,12 @@ Route::prefix('insurance')->middleware('auth')->group(function ()
     Route::patch('/{insurance}',[InsuranceController::class,'update'])->name('insurance.update');
     Route::get('/{id}',[InsuranceController::class,'destroy'])->name('insurance.destroy')->middleware('can:delete insurance');;
 });
+
+Route::middleware('auth')->group(function ()
+{
+  Route::resource('surgery', SurgeryController::class);
+});
+
 
 
 

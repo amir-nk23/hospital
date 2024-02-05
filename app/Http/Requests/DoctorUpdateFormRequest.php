@@ -27,8 +27,8 @@ class DoctorUpdateFormRequest extends FormRequest
             'name'=>'required|min:4',
             'speciality_id'=>'required',
             'national_code'=> [new Nationalcode()],
-            'medical_number'=>'digits:5',
-            'password'=>'exclude_if:password,filled|confirmed|min:6'
+            'medical_number'=>'nullable|digits:5',
+            'password'=>'nullable|confirmed|min:6'
         ];
     }
 }

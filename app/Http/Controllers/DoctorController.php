@@ -17,7 +17,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::query()->get();
+        $doctors = Doctor::query()->latest("id")->get();
         $doctors->load([
            'speciality'
 
@@ -112,7 +112,7 @@ class DoctorController extends Controller
         ]);
 
 
-
+            return redirect()->route('doctor.index');
 
     }
 

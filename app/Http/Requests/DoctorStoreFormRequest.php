@@ -26,8 +26,8 @@ class DoctorStoreFormRequest extends FormRequest
             'mobile'=>'required|numeric|digits:11|',
             'name'=>'required|min:4',
             'speciality_id'=>'required',
-            'national_code'=> [new Nationalcode()],
-            'medical_number'=>'digits:5',
+            'national_code'=> ['nullable',new Nationalcode()],
+            'medical_number'=>'nullable|digits:5',
             'password'=>'required|confirmed|min:6'
         ];
     }

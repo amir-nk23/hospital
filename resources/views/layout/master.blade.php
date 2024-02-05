@@ -188,6 +188,25 @@
 
     </script>
 
+    <script>
+
+        // Assuming you have a reference to the element
+        var element = document.getElementById('buttom');
+
+        // Get the position of the element relative to the viewport
+        var elementRect = element.getBoundingClientRect();
+
+        // Check if the element is below the viewport
+        if (elementRect.bottom > window.innerHeight) {
+            // Scroll the page to show the element
+            window.scrollTo({
+                top: window.scrollY + elementRect.bottom - window.innerHeight,
+                behavior: 'smooth' // This will create a smooth scrolling effect
+            });
+        }
+
+    </script>
+
 
 	</body>
 </html>
