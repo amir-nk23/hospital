@@ -42,7 +42,7 @@
                                     <tr>
                                         <th scope="row">{{$loop->index+1}}</th>
                                         <td>{{$doctor->name}}</td>
-                                        <td>{{$doctor->speciality_id}}</td>
+                                        <td>{{$doctor->speciality->title}}</td>
                                         <td>{{$doctor->national_code}}</td>
                                         <td>{{$doctor->medical_number}}</td>
                                         <td>{{$doctor->mobile}}</td>
@@ -55,7 +55,7 @@
                                         <td>{{$doctor->created_at}}</td>
                                         <td>
 
-                                            <a href="{{route('superadmin.edit',$doctor->id)}}" class="btn btn-warning">
+                                            <a href="{{route('doctor.edit',$doctor->id)}}" class="btn btn-warning">
                                                 <i class="feather feather-edit"></i>
                                             </a>
 

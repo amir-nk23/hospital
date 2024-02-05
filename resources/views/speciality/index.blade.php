@@ -38,12 +38,14 @@
                                     <tr>
                                         <th scope="row">{{$loop->index+1}}</th>
                                         <td>{{$speciality->title}}</td>
+                                        <td class="">
                                         @if($speciality->status==1)
-                                            <td class="mt-2 badge badge-success">فعال</td>
+                                                <span class="badge badge-success">غیرفعال</span>
                                         @endif
                                         @if($speciality->status==0)
-                                            <td class="mt-2 badge badge-danger">غیر فعال</td>
+                                                <span  class="badge badge-danger">غیرفعال</span>
                                         @endif
+                                        </td>
                                         <td>{{$speciality->created_at}}</td>
                                         <td>
 

@@ -72,12 +72,12 @@
 
             </li>
 
-{{--            <li class="slide">--}}
-{{--                <a class="side-menu__item"  href="chat-livechat.html">--}}
-{{--                    <i class="feather feather-message-square sidemenu_icon"></i>--}}
-{{--                    <span class="side-menu__label"></span>--}}
-{{--                </a>--}}
-{{--            </li>--}}
+            <li class="slide">
+                <a class="side-menu__item"  href="{{route('insurance.index')}}">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">بیمه</span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>

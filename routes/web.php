@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorRoleController;
+use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\SpecialityController;
 use App\Http\Controllers\SuperAdminController;
@@ -85,9 +86,21 @@ Route::prefix('doctor')->middleware('auth')->group(function ()
     Route::get('/index',[DoctorController::class,'index'])->name('doctor.index')->middleware('can:view doctor');
     Route::get('/create',[DoctorController::class,'create'])->name('doctor.create')->middleware('can:create doctor');
     Route::post('',[DoctorController::class,'store'])->name('doctor.store');
-    Route::get('/edit/{operation}',[DoctorController::class,'edit'])->name('doctor.edit')->middleware('can:update doctor');
-    Route::patch('/{operation}',[DoctorController::class,'update'])->name('doctor.update');
+    Route::get('/edit/{doctor}',[DoctorController::class,'edit'])->name('doctor.edit')->middleware('can:update doctor');
+    Route::patch('/{doctor}',[DoctorController::class,'update'])->name('doctor.update');
     Route::get('/{id}',[DoctorController::class,'destroy'])->name('doctor.destroy')->middleware('can:delete doctor');;
 });
+
+
+Route::prefix('insurance')->middleware('auth')->group(function ()
+{
+    Route::get('/index',[InsuranceController::class,'index'])->name('insurance.index')->middleware('can:view insurance');
+    Route::get('/create',[InsuranceController::class,'create'])->name('insurance.create')->middleware('can:create insurance');
+    Route::post('',[InsuranceController::class,'store'])->name('insurance.store');
+    Route::get('/edit/{insurance}',[InsuranceController::class,'edit'])->name('insurance.edit')->middleware('can:update insurance');
+    Route::patch('/{insurance}',[InsuranceController::class,'update'])->name('insurance.update');
+    Route::get('/{id}',[InsuranceController::class,'destroy'])->name('insurance.destroy')->middleware('can:delete insurance');;
+});
+
 
 

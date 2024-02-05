@@ -24,4 +24,12 @@ class Speciality extends Model
     {
         return LogOptions::defaults()->logFillable();
     }
+
+
+    public function doctor(){
+
+        return $this->hasMany(Doctor::class);
+
+
+    }
 }

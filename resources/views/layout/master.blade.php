@@ -42,7 +42,8 @@
         <link href="{{asset('style/assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet" />
 
         <!-- Select2 css -->
-        <link href="{{asset('style/assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
+        <link href="{{asset('select2/dist/css/select2.min.css')}}" rel="stylesheet" />
+{{--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
 
 	</head>
 
@@ -144,7 +145,8 @@
         <script src="{{asset('style/assets/plugins/sidebar/sidebar.js')}}"></script>
 
         <!-- Select2 js -->
-        <script src="{{asset('style/assets/plugins/select2/select2.full.min.js')}}"></script>
+{{--        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>--}}
+        <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
 
         <!-- Custom js-->
         <script src="{{asset('style/assets/js/custom.js')}}"></script>
@@ -176,6 +178,15 @@
             })
 
         </script>
+
+
+    <script>
+
+        $(".js-example-basic-multiple-limit").select2({
+            maximumSelectionLength: 100
+        });
+
+    </script>
 
 
 	</body>

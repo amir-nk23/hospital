@@ -31,7 +31,7 @@ return new class extends Migration
         $permissions = [
 
             'view doctor'=>'نماش دکتر ها',
-            'create doctor'=>'ساختعمل دکتر ها',
+            'create doctor'=>'ساخت دکتر ها',
             'update doctor'=>'اپدیت دکتر ها',
             'delete doctor'=>'حذف دکتر ها'
         ];

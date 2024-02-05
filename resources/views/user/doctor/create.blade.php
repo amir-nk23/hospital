@@ -40,7 +40,7 @@
 
                 <div class="col-4 form-group">
 
-                    <label class="label">تلفن</label>
+                    <label class="label">شماره تلفن</label>
                     <span style="color: red">*</span>
 
                     <input name="mobile" value="{{old('mobile')}}" type="text" class="form-control">
@@ -51,10 +51,25 @@
 
                     <label class="label">تخصص</label>
                     <span style="color: red">*</span>
-                    <select class="form-control" name="speciality_id">
+                    <select class="form-control"  name="speciality_id">
                         @foreach($specialities as $speciality)
 
                             <option value="{{$speciality->id}}" >{{$speciality->title}}</option>
+
+                        @endforeach
+
+                    </select>
+
+                </div>
+
+                <div class="col-4 form-group">
+
+                    <label class="label">نقش</label>
+                    <span style="color: red">*</span>
+                    <select class="form-control js-example-basic-multiple-limit" multiple name="doctor_roles[]">
+                        @foreach($doctorRoles as $DR)
+
+                            <option value="{{$DR->id}}" >{{$DR->title}}</option>
 
                         @endforeach
 
@@ -82,15 +97,6 @@
                     <input name="medical_number" value="{{old('medical_number')}}" type="text" class="form-control">
 
                 </div>
-
-                <div class="col-4 form-group">
-
-                    <label class="label"> شماره تلفن </label>
-
-                    <input name="national_code" value="{{old('national_code')}}" type="text" class="form-control">
-
-                </div>
-
 
 
 

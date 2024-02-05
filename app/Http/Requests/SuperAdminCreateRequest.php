@@ -24,7 +24,7 @@ class SuperAdminCreateRequest extends FormRequest
         return [
             'name'=>'required|min:3',
             'email'=>'unique:App\Models\User,email|email',
-            'mobile'=>'unique:App\Models\User,mobile|required|digits:11|numeric',
+            'mobile'=>'required|digits:11|numeric',
             'password'=>'required|confirmed|min:6'
         ];
     }

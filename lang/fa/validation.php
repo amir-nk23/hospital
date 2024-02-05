@@ -225,6 +225,8 @@ return [
 		"iban" => "شماره شبا",
 		"accountـnumber" => "شماره حساب",
         "price"=>"قیمت",
-        "operation"=>"عمل"
+        "operation"=>"عمل",
+        "speciality_id"=>"تخصص",
+        "percentage"=>"درصد تخفیف"
     ],
 ];
