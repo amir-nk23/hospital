@@ -144,15 +144,17 @@
 
                         <select class="form-control" name="doctor_id[]">
 
-                            @foreach($role->doctor as $DR)
+
+                            @foreach($role->doctors as $DR)
 
 
-                                <option value="{{$DR->id}}"  @selected($surgery->doctor->contains($DR->id))>{{$DR->name}}</option>
-
+                                <option value="{{$DR->id}}" @selected($surgery->doctors->where('pivot.doctor_role_id', $role->id)->contains($DR->id))>{{$DR->name}}</option>
 
                             @endforeach
 
                         </select>
+
+                        <input hidden value="{{$role->id}}" name="role_id[]">
 
                     </div>
 
@@ -168,7 +170,7 @@
 
                     <label class="label">توضیحات</label>
 
-                    <textarea name="description" cols="1" rows="2"  class="form-control">{{old('description')}}</textarea>
+                    <textarea name="description" cols="1" rows="2"  class="form-control">{{$surgery->description}}</textarea>
 
                 </div>
 

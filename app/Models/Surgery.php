@@ -33,7 +33,7 @@ class Surgery extends Model
     }
 
 
-    public function doctor(){
+    public function doctors(){
 
         return $this->belongsToMany(Doctor::class,'doctor_surgery','surgery_id','doctor_id')->withPivot('doctor_role_id');
 

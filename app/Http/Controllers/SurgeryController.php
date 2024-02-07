@@ -46,7 +46,7 @@ class SurgeryController extends Controller
         $basics = $insurance->where('type','basic');
         $supplementaries = $insurance->where('type','supplementary');
         $operations = Operation::query()->where('status',1)->get();
-        $roles = DoctorRole::query()->where('status',1)->with('doctor')->get();
+        $roles = DoctorRole::query()->where('status',1)->with('doctors')->get();
         return view('surgery.create',compact('basics','supplementaries','operations','roles'));
     }
 
@@ -73,9 +73,7 @@ class SurgeryController extends Controller
 
         }
         $doctors = $request->doctor_id;
-        $roles =$request->role_id;
 
-//        $doctors = Doctor::query()->whereIn('id',$request->doctor_id)->select('id')->with('doctor_role')->get();
 
         $roles =$request->role_id;
 
@@ -108,21 +106,61 @@ class SurgeryController extends Controller
      */
     public function edit(Surgery $surgery)
     {
-        $insurance = Insurance::query()->get();
-        $basics = $insurance->where('type','basic');
-        $supplementaries = $insurance->where('type','supplementary');
+        $insurances = Insurance::query()->get();
+        $basics = $insurances->where('type','basic');
+        $supplementaries = $insurances->where('type','supplementary');
         $operations = Operation::query()->where('status',1)->get();
-        $roles = DoctorRole::query()->where('status',1)->with('doctor')->get();
+        $doctorsID = $surgery->doctors->where('pivot.doctor_role_id', 3);
+        $roles = DoctorRole::query()->where('status',1)->with(['doctors'])->get();
+        $surgery->load([
+            'doctors'
+        ]);
 
-        return view('surgery.edit',compact('surgery','basics','supplementaries','operations','roles'));
+        return view('surgery.edit',compact('surgery','basics','supplementaries','operations','roles','doctorsID'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Surgery $surgery)
     {
-        //
+
+         $surgery->update($request->only(['patient_name','patient_national_code','basic_insurance_id','supp_insurance_id','document_number','description','surgeried_at','released_at']));
+
+        $operations = $request->operation_id;
+
+        $amounts = Operation::query()->whereIn('id',$operations)->select( 'id' ,'price')->get();
+
+        foreach ($amounts as $amount){
+
+
+
+            $surgery->operation()->sync($amount->id,['amount' => $amount->price]);
+
+
+        }
+
+        $doctors = $request->doctor_id;
+
+
+        $roles =$request->role_id;
+
+
+        $doctorlength = count($doctors);
+        $roleslength = count($roles);
+
+
+        $surgery->doctors()->detach($surgery->id,'surgery_id');
+        for ($i=0;$i<$doctorlength;$i++){
+
+            $surgery->doctors()->attach($doctors[$i],['doctor_role_id'=>$roles[$i]]);
+
+        }
+
+        toastr()->info('عمل جراحی با موفقیت ویرایش شد');
+        return redirect()->route('surgery.index');
+
+
     }
 
     /**

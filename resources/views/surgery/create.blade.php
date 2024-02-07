@@ -142,7 +142,7 @@
 
                         <select class="form-control" name="doctor_id[]">
 
-                            @foreach($role->doctor as $DR)
+                            @foreach($role->doctors as $DR)
 
                                 <option value="{{$DR->id}}">{{$DR->name}}</option>
 
