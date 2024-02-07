@@ -15,4 +15,12 @@ class Operation extends Model
         'price',
         'status',
     ];
+
+
+    public function surgery(){
+
+        return $this->belongsToMany(Surgery::class,'operation_surgery','surgery_id','operation_id')->withPivot('amount');
+
+
+    }
 }

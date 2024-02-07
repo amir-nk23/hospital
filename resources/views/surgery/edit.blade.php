@@ -9,12 +9,13 @@
 
         <div>
 
-            <h2>ثبت جراحی</h2>
+            <h2>ویرایش جراحی</h2>
 
         </div>
 
-        <form method="post" action="{{route('surgery.store')}}">
+        <form method="post" action="{{route('surgery.update',$surgery->id)}}">
 
+            @method('patch')
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -33,7 +34,7 @@
                     <label  class="label">نام و نام خانوادگی</label>
                     <span style="color: red">*</span>
 
-                    <input type="text" value="{{old('patient_name')}}" name="patient_name" class="form-control">
+                    <input type="text" value="{{$surgery->patient_name}}" name="patient_name" class="form-control">
 
                 </div>
 
@@ -44,7 +45,7 @@
                     <label class="label">کد ملی</label>
                     <span style="color: red">*</span>
 
-                    <input name="patient_national_code" value="{{old('patient_national_code')}}" type="text" class="form-control">
+                    <input name="patient_national_code" value="{{$surgery->patient_national_code}}" type="text" class="form-control">
 
                 </div>
 
@@ -56,10 +57,10 @@
                     <label class="label">بیمه پایه</label>
                     <span style="color: red">*</span>
                     <select class="form-control"  name="basic_insurance_id">
-                        <option disabled value="" selected >لطفا بیمه پایه را انتخاب کنید</option>
+                        <option disabled value="" >لطفا بیمه پایه را انتخاب کنید</option>
                         @foreach($basics as $basic)
 
-                            <option value="{{$basic->id}}" >{{$basic->name}}</option>
+                            <option value="{{$basic->id}}" {{$basic->id = $surgery->basic_insurance_id ?'selected' : ''}} >{{$basic->name}}</option>
 
                         @endforeach
 
@@ -72,10 +73,10 @@
                     <label class="label">بیمه تکمیلی</label>
                     <span style="color: red">*</span>
                     <select class="form-control"  name="supp_insurance_id">
-                        <option class="placeholder" selected disabled value="" >لطفا بیمه تکمیلی را انتخاب کنید</option>
+                        <option class="placeholder" disabled value="" >لطفا بیمه تکمیلی را انتخاب کنید</option>
                         @foreach($supplementaries as $supplementary)
 
-                            <option value="{{$supplementary->id}}" >{{$supplementary->name}}</option>
+                            <option value="{{$supplementary->id}}" {{$supplementary->id = $surgery->supp_insurance_id ?'selected' : ''}} >{{$supplementary->name}}</option>
 
                         @endforeach
 
@@ -88,7 +89,7 @@
 
                     <label class="label">شماره پرونده</label>
                     <span style="color: red">*</span>
-                    <input name="document_number" value="{{old('document_number')}}" type="text" class="form-control">
+                    <input name="document_number" value="{{$surgery->document_number}}" type="text" class="form-control">
 
                 </div>
 
@@ -99,7 +100,7 @@
 
                     <label class="label">تاریخ عمل</label>
 
-                    <input name="surgeried_at" value="{{old('surgeried_at')}}" type="date" class="form-control">
+                    <input name="surgeried_at" value="{{$surgery->surgeried_at}}" type="date" class="form-control">
 
                 </div>
 
@@ -108,7 +109,7 @@
 
                     <label class="label">تاریخ عمل</label>
 
-                    <input name="released_at" value="{{old('released_at')}}" type="date" class="form-control">
+                    <input name="released_at" value="{{$surgery->released_at}}" type="date" class="form-control">
 
                 </div>
 
@@ -123,7 +124,8 @@
 
                     @foreach($operations as $operation)
 
-                        <option value="{{$operation->id}}">{{$operation->name}}</option>
+
+                        <option value="{{$operation->id}}" @selected($surgery->operation->contains($operation->id))>{{$operation->name}}</option>
 
 
                     @endforeach
@@ -144,14 +146,13 @@
 
                             @foreach($role->doctor as $DR)
 
-                                <option value="{{$DR->id}}">{{$DR->name}}</option>
+
+                                <option value="{{$DR->id}}"  @selected($surgery->doctor->contains($DR->id))>{{$DR->name}}</option>
 
 
                             @endforeach
 
                         </select>
-
-                        <input hidden value="{{$role->id}}" name="role_id[]">
 
                     </div>
 
@@ -176,7 +177,7 @@
 
                     <div class=" ml-5" style="text-align: left;">
 
-                        <button class="btn btn-success">ثبت و ذخیره</button>
+                        <button class="btn btn-warning"> ویرایش </button>
 
 
                     </div>
