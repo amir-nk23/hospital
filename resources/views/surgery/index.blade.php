@@ -29,6 +29,7 @@
                                 <th class="text-white">بیمه تکمیلی</th>
                                 <th class="text-white">بیمه پایه</th>
                                 <th class="text-white">شماره پرونده</th>
+                                <th class="text-white">هزینه عمل (تومان)</th>
                                 <th class="text-white">توضیحات</th>
                                 <th class="text-white">تاریخ عمل</th>
                                 <th class="text-white">تاریخ ترخیص</th>
@@ -44,19 +45,24 @@
                                         <th scope="row">{{$loop->index+1}}</th>
                                         <td>{{$surgery->patient_name}}</td>
                                         <td>{{$surgery->patient_national_code}}</td>
-                                        <td>{{$surgery->suppInsurance->title}}</td>
-                                        <td>{{$surgery->basicInsurance->title}}</td>
-                                        <td>{{$doctor->document_number}}</td>
-                                        <td>{{$doctor->description}}</td>
-                                        <td>{{$doctor->surgeried_at}}</td>
-                                        <td>{{$doctor->released_at}}</td>
+                                        <td>@if($surgery->suppInsurance != null){{$surgery->suppInsurance->name}}@endif</td>
+                                        <td>{{$surgery->basicInsurance->name}}</td>
+                                        <td>{{$surgery->document_number}}</td>
                                         <td>
 
-                                            <a href="{{route('doctor.edit',$doctor->id)}}" class="btn btn-warning">
+                                                {{number_format($surgery->operation->sum('pivot.amount'))}}
+
+                                        </td>
+                                        <td>{{$surgery->description}}</td>
+                                        <td>{{$surgery->surgeried_at}}</td>
+                                        <td>{{$surgery->released_at}}</td>
+                                        <td>
+
+                                            <a href="{{route('surgery.edit',$surgery->id)}}" class="btn btn-warning">
                                                 <i class="feather feather-edit"></i>
                                             </a>
 
-                                            <a href="{{route('superadmin.destroy',$doctor->id)}}" class="btn btn-danger">
+                                            <a href="{{route('surgery.destroy',$surgery->id)}}" class="btn btn-danger">
                                                 <i class="feather feather-trash"></i>
                                             </a>
 
