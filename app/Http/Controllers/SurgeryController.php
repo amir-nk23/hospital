@@ -8,6 +8,7 @@ use App\Models\Insurance;
 use App\Models\Operation;
 use App\Models\Surgery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SurgeryController extends Controller
 {
@@ -84,7 +85,7 @@ class SurgeryController extends Controller
 
         for ($i=0;$i<$doctorlength;$i++){
 
-            $surgery->doctor()->attach($doctors[$i],['doctor_role_id'=>$roles[$i]]);
+            $surgery->doctors()->attach($doctors[$i],['doctor_role_id'=>$roles[$i]]);
 
         }
 
@@ -129,16 +130,19 @@ class SurgeryController extends Controller
 
         $operations = $request->operation_id;
 
-        $amounts = Operation::query()->whereIn('id',$operations)->select( 'id' ,'price')->get();
+        $amounts = Operation::query()->whereIn('id',$operations)->select( 'id' ,'price')->with('surgery')->get();
 
+        $surgery->operation()->detach();
         foreach ($amounts as $amount){
 
 
 
-            $surgery->operation()->sync($amount->id,['amount' => $amount->price]);
+
+            $surgery->operation()->attach($amount->id,['amount' => $amount->price]);
 
 
         }
+
 
         $doctors = $request->doctor_id;
 
@@ -150,7 +154,7 @@ class SurgeryController extends Controller
         $roleslength = count($roles);
 
 
-        $surgery->doctors()->detach($surgery->id,'surgery_id');
+        $surgery->doctors()->detach();
         for ($i=0;$i<$doctorlength;$i++){
 
             $surgery->doctors()->attach($doctors[$i],['doctor_role_id'=>$roles[$i]]);

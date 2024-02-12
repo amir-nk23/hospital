@@ -19,7 +19,7 @@ class Operation extends Model
 
     public function surgery(){
 
-        return $this->belongsToMany(Surgery::class,'operation_surgery','surgery_id','operation_id')->withPivot('amount');
+        return $this->belongsToMany(Surgery::class,'operation_surgery','operation_id','surgery_id')->withPivot('amount');
 
 
     }

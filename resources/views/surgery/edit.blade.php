@@ -166,7 +166,7 @@
 
 
 
-                <div class="col-10 form-group">
+                <div class="col-8 form-group">
 
                     <label class="label">توضیحات</label>
 
@@ -175,14 +175,26 @@
                 </div>
 
 
-                <div id="buttom" class="col-2" style="margin-top: 50px;">
+                <div  class="col-4 d-flex" style="margin-top: 50px;">
 
-                    <div class=" ml-5" style="text-align: left;">
+
+                    <div class="ml-5" style="text-align: left;">
+
+                        <a href="{{route('surgery.index')}}" class="btn btn-danger"> برگشت </a>
+
+
+                    </div>
+
+                    <div class="ml-5" style="text-align: left;">
 
                         <button class="btn btn-warning"> ویرایش </button>
 
 
                     </div>
+
+
+
+
 
                 </div>
 
