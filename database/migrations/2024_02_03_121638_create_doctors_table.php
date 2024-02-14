@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('medical_number')->nullable();
             $table->string('mobile')->unique();
             $table->string('password');
+            $table->string('email')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

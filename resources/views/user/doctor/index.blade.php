@@ -59,7 +59,7 @@
                                                 <i class="feather feather-edit"></i>
                                             </a>
 
-                                            <a href="{{route('superadmin.destroy',$doctor->id)}}" class="btn btn-danger">
+                                            <a href="{{route('doctor.destroy',$doctor->id)}}" class="btn btn-danger">
                                                 <i class="feather feather-trash"></i>
                                             </a>
 

@@ -52,6 +52,14 @@
 
                 </div>
 
+                <div class="col-6 form-group">
+
+                    <label class="label">الزامی بودن</label>
+                    <input type="checkbox" name="required">
+
+                </div>
+
+
                 <div  class="col-12">
 
                     <div class="mt-5 ml-5" style="text-align: left;">

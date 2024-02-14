@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DoctorEmail;
 use App\Http\Requests\DoctorStoreFormRequest;
 use App\Http\Requests\DoctorUpdateFormRequest;
 use App\Models\Doctor;
@@ -52,11 +53,15 @@ class DoctorController extends Controller
             'mobile'=>$request->mobile,
             'status'=>$request->status,
             'password'=>bcrypt($request->password),
+            'email'=>$request->email,
 
         ]);
 
 
       $doctor->doctor_role()->attach($doctorRoles);
+
+      DoctorEmail::dispatch($doctor);
+
         toastr()->success('دکتر با موفقیت ثبت شد');
         return redirect()->route('doctor.index');
 
@@ -119,8 +124,10 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Doctor $doctor)
     {
-        //
+        $doctor->permissions()->detach();
+        $doctor->delete();
+        return redirect()->back();
     }
 }

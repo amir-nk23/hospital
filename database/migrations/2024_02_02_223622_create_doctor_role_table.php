@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->boolean('status')->default(1);
+            $table->boolean('required')->default(1);
             $table->timestamps();
         });
 

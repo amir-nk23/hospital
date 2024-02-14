@@ -85,6 +85,21 @@
                     <span class="side-menu__label">جراحی</span>
                 </a>
             </li>
+
+
+            <li class="slide">
+                <a class="side-menu__item text-white"  href="{{route('setting.index')}}">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">تنظیمات</span>
+                </a>
+            </li>
+
+            <li class="slide">
+                <a class="side-menu__item text-white"  href="{{route('log.index')}}">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">فعالبت ها</span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>

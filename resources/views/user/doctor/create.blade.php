@@ -133,6 +133,13 @@
 
                 </div>
 
+                <div class="col-4 form-group">
+
+                    <label class="label">ایمیل</label>
+                    <input type="email" class="form-control" name="email">
+
+                </div>
+
                 <div  class="col-12">
 
                     <div class="mt-5 ml-5" style="text-align: left;">

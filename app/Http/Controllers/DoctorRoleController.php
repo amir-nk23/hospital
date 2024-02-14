@@ -32,6 +32,7 @@ class DoctorRoleController extends Controller
     public function store(Request $request)
     {
 
+
         DoctorRole::query()->create($request->all());
 
         Toastr()->success('نقش دکتر با موفقیت ایجاد شد');

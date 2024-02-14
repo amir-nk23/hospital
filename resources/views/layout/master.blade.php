@@ -208,5 +208,35 @@
     </script>
 
 
+{{--        <script>--}}
+{{--            $(document).ready(function() {--}}
+{{--                $('.ajax-link').click(function(e) {--}}
+{{--                    e.preventDefault(); // Prevent the default action of the anchor tag--}}
+
+{{--                    var valueToSend = $(this).data('value'); // Get the value from 'data-value' attribute--}}
+{{--                    console.log(valueToSend);--}}
+{{--                    $.ajax({--}}
+{{--                        headers: {--}}
+{{--                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+{{--                        },--}}
+{{--                        method: 'POST', // Change it to 'GET' or 'POST' as per your route requirements--}}
+{{--                        url: '{{ route("setting.destroy") }}',--}}
+{{--                        data: {--}}
+{{--                            value: valueToSend--}}
+{{--                        },--}}
+{{--                        success: function() {--}}
+
+{{--                            setTimeout(function() {--}}
+{{--                                location.reload();--}}
+{{--                            },); // Refresh after 1 second--}}
+{{--                        },--}}
+
+{{--                    });--}}
+{{--                });--}}
+{{--            });--}}
+
+{{--        </script>--}}
+
+
 	</body>
 </html>

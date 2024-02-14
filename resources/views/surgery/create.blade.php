@@ -139,8 +139,13 @@
                     <div class="col-4 form-group">
 
                         <label class="label">{{$role->title}}</label>
+                        @if($role->required ==1)
 
-                        <select class="form-control" name="doctor_id[]">
+                            <span style="color: red">*</span>
+
+                        @endif
+
+                        <select class="form-control" {{$role->required == 1 ? 'required' : ''}} name="doctor_id[]">
 
                             @foreach($role->doctors as $DR)
 

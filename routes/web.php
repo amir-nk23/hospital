@@ -6,6 +6,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorRoleController;
 use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\OperationController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SpecialityController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\SurgeryController;
@@ -101,6 +102,24 @@ Route::prefix('insurance')->middleware('auth')->group(function ()
     Route::get('/edit/{insurance}',[InsuranceController::class,'edit'])->name('insurance.edit')->middleware('can:update insurance');
     Route::patch('/{insurance}',[InsuranceController::class,'update'])->name('insurance.update');
     Route::get('/{id}',[InsuranceController::class,'destroy'])->name('insurance.destroy')->middleware('can:delete insurance');;
+});
+
+
+Route::prefix('/setting')->middleware('auth')->group(function (){
+
+    Route::get('', [SettingController::class,'index'])->name('setting.index');
+    Route::get('/general', [SettingController::class,'general'])->name('setting.general');
+    Route::get('/social', [SettingController::class,'social'])->name('setting.social');
+    Route::patch('', [SettingController::class,'update'])->name('setting.update');
+    Route::get('/delete/img', [SettingController::class,'destroy'])->name('setting.destroy');
+
+
+});
+
+Route::prefix('log')->middleware('auth')->group(function (){
+
+    Route::get('/index',[\App\Http\Controllers\ActivityLogController::class,'index'])->name('log.index');
+
 });
 
 Route::middleware('auth')->group(function ()
