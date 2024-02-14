@@ -9,11 +9,11 @@
 
         <div>
 
-            <h2>ثبت نقش</h2>
+            <h2>فیلتر پرداخت</h2>
 
         </div>
 
-        <form method="post" action="{{route('doctor.role.store')}}">
+        <form method="post" action="{{route('speciality.store')}}">
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -30,7 +30,7 @@
 
                 <div class="col-6 form-group">
 
-                    <label  class="label">نام نقش</label>
+                    <label  class="label">نام تخصص</label>
                     <span style="color: red">*</span>
 
                     <input type="text" value="{{old('title')}}" name="title" class="form-control">
@@ -51,14 +51,6 @@
                     </select>
 
                 </div>
-
-                <div class="col-6 form-group">
-
-                    <label class="label">الزامی بودن</label>
-                    <input type="checkbox" value="1" name="required">
-
-                </div>
-
 
                 <div  class="col-12">
 

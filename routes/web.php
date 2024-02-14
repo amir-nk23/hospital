@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorRoleController;
+use App\Http\Controllers\DoctorSurgeryController;
 use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\SettingController;
@@ -108,6 +109,19 @@ Route::prefix('insurance')->middleware('auth')->group(function ()
 Route::prefix('/setting')->middleware('auth')->group(function (){
 
     Route::get('', [SettingController::class,'index'])->name('setting.index');
+    Route::get('/general', [SettingController::class,'general'])->name('setting.general');
+    Route::get('/social', [SettingController::class,'social'])->name('setting.social');
+    Route::patch('', [SettingController::class,'update'])->name('setting.update');
+    Route::get('/delete/img', [SettingController::class,'destroy'])->name('setting.destroy');
+
+
+});
+
+
+
+Route::prefix('/invoice')->middleware('auth')->group(function (){
+
+    Route::get('', [DoctorSurgeryController::class,'index'])->name('setting.index');
     Route::get('/general', [SettingController::class,'general'])->name('setting.general');
     Route::get('/social', [SettingController::class,'social'])->name('setting.social');
     Route::patch('', [SettingController::class,'update'])->name('setting.update');

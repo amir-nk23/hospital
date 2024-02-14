@@ -29,11 +29,10 @@
 
                             @foreach($activities as $activity)
 
-
                                     <tr>
                                         <th scope="row">{{$loop->index+1}}</th>
                                         <td>{{__('custom.'.$activity->description)}}</td>
-                                        <td>{{ __('custom.'.$activity->subject->getTable())}}</td>
+                                        <td>{{ __('custom.'.$activity->subject_type)}}</td>
                                         <td>{{$activity->causer->name}}</td>
                                         <td>{{$activity->created_at}}</td>
 
