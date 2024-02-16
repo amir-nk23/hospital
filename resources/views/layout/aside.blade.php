@@ -100,6 +100,15 @@
                     <span class="side-menu__label">فعالبت ها</span>
                 </a>
             </li>
+
+
+
+            <li class="slide">
+                <a class="side-menu__item text-white"  href="{{route('preinvoice.index')}}">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">پرداختی پزشک</span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>

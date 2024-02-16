@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorRoleController;
 use App\Http\Controllers\DoctorSurgeryController;
 use App\Http\Controllers\InsuranceController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SpecialityController;
@@ -121,18 +123,14 @@ Route::prefix('/setting')->middleware('auth')->group(function (){
 
 Route::prefix('/invoice')->middleware('auth')->group(function (){
 
-    Route::get('', [DoctorSurgeryController::class,'index'])->name('setting.index');
-    Route::get('/general', [SettingController::class,'general'])->name('setting.general');
-    Route::get('/social', [SettingController::class,'social'])->name('setting.social');
-    Route::patch('', [SettingController::class,'update'])->name('setting.update');
-    Route::get('/delete/img', [SettingController::class,'destroy'])->name('setting.destroy');
-
+    Route::get('/pre/index', [InvoiceController::class,'index'])->name('preinvoice.index');
+    Route::get('/pre', [InvoiceController::class,'search'])->name('preinvoice.search');
 
 });
 
 Route::prefix('log')->middleware('auth')->group(function (){
 
-    Route::get('/index',[\App\Http\Controllers\ActivityLogController::class,'index'])->name('log.index');
+    Route::get('/index',[ActivityLogController::class,'index'])->name('log.index');
 
 });
 

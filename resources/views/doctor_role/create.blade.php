@@ -40,6 +40,16 @@
 
                 <div class="col-6 form-group">
 
+                    <label  class="label">درصد سهم</label>
+                    <span style="color: red">*</span>
+
+                    <input type="text" value="{{old('quota')}}" name="quota" class="form-control">
+
+                </div>
+
+
+                <div class="col-6 form-group">
+
                     <label class="label">وضعیت</label>
                     <span style="color: red">*</span>
 
@@ -52,7 +62,10 @@
 
                 </div>
 
-                <div class="col-6 form-group">
+
+
+
+                <div class="col-6 mt-5 form-group">
 
                     <label class="label">الزامی بودن</label>
                     <input type="checkbox" value="1" name="required">

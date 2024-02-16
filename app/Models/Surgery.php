@@ -20,6 +20,10 @@ class Surgery extends Model
         return LogOptions::defaults()->logFillable();
     }
 
+    public function getTotalPrice()
+    {
+        return $this->operation()->sum('price');
+    }
 
     public function basicInsurance()
     {

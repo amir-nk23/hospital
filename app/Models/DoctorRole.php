@@ -17,7 +17,8 @@ class DoctorRole extends Model
 
         'title',
         'status',
-        'required'
+        'required',
+        'quota'
     ];
 
 

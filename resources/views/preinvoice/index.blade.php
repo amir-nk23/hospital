@@ -13,7 +13,8 @@
 
         </div>
 
-        <form method="post" action="{{route('speciality.store')}}">
+        <form method="get" action="{{route('preinvoice.search')}}">
+
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -30,25 +31,40 @@
 
                 <div class="col-6 form-group">
 
-                    <label  class="label">نام تخصص</label>
+                    <label  class="label">نام دکتر</label>
                     <span style="color: red">*</span>
 
-                    <input type="text" value="{{old('title')}}" name="title" class="form-control">
+                    <select name="doctor_id" class="form-control">
+
+                        <option selected disabled>لطفا نام پزشک را انتخاب کنید</option>
+                        @foreach($doctors as $doctor)
+
+                        <option value="{{$doctor->id}}">{{$doctor->name}}</option>
+
+                        @endforeach
+                    </select>
 
                 </div>
 
 
                 <div class="col-6 form-group">
 
-                    <label class="label">وضعیت</label>
+                    <label class="label">تاریخ مبدا</label>
                     <span style="color: red">*</span>
 
-                    <select name="status" class="form-control">
+                    <input type="date" class="form-control" name="start_date">
 
-                        <option value="1">فعال</option>
-                        <option value="0">غیر فعال</option>
 
-                    </select>
+                </div>
+
+
+                <div class="col-6 form-group">
+
+                    <label class="label">تاریخ ترخیص</label>
+                    <span style="color: red">*</span>
+
+                    <input type="date" class="form-control" name="end_date">
+
 
                 </div>
 
@@ -56,7 +72,7 @@
 
                     <div class="mt-5 ml-5" style="text-align: left;">
 
-                        <button class="btn btn-success">ثبت و ذخیره</button>
+                        <button class="btn btn-primary">فیلتر</button>
 
 
                     </div>

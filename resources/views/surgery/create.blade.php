@@ -106,7 +106,7 @@
 
                 <div class="col-6 form-group">
 
-                    <label class="label">تاریخ عمل</label>
+                    <label class="label">تاریخ تریخیص</label>
 
                     <input name="released_at" value="{{old('released_at')}}" type="date" class="form-control">
 
