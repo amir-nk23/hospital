@@ -125,6 +125,7 @@ Route::prefix('/invoice')->middleware('auth')->group(function (){
 
     Route::get('/pre/index', [InvoiceController::class,'index'])->name('preinvoice.index');
     Route::get('/pre', [InvoiceController::class,'search'])->name('preinvoice.search');
+    Route::post('/store', [InvoiceController::class,'store'])->name('invoice.store');
 
 });
 

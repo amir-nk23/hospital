@@ -65,25 +65,22 @@
 
 
 		<div class="page">
-			<div class="page-main">
+			<div class="page-main ">
 
-	        @include('layout.aside')
+	         @include('layout.aside')
 
-				<div class="app-content main-content">
+				<div class="app-content main-content vh-100">
 					<div class="side-app">
 
-			@include('layout.header')
+		                	@include('layout.header')
 
 
 
-						@yield('content')
-
-
-
+						        @yield('content')
 					</div>
 				</div><!-- end app-content-->
 			</div>
-
+        </div>
         @include('layout.sidebar')
 
 {{--			<!--Change password Modal -->--}}
@@ -206,6 +203,26 @@
         }
 
     </script>
+
+
+
+        <script>
+
+            $(document).ready(function() {
+                $('.record-checkbox').change(function() {
+                    var totalAmount = 0;
+                    $('.record-checkbox:checked').each(function() {
+                        var amount = $(this).closest('tr').find('td:nth-child(6)').text().replace(/,/g,'');
+                        totalAmount += parseInt(amount);
+                    });
+                    $('#total-amount').val(totalAmount);
+                    $('#total-amount-f').text(totalAmount.toLocaleString());
+                });
+            });
+
+
+
+        </script>
 
 
 {{--        <script>--}}

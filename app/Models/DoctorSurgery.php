@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class DoctorSurgery extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
+    protected $fillable = [
+
+        'invoice_id'
+
+    ];
 
     protected $table = 'doctor_surgery';
     public function surgery(){
@@ -29,12 +35,5 @@ class DoctorSurgery extends Model
 
     }
 
-    public function getDoctorQuotaAmount()
-    {
 
-
-         return round(($this->doctorRole->quota /100) * $this->surgery->getTotalPrice());
-
-
-    }
 }

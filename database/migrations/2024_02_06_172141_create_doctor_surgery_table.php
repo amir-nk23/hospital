@@ -16,8 +16,8 @@ return new class extends Migration
             $table->bigInteger('doctor_id');
             $table->bigInteger('surgery_id');
             $table->bigInteger('doctor_role_id');
-            $table->boolean('status')->default(0);
-            $table->timestamps();
+            $table->unsignedBigInteger('invoice_id')->nullable();
+            $table->unsignedBigInteger('amount');
         });
     }
 

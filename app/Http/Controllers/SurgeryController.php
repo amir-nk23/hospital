@@ -83,9 +83,14 @@ class SurgeryController extends Controller
         $roleslength = count($roles);
 
 
+
+
+
         for ($i=0;$i<$doctorlength;$i++){
 
-            $surgery->doctors()->attach($doctors[$i],['doctor_role_id'=>$roles[$i]]);
+            $doctorRole = DoctorRole::find($roles[$i]);
+            $amount = $surgery->getDoctorQuotaAmount($doctorRole);
+            $surgery->doctors()->attach($doctors[$i],['doctor_role_id'=>$roles[$i],'amount'=>$amount]);
 
         }
 

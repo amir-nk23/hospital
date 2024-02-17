@@ -19,8 +19,9 @@
                         </div>
                     </div>
 
-                    <form method="get">
+                    <form method="post" action="{{route('invoice.store')}}">
 
+                        @csrf
                         <div class="table-responsive">
                             <table class="table card-table table-vcenter text-nowrap table-primary mb-0">
                                 <thead class="bg-primary text-white">
@@ -43,25 +44,27 @@
 
 
                                     <tr>
-                                        <td><input type="checkbox" name="invoice_id[]" value="{{$DR->id}}"></td>
+                                        <input hidden name="doctor_id"  value="{{$DR->doctor_id}}">
+                                        <td><input type="checkbox" class="record-checkbox" name="doctor_surgery_id[]" value="{{$DR->id}}"></td>
                                         <th scope="row">{{$loop->index+1}}</th>
                                         <td>{{$DR->surgery->surgeried_at}}</td>
                                         <td>{{$DR->surgery->released_at}}</td>
                                         <td>@foreach($DR->surgery->operation as $operation) {{$operation->name.','}} @endforeach</td>
-                                        <td>{{number_format($DR->getDoctorQuotaAmount())}}</td>
+                                        <td>{{number_format($DR->amount)}}</td>
                                     </tr>
+
 
                                     @php
 
-                                    $total += $DR->getDoctorQuotaAmount()
+                                    $total += $DR->amount
                                         @endphp
                                 @endforeach
 
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <th>جمع کل</th>
+                                <th> جمع گرینه ها انتخاب شده (تومان)</th>
+                                <td id="total-amount-f"></td>
+                                <th>جمع کل (تومان)</th>
                                 <td>{{number_format($total)}}</td>
                                 </tbody>
                             </table>

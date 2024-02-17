@@ -11,6 +11,7 @@ class Surgery extends Model
 {
     use HasFactory,LogsActivity;
 
+
     protected $fillable = ['patient_name','patient_national_code','basic_insurance_id','supp_insurance_id','document_number','description','surgeried_at','released_at'];
 
 
@@ -22,7 +23,7 @@ class Surgery extends Model
 
     public function getTotalPrice()
     {
-        return $this->operation()->sum('price');
+        return $this->operation()->sum('amount');
     }
 
     public function basicInsurance()
@@ -47,7 +48,17 @@ class Surgery extends Model
 
     public function doctors(){
 
-        return $this->belongsToMany(Doctor::class,'doctor_surgery','surgery_id','doctor_id')->withPivot('doctor_role_id');
+        return $this->belongsToMany(Doctor::class,'doctor_surgery','surgery_id','doctor_id')->withPivot('doctor_role_id','amount');
+
+
+    }
+
+    public function getDoctorQuotaAmount(DoctorRole $doctorRole):int
+    {
+
+        $amount =  round(($doctorRole->quota /100) * $this->getTotalPrice());
+
+       return $amount;
 
 
     }
