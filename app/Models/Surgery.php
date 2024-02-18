@@ -56,9 +56,22 @@ class Surgery extends Model
     public function getDoctorQuotaAmount(DoctorRole $doctorRole):int
     {
 
+//        $doctorRole = DoctorRole::find($id);
         $amount =  round(($doctorRole->quota /100) * $this->getTotalPrice());
 
        return $amount;
+
+
+    }
+
+
+    public function getDoctorQuotaInvoice($id):int
+    {
+
+        $doctorRole = DoctorRole::find($id);
+        $amount =  round(($doctorRole->quota /100) * $this->getTotalPrice());
+
+        return $amount;
 
 
     }

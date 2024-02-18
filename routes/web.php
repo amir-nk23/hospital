@@ -123,8 +123,13 @@ Route::prefix('/setting')->middleware('auth')->group(function (){
 
 Route::prefix('/invoice')->middleware('auth')->group(function (){
 
-    Route::get('/pre/index', [InvoiceController::class,'index'])->name('preinvoice.index');
+    Route::get('/pre/index', [InvoiceController::class,'filter'])->name('preinvoice.filter');
     Route::get('/pre', [InvoiceController::class,'search'])->name('preinvoice.search');
+    Route::get('/index', [InvoiceController::class,'index'])->name('invoice.index');
+    Route::get('/{invoice}', [InvoiceController::class,'edit'])->name('invoice.edit');
+    Route::get('/show/{invoice}', [InvoiceController::class,'show'])->name('invoice.show');
+    Route::patch('/{invoice}', [InvoiceController::class,'update'])->name('invoice.update');
+    Route::get('/delete/{invoice}', [InvoiceController::class,'destroy'])->name('invoice.destroy');
     Route::post('/store', [InvoiceController::class,'store'])->name('invoice.store');
 
 });

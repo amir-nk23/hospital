@@ -16,4 +16,19 @@ class Invoice extends Model
         'description',
         'status'
     ];
+
+    public function doctors()
+    {
+
+        return $this->belongsTo(Doctor::class,'doctor_id');
+
+    }
+
+    public function surgery(){
+
+
+        return $this->belongsToMany(Surgery::class,'doctor_surgery','invoice_id','surgery_id')->withPivot('doctor_role_id');
+
+    }
+
 }

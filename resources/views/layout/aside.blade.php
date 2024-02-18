@@ -104,11 +104,20 @@
 
 
             <li class="slide">
-                <a class="side-menu__item text-white"  href="{{route('preinvoice.index')}}">
+                <a class="side-menu__item text-white"  href="{{route('preinvoice.filter')}}">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">پرداختی پزشک</span>
                 </a>
             </li>
+
+
+            <li class="slide">
+                <a class="side-menu__item text-white"  href="{{route('invoice.index')}}">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">صورتحساب</span>
+                </a>
+            </li>
+
         </ul>
     </div>
 </aside>

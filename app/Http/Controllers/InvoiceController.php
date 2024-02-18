@@ -6,12 +6,13 @@ use App\Models\Doctor;
 use App\Models\DoctorRole;
 use App\Models\DoctorSurgery;
 use App\Models\Invoice;
+use http\Exception\RuntimeException;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
 
-    public function index(){
+    public function filter(){
 
 
         return view('preinvoice.index',[
@@ -29,7 +30,7 @@ class InvoiceController extends Controller
         $s_date = $request->start_date;
         $e_date = $request->end_date;
 
-           $doctor_surgeries =  DoctorSurgery::query()->where('doctor_id',$request->doctor_id)
+           $doctor_surgeries =  DoctorSurgery::query()->where('doctor_id',$request->doctor_id)->whereNull('invoice_id')
 
                ->with(['surgery','doctors'])
                ->whereHas('surgery',function ($query) use ($s_date){
@@ -76,7 +77,69 @@ class InvoiceController extends Controller
       }
 
       toastr()->success('تسویه با موفقیت انجام شد');
-      return redirect()->route('preinvoice.index');
+      return redirect()->route('preinvoice.filter');
+
+    }
+
+    public function index()
+    {
+        $invoices = Invoice::query()->with('doctors')->get();
+
+
+        return view('invoice.index',compact('invoices'));
+
+    }
+
+    public function show(Invoice $invoice){
+
+
+        return view('invoice.show',compact('invoice'));
+
+    }
+
+    public function edit(Invoice $invoice)
+    {
+
+
+        return view('invoice.edit',compact('invoice'));
+
+    }
+
+    public function update(Request $request,Invoice $invoice)
+    {
+        $invoice->update(
+          [
+
+              'description' => $request->description
+          ]
+
+        );
+
+
+        toastr()->info('صورتحساب با موفقیت ویرایش شد');
+
+        return redirect()->route('invoice.index');
+    }
+
+    public function destroy(Invoice $invoice)
+    {
+
+        $DR = DoctorSurgery::query()->where('invoice_id',$invoice->id);
+
+
+        $DR->update([
+
+            'invoice_id'=>null
+
+        ]);
+
+        $invoice->delete();
+
+
+        toastr()->error('صورتحساب با موفقیت حذف شد');
+
+        return redirect()->route('invoice.index');
+
 
     }
 }

@@ -40,6 +40,13 @@ class Doctor extends Model
 
     }
 
+    public function surgery(){
+
+        return $this->belongsToMany(DoctorRole::class,'doctor_surgery','doctor_id','surgery_id');
+
+
+    }
+
     public function speciality(){
 
 
