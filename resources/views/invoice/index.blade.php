@@ -19,7 +19,7 @@
                             <tr>
                                 <th class="text-white">ردیف</th>
                                 <th class="text-white"> نام پزشک </th>
-                                <th class="text-white">مبلغ صورتحساب</th>
+                                <th class="text-white">مبلغ صورتحساب(تومان)</th>
                                 <th class="text-white">توضیحات</th>
                                 <th class="text-white">تاریخ ثبت</th>
                                 <th class="text-white">عملیات</th>
@@ -32,9 +32,9 @@
                                     <tr>
                                         <th scope="row">{{$loop->index+1}}</th>
                                         <td>{{$invoice->doctors->name}}</td>
-                                        <td>{{$invoice->amount}}</td>
+                                        <td>{{number_format($invoice->amount)}}</td>
                                         <td>{{$invoice->description}}</td>
-                                        <td>{{$invoice->created_at->format('Y-m-d')}}</td>
+                                        <td>{{$invoice->jalaliDate()}}</td>
                                         <td>
 
                                             @can('update invoice')
@@ -46,6 +46,17 @@
                                                 <a href="{{route('invoice.show',$invoice->id)}}" class="btn btn-info">
                                                     <i class="feather feather-eye"></i>
                                                 </a>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                                        data-target="#payment-{{$invoice->id}}">
+                                                    <i class="feather feather-dollar-sign"></i>
+
+                                                </button>
+
+
+{{--                                                <button  id="#myBtn-{{$invoice->id}}" class="btn btn-success">--}}
+{{--                                                    <i class="feather feather-dollar-sign"></i>--}}
+{{--                                                </button>--}}
                                             @can('delete invoice')
 
                                                 @if($invoice->status == 0)
@@ -58,22 +69,113 @@
                                     </tr>
 
 
+{{--                                    			<!--Change password Modal -->--}}
+{{--                                    <!-- The Modal -->--}}
+{{--                                    <div id="myModal{{}}" class="modal">--}}
 
-                            @endforeach
+{{--                                        <!-- Modal content -->--}}
+{{--                                        <div class="modal-content">--}}
+{{--                                            <div class="modal-header" >--}}
+{{--                                                <h2 class="text">پرداخت</h2>--}}
+{{--                                                <span class="close">&times;</span>--}}
 
-                            </tbody>
-                        </table>
+{{--                                            </div>--}}
+{{--                                            <div class="modal-body">--}}
+{{--                                                <form>--}}
 
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label>مبلغ :</label>--}}
+{{--                                                        <input class="form-control">--}}
+{{--                                                    </div>--}}
+
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label>مبلغ :</label>--}}
+{{--                                                        <textarea class="form-control" name="description"></textarea>--}}
+{{--                                                    </div>--}}
+
+
+
+{{--                                                </form>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    			<!-- End Change password Modal  -->--}}
+
+
+                                @endforeach
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <!-- table-responsive -->
+
+                    @foreach($invoices as $invoice)
+                        <!-- Modal -->
+                        <div class="modal fade" id="payment-{{$invoice->id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Body
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close
+                                        </button>
+                                        <button type="button" class="btn btn-primary">Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    @endforeach
                     </div>
-                    <!-- table-responsive -->
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+        </div>
 
 
-@endsection
+        <script>
+
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on the button, open the modal
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+        </script>
+    @endsection
 
 
 

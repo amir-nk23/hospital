@@ -9,7 +9,7 @@
                     <div class="card">
                         <div class="card-header d-xl-flex d-block">
 
-                            <h3 class="card-title"> لیست عمل ها ی دکتر {{$doctor_surgeries[0]->doctors->name}}</h3>
+                         @if($doctor_surgeries[0]) <h3 class="card-title"> لیست عمل ها ی دکتر {{$doctor_surgeries[0]->doctors->name}}</h3> @endif
 {{--                            <div class="page-leftheader mr-md-auto">--}}
 {{--                                <div class="btn btn-success d-flex align-items-end flex-wrap my-auto right-content">--}}
 {{--                                    <a href="{{route('surgery.create')}}" class="text-white">ثبت جراحی</a>--}}
@@ -52,6 +52,8 @@
                                         <td>@foreach($DR->surgery->operation as $operation) {{$operation->name.','}} @endforeach</td>
                                         <td>{{number_format($DR->amount)}}</td>
                                     </tr>
+
+
 
 
                                     @php

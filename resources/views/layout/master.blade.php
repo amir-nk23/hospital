@@ -23,6 +23,7 @@
 
         <!-- Style css -->
         <link href="{{asset('style/assets/css-rtl/style.css')}}" rel="stylesheet" />
+        <link href="{{asset('cstyle/modal.css')}}" rel="stylesheet" />
         <link href="{{asset('style/assets/css-rtl/dark.css')}}" rel="stylesheet" />
         <link href="{{asset('style/assets/css-rtl/skin-modes.css')}}" rel="stylesheet" />
 
@@ -77,11 +78,16 @@
 
 
 						        @yield('content')
+
+
 					</div>
+
 				</div><!-- end app-content-->
+
 			</div>
+            @include('layout.sidebar')
         </div>
-        @include('layout.sidebar')
+
 
 {{--			<!--Change password Modal -->--}}
 {{--			<div class="modal fade"  id="changepasswordnmodal">--}}
@@ -112,8 +118,8 @@
 {{--			</div>--}}
 {{--			<!-- End Change password Modal  -->--}}
 
+        <!-- Trigger/Open The Modal -->
 
-		</div>
 
         <!-- Back to top -->
         <a href="#top" id="back-to-top"><span class="feather feather-chevrons-up"></span></a>

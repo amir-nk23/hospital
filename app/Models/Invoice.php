@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Invoice extends Model
+class Invoice extends BaseModel
 {
     use HasFactory;
 
@@ -28,6 +28,17 @@ class Invoice extends Model
 
 
         return $this->belongsToMany(Surgery::class,'doctor_surgery','invoice_id','surgery_id')->withPivot('doctor_role_id');
+
+    }
+
+    public static function booted()
+    {
+
+        static::deleting(function (Invoice $invoice){
+
+
+
+        });
 
     }
 

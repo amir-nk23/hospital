@@ -31,9 +31,9 @@
                                             <tr>
                                                 <th scope="row">1</th>
                                                 <td>{{$invoice->doctors->name}}</td>
-                                                <td>{{$invoice->amount}}</td>
+                                                <td>{{number_format($invoice->amount)}}</td>
                                                 <td>{{$invoice->description}}</td>
-                                                <td>{{$invoice->created_at->format('Y-m-d')}}</td>
+                                                <td>{{$invoice->jalaliDate()}}</td>
                                             </tr>
 
                                         </tbody>
@@ -76,6 +76,7 @@
                                         <th class="text-white"> نام بیمار </th>
                                         <th class="text-white">کد ملی</th>
                                         <th class="text-white">شماره پرونده</th>
+                                        <th class="text-white">مبلغ(تومان)</th>
                                         <th class="text-white">تاریخ ثبت</th>
                                     </tr>
                                     </thead>
@@ -89,6 +90,7 @@
                                         <td>{{$surgery->patient_national_code}}</td>
                                         <td>{{$surgery->document_number}}</td>
                                         <td>{{number_format($surgery->getDoctorQuotaInvoice($surgery->pivot->doctor_role_id))}}</td>
+                                        <td>{{$surgery->jalaliDate()}}</td>
                                     </tr>
 
                                     @endforeach

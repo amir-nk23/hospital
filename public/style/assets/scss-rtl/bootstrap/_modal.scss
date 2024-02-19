@@ -356,21 +356,21 @@
 	  height: 100%;
 	  transition: all .3 ease;
 	}
-  
+
 	&.right .modal-content, &.left .modal-content {
 	  height: 100%;
 	  overflow-y: auto;
 	}
-  
+
 	&.right .modal-body, &.left .modal-body {
 	  padding: 15px 15px 80px;
 	}
-  
+
 	&.right.fade {
 	  .modal-dialog {
 		right: -320px;
 	  }
-  
+
 	  &.in .modal-dialog {
 		right: 0;
 	  }
@@ -379,7 +379,7 @@
 	  .modal-dialog {
 		left: -320px;
 	  }
-  
+
 	   .modal-dialog {
 		left: 0;
 	  }
@@ -388,17 +388,17 @@
 		.modal-dialog {
 		  right: -320px;
 		}
-	
+
 		 .modal-dialog {
 		  right: 0;
 		}
 	  }
-  
+
 	&.left {
 	  .modal-dialog {
 		left: -320px;
 	  }
-  
+
 	   .modal-dialog {
 		left: 0;
 	  }

@@ -6,8 +6,9 @@ use App\Models\Doctor;
 use App\Models\DoctorRole;
 use App\Models\DoctorSurgery;
 use App\Models\Invoice;
-use http\Exception\RuntimeException;
+
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class InvoiceController extends Controller
 {
@@ -30,21 +31,26 @@ class InvoiceController extends Controller
         $s_date = $request->start_date;
         $e_date = $request->end_date;
 
-           $doctor_surgeries =  DoctorSurgery::query()->where('doctor_id',$request->doctor_id)->whereNull('invoice_id')
+            $doctor_surgeries =  DoctorSurgery::query()->where('doctor_id',$request->doctor_id)->whereNull('invoice_id')
 
-               ->with(['surgery','doctors'])
-               ->whereHas('surgery',function ($query) use ($s_date){
+                ->with(['surgery','doctors'])
+                ->whereHas('surgery',function ($query) use ($s_date){
 
-               return $query->where('surgeried_at','>=',$s_date);
+                    return $query->where('surgeried_at','>=',$s_date);
 
-           })
-               ->whereHas('surgery',function ($query) use ($e_date){
+                })
+                ->whereHas('surgery',function ($query) use ($e_date){
 
-                   return $query->where('released_at','<=',$e_date);
+                    return $query->where('released_at','<=',$e_date);
 
-               })
+                })->get()
+            ;
 
-               ->get();
+            if ($doctor_surgeries->isEmpty()){
+
+                throw ValidationException::withMessages(['data'=>'هیچ دیتایی یافت نشد']);
+
+            }
 
 
 
@@ -77,7 +83,7 @@ class InvoiceController extends Controller
       }
 
       toastr()->success('تسویه با موفقیت انجام شد');
-      return redirect()->route('preinvoice.filter');
+      return redirect()->route('invoice.index');
 
     }
 
