@@ -9,6 +9,7 @@ use App\Http\Controllers\DoctorSurgeryController;
 use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OperationController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SpecialityController;
 use App\Http\Controllers\SuperAdminController;
@@ -131,6 +132,15 @@ Route::prefix('/invoice')->middleware('auth')->group(function (){
     Route::patch('/{invoice}', [InvoiceController::class,'update'])->name('invoice.update');
     Route::get('/delete/{invoice}', [InvoiceController::class,'destroy'])->name('invoice.destroy');
     Route::post('/store', [InvoiceController::class,'store'])->name('invoice.store');
+
+});
+
+Route::prefix('/payment')->middleware('auth')->group(function (){
+
+    Route::get('/payment/create/{id}',[PaymentController::class ,'create'])->name('payment.create');
+    Route::patch('/payment/store',[PaymentController::class ,'store'])->name('payment.store');
+
+
 
 });
 

@@ -47,11 +47,10 @@
                                                     <i class="feather feather-eye"></i>
                                                 </a>
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                                        data-target="#payment-{{$invoice->id}}">
+                                                <a href="{{route('payment.create',$invoice->id)}}" class="btn btn-success">
                                                     <i class="feather feather-dollar-sign"></i>
 
-                                                </button>
+                                                </a>
 
 
 {{--                                                <button  id="#myBtn-{{$invoice->id}}" class="btn btn-success">--}}
@@ -110,36 +109,6 @@
                         </div>
                         <!-- table-responsive -->
 
-                    @foreach($invoices as $invoice)
-                        <!-- Modal -->
-                        <div class="modal fade" id="payment-{{$invoice->id}}" tabindex="-1" role="dialog"
-                             aria-labelledby="modelTitleId" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Modal title</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Body
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close
-                                        </button>
-                                        <button type="button" class="btn btn-primary">Save
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    @endforeach
-                    </div>
                 </div>
             </div>
         </div>
