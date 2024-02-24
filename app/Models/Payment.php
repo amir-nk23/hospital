@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use function PHPUnit\Framework\assertGreaterThanOrEqual;
 
 class Payment extends Model
 {
@@ -17,4 +18,11 @@ class Payment extends Model
         'receipt',
         'status',
     ];
+
+    public function invoices()
+    {
+
+        return $this->belongsTo(Invoice::class,'invoice_id');
+
+    }
 }

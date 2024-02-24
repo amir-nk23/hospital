@@ -139,6 +139,7 @@ Route::prefix('/payment')->middleware('auth')->group(function (){
 
     Route::get('/payment/create/{id}',[PaymentController::class ,'create'])->name('payment.create');
     Route::patch('/payment/store',[PaymentController::class ,'store'])->name('payment.store');
+    Route::get('/payment/index',[PaymentController::class ,'index'])->name('payment.index');
 
 
 

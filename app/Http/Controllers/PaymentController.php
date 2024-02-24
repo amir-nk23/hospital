@@ -14,7 +14,10 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+
+        $payments = Payment::query()->with('invoices')->get();
+
+        return view('payment.index',compact('payments'));
     }
 
     /**

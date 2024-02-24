@@ -9,7 +9,7 @@
                     <div class="card">
                         <div class="card-header d-xl-flex d-block">
 
-                            <h3 class="card-title">لیست صورتحساب</h3>
+                            <h3 class="card-title">لیست پرداختی</h3>
                         </div>
                     </div>
 
@@ -18,7 +18,7 @@
                             <thead class="bg-primary text-white">
                             <tr>
                                 <th class="text-white">ردیف</th>
-                                <th class="text-white"> نام پزشک </th>
+                                <th class="text-white"> نام عمل </th>
                                 <th class="text-white">مبلغ صورتحساب(تومان)</th>
                                 <th class="text-white">مبلغ پرداختی(تومان)</th>
                                 <th class="text-white">مبلغ مانده(تومان)</th>
@@ -29,29 +29,40 @@
                             </thead>
                             <tbody>
 
-                            @foreach($invoices as $invoice)
+                            @foreach($payments as $payment)
 
                                     <tr>
                                         <th scope="row">{{$loop->index+1}}</th>
-                                        <td>{{$invoice->doctors->name}}</td>
-                                        <td>{{number_format($invoice->amount)}}</td>
-                                        <td class="text-success">{{number_format($invoice->payments->sum('amount'))}}</td>
-                                        <td class="text-danger">{{number_format($invoice->amount-$invoice->payments->sum('amount'))}}</td>
-                                        <td>{{$invoice->description}}</td>
-                                        <td>{{$invoice->jalaliDate()}}</td>
-                                        <td>
+                                        <td>@foreach($payment->invoices as $invoice)
+
+{{--                                                @foreach($invoice->surgery as $surgery)--}}
+
+{{--                                                    {{$invoice->surgery()->operation->title}}--}}
+
+{{--                                                @endforeach--}}
+
+
+
+
+                                        @endforeach</td>
+{{--                                        <td>{{number_format($invoice->amount)}}</td>--}}
+{{--                                        <td class="text-success">{{number_format($invoice->payments->sum('amount'))}}</td>--}}
+{{--                                        <td class="text-danger">{{number_format($invoice->amount-$invoice->payments->sum('amount'))}}</td>--}}
+{{--                                        <td>{{$invoice->description}}</td>--}}
+{{--                                        <td>{{$invoice->jalaliDate()}}</td>--}}
+{{--                                        <td>--}}
 
                                             @can('update invoice')
-                                            <a href="{{route('invoice.edit',$invoice->id)}}" class="btn btn-warning">
+                                            <a href="{{route('invoice.edit',$payment->id)}}" class="btn btn-warning">
                                                 <i class="feather feather-edit"></i>
                                             </a>
                                             @endcan
 
-                                                <a href="{{route('invoice.show',$invoice->id)}}" class="btn btn-info">
+                                                <a href="{{route('invoice.show',$payment->id)}}" class="btn btn-info">
                                                     <i class="feather feather-eye"></i>
                                                 </a>
                                                 <!-- Button trigger modal -->
-                                                <a href="{{route('payment.create',$invoice->id)}}" class="btn btn-success">
+                                                <a href="{{route('payment.create',$payment->id)}}" class="btn btn-success">
                                                     <i class="feather feather-dollar-sign"></i>
 
                                                 </a>
@@ -63,7 +74,7 @@
                                             @can('delete invoice')
 
                                                 @if($invoice->status == 0)
-                                            <a href="{{route('invoice.destroy',$invoice->id)}}" class="btn btn-danger">
+                                            <a href="{{route('invoice.destroy',$payment->id)}}" class="btn btn-danger">
                                                 <i class="feather feather-trash"></i>
                                             </a>
                                                 @endif

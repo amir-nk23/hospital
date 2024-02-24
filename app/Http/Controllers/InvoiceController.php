@@ -89,10 +89,10 @@ class InvoiceController extends Controller
 
     public function index()
     {
-        $invoices = Invoice::query()->with('doctors')->get();
+        $invoices = Invoice::query()->with(['doctors','payments'])->get();
 
 
-        return view('invoice.index',compact('invoices'));
+        return view('invoice.index',compact('invoices',));
 
     }
 
