@@ -227,6 +227,6 @@ return [
         "price"=>"قیمت",
         "operation"=>"عمل",
         "speciality_id"=>"تخصص",
-        "percentage"=>"درصد تخفیف"
+        "percentage"=>"درصد تخفیف",
     ],
 ];

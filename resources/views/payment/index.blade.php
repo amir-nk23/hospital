@@ -18,12 +18,12 @@
                             <thead class="bg-primary text-white">
                             <tr>
                                 <th class="text-white">ردیف</th>
+                                <th class="text-white">نام دکتر</th>
                                 <th class="text-white"> نام عمل </th>
-                                <th class="text-white">مبلغ صورتحساب(تومان)</th>
                                 <th class="text-white">مبلغ پرداختی(تومان)</th>
-                                <th class="text-white">مبلغ مانده(تومان)</th>
-                                <th class="text-white">توضیحات</th>
-                                <th class="text-white">تاریخ ثبت</th>
+                                <th class="text-white">نوع پرداخت</th>
+                                <th class="text-white">عکس رسید</th>
+                                <th class="text-white">تاریخ سررسید</th>
                                 <th class="text-white">عملیات</th>
                             </tr>
                             </thead>
@@ -33,52 +33,27 @@
 
                                     <tr>
                                         <th scope="row">{{$loop->index+1}}</th>
-                                        <td>@foreach($payment->invoices as $invoice)
+                                        <td>{{$payment->invoices->doctors->name}}</td>
+                                        <td>@foreach($payment->invoices->surgeries as $surgery)
+                                                @foreach($surgery->operation as $operation)
 
-{{--                                                @foreach($invoice->surgery as $surgery)--}}
+                                                    {{$operation->name}}
 
-{{--                                                    {{$invoice->surgery()->operation->title}}--}}
+                                                @endforeach
 
-{{--                                                @endforeach--}}
-
-
-
-
-                                        @endforeach</td>
-{{--                                        <td>{{number_format($invoice->amount)}}</td>--}}
-{{--                                        <td class="text-success">{{number_format($invoice->payments->sum('amount'))}}</td>--}}
-{{--                                        <td class="text-danger">{{number_format($invoice->amount-$invoice->payments->sum('amount'))}}</td>--}}
-{{--                                        <td>{{$invoice->description}}</td>--}}
-{{--                                        <td>{{$invoice->jalaliDate()}}</td>--}}
-{{--                                        <td>--}}
-
-                                            @can('update invoice')
+                                            @endforeach
+                                        </td>
+                                        <td>{{number_format($payment->amount)}}</td>
+                                        <td>{{__('custom.'.$payment->pay_type)}}</td>
+                                        <td><img width="100px" height="100px" src="{{asset('storage/'.$payment->receipt)}}" alt=""></td>
+                                        <td>{{$payment->due_date}}</td>
+                                        <td>
+                                            @can('update payment')
                                             <a href="{{route('invoice.edit',$payment->id)}}" class="btn btn-warning">
                                                 <i class="feather feather-edit"></i>
                                             </a>
                                             @endcan
 
-                                                <a href="{{route('invoice.show',$payment->id)}}" class="btn btn-info">
-                                                    <i class="feather feather-eye"></i>
-                                                </a>
-                                                <!-- Button trigger modal -->
-                                                <a href="{{route('payment.create',$payment->id)}}" class="btn btn-success">
-                                                    <i class="feather feather-dollar-sign"></i>
-
-                                                </a>
-
-
-{{--                                                <button  id="#myBtn-{{$invoice->id}}" class="btn btn-success">--}}
-{{--                                                    <i class="feather feather-dollar-sign"></i>--}}
-{{--                                                </button>--}}
-                                            @can('delete invoice')
-
-                                                @if($invoice->status == 0)
-                                            <a href="{{route('invoice.destroy',$payment->id)}}" class="btn btn-danger">
-                                                <i class="feather feather-trash"></i>
-                                            </a>
-                                                @endif
-                                                @endcan
                                         </td>
                                     </tr>
 

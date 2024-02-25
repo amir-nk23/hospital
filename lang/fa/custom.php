@@ -15,4 +15,6 @@ return [
     'App\Models\Operation'=>'عمل',
     'App\Models\Insurance'=>'بیمه',
     'App\Models\Doctor'=>'دکتر ها',
+    'cheque'=>'چک',
+    'cash'=>'نقد',
 ];

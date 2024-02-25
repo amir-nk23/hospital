@@ -24,7 +24,7 @@ class Invoice extends BaseModel
 
     }
 
-    public function surgery(){
+    public function surgeries(){
 
 
         return $this->belongsToMany(Surgery::class,'doctor_surgery','invoice_id','surgery_id')->withPivot('doctor_role_id');
