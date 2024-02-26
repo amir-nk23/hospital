@@ -24,6 +24,7 @@
                                 <th class="text-white">مبلغ مانده(تومان)</th>
                                 <th class="text-white">توضیحات</th>
                                 <th class="text-white">تاریخ ثبت</th>
+                                <th class="text-white">وضعیت</th>
                                 <th class="text-white">عملیات</th>
                             </tr>
                             </thead>
@@ -35,10 +36,16 @@
                                         <th scope="row">{{$loop->index+1}}</th>
                                         <td>{{$invoice->doctors->name}}</td>
                                         <td>{{number_format($invoice->amount)}}</td>
-                                        <td class="text-success">{{number_format($invoice->payments->sum('amount'))}}</td>
-                                        <td class="text-danger">{{number_format($invoice->amount-$invoice->payments->sum('amount'))}}</td>
+                                        <td class="text-success">{{number_format($invoice->payments->where('status',0)->sum('amount'))}}</td>
+                                        <td class="text-danger">{{number_format($invoice->amount-$invoice->payments->where('status',0)->sum('amount'))}}</td>
                                         <td>{{$invoice->description}}</td>
                                         <td>{{$invoice->jalaliDate()}}</td>
+                                        @if($invoice->status==1)
+                                            <td class="mt-2 badge badge-success">پرداخت شده</td>
+                                        @endif
+                                        @if($invoice->status==0)
+                                            <td class="mt-2 badge badge-danger">پرداخت نشده</td>
+                                        @endif
                                         <td>
 
                                             @can('update invoice')
@@ -62,11 +69,11 @@
 {{--                                                </button>--}}
                                             @can('delete invoice')
 
-                                                @if($invoice->status == 0)
-                                            <a href="{{route('invoice.destroy',$invoice->id)}}" class="btn btn-danger">
+
+                                            <a @disabled($invoice->isDeletable()) href="{{route('invoice.destroy',$invoice->id)}}" class="btn @if($invoice->isDeletable()) btn-gray  @else btn-danger" @endif>
                                                 <i class="feather feather-trash"></i>
                                             </a>
-                                                @endif
+
                                                 @endcan
                                         </td>
                                     </tr>

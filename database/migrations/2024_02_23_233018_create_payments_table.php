@@ -18,12 +18,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('invoice_id');
             $table->foreign('invoice_id')
-                ->references('id')->on('invoices')->onDelete('no action');
+                ->references('id')->on('invoices')->onDelete('cascade');
             $table->bigInteger('amount');
             $table->enum('pay_type',['cash','cheque']);
             $table->date('due_date')->nullable();
             $table->string('receipt');
-            $table->boolean('status')->default(0);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
 

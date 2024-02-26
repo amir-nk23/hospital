@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentStoreRequest;
+use App\Models\Invoice;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class PaymentController extends Controller
 {
@@ -54,6 +56,27 @@ class PaymentController extends Controller
             'due_date'=>$paydate,
             'receipt'=>$name,
         ]);
+
+        $paymentSum = 0;
+
+        if (!Payment::query()->where('invoice_id',$request->invoice_id)->get()->isEmpty()){
+
+            $paymentSum = Payment::query()->where('invoice_id',$request->invoice_id)->sum('amount');
+
+        }
+
+        $invoice = Invoice::query()->where('id',$request->invoice_id)->first();
+
+        if($paymentSum==$invoice->amount){
+
+
+
+            $invoice->update([
+
+                'status'=>1
+
+            ]);
+        }
 
             toastr()->success('پرداخت با موفقیت انجام شد');
             return redirect()->route('invoice.index');

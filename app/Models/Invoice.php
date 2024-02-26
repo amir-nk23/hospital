@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\ValidationException;
 
 class Invoice extends BaseModel
 {
@@ -31,6 +32,12 @@ class Invoice extends BaseModel
 
     }
 
+    public function isDeletable()
+    {
+        return $this->payments->where('status',1)->count()<1 || $this->attributes['status'==0];
+
+    }
+
     public function payments(){
 
         return $this->hasMany(Payment::class,'invoice_id');
@@ -41,6 +48,12 @@ class Invoice extends BaseModel
 
         static::deleting(function (Invoice $invoice){
 
+            if ($invoice->payments->where('status',1)->count()>0){
+
+                toastr()->error('صورت حابی که قصد حذف ان را دارید دارای مقدار پرداختی میباشد');
+                redirect()->back();
+
+            }
 
 
         });
