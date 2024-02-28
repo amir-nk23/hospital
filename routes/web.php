@@ -140,6 +140,8 @@ Route::prefix('/payment')->middleware('auth')->group(function (){
     Route::get('/payment/create/{id}',[PaymentController::class ,'create'])->name('payment.create');
     Route::patch('/payment/store',[PaymentController::class ,'store'])->name('payment.store');
     Route::get('/payment/index',[PaymentController::class ,'index'])->name('payment.index');
+    Route::get('/payment/edit/{payment}',[PaymentController::class ,'edit'])->name('payment.edit');
+    Route::patch('/payment/update/{payment}',[PaymentController::class ,'update'])->name('payment.update');
 
 
 

@@ -34,7 +34,8 @@ class Invoice extends BaseModel
 
     public function isDeletable()
     {
-        return $this->payments->where('status',1)->count()<1 || $this->attributes['status'==0];
+
+        return $this->payments->where('status',1)->count()>1 || $this->attributes['status']==1;
 
     }
 

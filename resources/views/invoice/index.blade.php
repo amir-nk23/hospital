@@ -36,8 +36,8 @@
                                         <th scope="row">{{$loop->index+1}}</th>
                                         <td>{{$invoice->doctors->name}}</td>
                                         <td>{{number_format($invoice->amount)}}</td>
-                                        <td class="text-success">{{number_format($invoice->payments->where('status',0)->sum('amount'))}}</td>
-                                        <td class="text-danger">{{number_format($invoice->amount-$invoice->payments->where('status',0)->sum('amount'))}}</td>
+                                        <td class="text-success">{{number_format($invoice->payments->where('status',1)->sum('amount'))}}</td>
+                                        <td class="text-danger">{{number_format($invoice->amount-$invoice->payments->where('status',1)->sum('amount'))}}</td>
                                         <td>{{$invoice->description}}</td>
                                         <td>{{$invoice->jalaliDate()}}</td>
                                         @if($invoice->status==1)
@@ -70,7 +70,7 @@
                                             @can('delete invoice')
 
 
-                                            <a @disabled($invoice->isDeletable()) href="{{route('invoice.destroy',$invoice->id)}}" class="btn @if($invoice->isDeletable()) btn-gray  @else btn-danger" @endif>
+                                            <a @disabled($invoice->isDeletable()) href="{{route('invoice.destroy',$invoice->id)}}" class="btn @if($invoice->isDeletable()) btn-gray  @else btn-danger @endif" >
                                                 <i class="feather feather-trash"></i>
                                             </a>
 
@@ -113,6 +113,7 @@
 
 
                                 @endforeach
+
 
                                 </tbody>
                             </table>

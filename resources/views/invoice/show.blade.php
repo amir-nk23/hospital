@@ -82,7 +82,7 @@
                                     </thead>
                                     <tbody>
 
-                                    @foreach($invoice->surgery as $surgery)
+                                    @foreach($invoice->surgeries as $surgery)
 
                                     <tr>
                                         <th scope="row">{{$loop->index+1}}</th>

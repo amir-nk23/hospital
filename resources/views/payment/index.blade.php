@@ -45,11 +45,11 @@
                                         </td>
                                         <td>{{number_format($payment->amount)}}</td>
                                         <td>{{__('custom.'.$payment->pay_type)}}</td>
-                                        <td><img width="100px" height="100px" src="{{asset('storage/'.$payment->receipt)}}" alt=""></td>
+                                        <td><img width="50px" height="50px" src="{{asset('storage/'.$payment->receipt)}}" alt=""></td>
                                         <td>{{$payment->due_date}}</td>
                                         <td>
                                             @can('update payment')
-                                            <a href="{{route('invoice.edit',$payment->id)}}" class="btn btn-warning">
+                                            <a href="{{route('payment.edit',$payment->id)}}" class="btn btn-warning">
                                                 <i class="feather feather-edit"></i>
                                             </a>
                                             @endcan
@@ -98,6 +98,17 @@
 
                         </div>
                         <!-- table-responsive -->
+
+                    <div class="card-body">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-success mb-0">
+
+                                {{ $payments->onEachSide(3)->links()}}
+
+                            </ul>
+                        </nav>
+                        <!-- pagination-wrapper -->
+                    </div>
 
                 </div>
             </div>

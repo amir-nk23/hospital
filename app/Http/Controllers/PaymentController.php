@@ -6,8 +6,10 @@ use App\Http\Requests\PaymentStoreRequest;
 use App\Models\Invoice;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\Console\Input\Input;
 
 class PaymentController extends Controller
 {
@@ -17,7 +19,8 @@ class PaymentController extends Controller
     public function index()
     {
 
-        $payments = Payment::query()->with(['invoices','invoices.surgeries','invoices.surgeries.operation'])->get();
+        $payments = Payment::query()->with(['invoices','invoices.surgeries','invoices.surgeries.operation'])->Paginate(5);
+
 
 
         return view('payment.index',compact('payments'));
@@ -36,6 +39,7 @@ class PaymentController extends Controller
      */
     public function store(PaymentStoreRequest $request)
     {
+
 
 
         $name =   Storage::disk('public')->put('/payment',$request->receipt);
@@ -93,17 +97,44 @@ class PaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Payment $payment)
     {
-        //
+
+
+        return view('payment.edit',compact('payment'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Payment $payment)
     {
-        //
+
+        $name = $payment->receipt;
+
+
+
+        if($request->hasFile('receipt')){
+
+            File::delete($name);
+
+            $name =   Storage::disk('public')->put('/payment',$request->receipt);
+        }
+
+        $amount = str_replace(",", "", $request->amount);
+
+        $payment->update([
+
+            'amount'=>$amount,
+            'pay_type'=>$request->pay_type,
+            'status'=>$request->status,
+            'receipt'=>$name,
+
+        ]);
+
+        toastr()->info('پرداختی با موفقیت ویرایش شد');
+
+        return redirect()->route('payment.index');
     }
 
     /**
