@@ -56,7 +56,7 @@
 
                                                                             <input hidden value="{{$general->value}}">
 
-                                                                            <a  class="mb-2 feather feather-x btn btn-danger ajax-link" id="sendButton"></a>
+                                                                            <a  class="mb-2 feather feather-x btn btn-danger ajax-link" onclick="confirmDelete('delete-image-{{ $general->id }}')"></a>
 
 
                                                                         <img width="100px" height="100px" src="{{asset('storage/'.$general->value)}}" alt="">
@@ -107,6 +107,14 @@
 
 
                     </form>
+
+
+                    @foreach ($generals as $general)
+                        <form action="{{ route('setting.destroy', $general) }}" id="delete-image-{{$general->id}}" method="POST" style="display: none;">
+                            @csrf
+                            @method("DELETE")
+                        </form>
+                    @endforeach
 
 
 

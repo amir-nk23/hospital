@@ -91,6 +91,8 @@
 
 			</div>
             @include('layout.sidebar')
+
+            @include('layout.footer')
         </div>
 
 
@@ -123,7 +125,7 @@
 {{--			</div>--}}
 {{--			<!-- End Change password Modal  -->--}}
 
-        <!-- Trigger/Open The Modal -->
+{{--        <!-- Trigger/Open The Modal -->--}}
 
 
         <!-- Back to top -->
@@ -163,6 +165,8 @@
         <!-- PersianDateTimePicker js -->
         <script src="{{ asset('PersianDateTimePicker-bs4/src/jquery.md.bootstrap.datetimepicker.js') }}"
                 type="text/javascript"></script>
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
         <script>
@@ -321,37 +325,64 @@
 {{--        </script>--}}
 
 
+{{--        <script>--}}
+{{--        $(document).ready(function() {--}}
+{{--            $('.ajax-link').click(function(e) {--}}
+
+{{--                e.preventDefault(); // Prevent the default action of the anchor tag--}}
+
+{{--                var valueToSend = $(this).data('value'); // Get the value from 'data-value' attribute--}}
+
+{{--                $.ajax({--}}
+{{--                    headers: {--}}
+{{--                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+{{--                    },--}}
+{{--                    method: 'POST', // Change it to 'GET' or 'POST' as per your route requirements--}}
+{{--                    url: 'delete/img',--}}
+{{--                    data: {--}}
+{{--                        value: valueToSend--}}
+{{--                    },--}}
+{{--                    success: function() {--}}
+
+{{--                        setTimeout(function() {--}}
+{{--                            location.reload();--}}
+{{--                        },); // Refresh after 1 second--}}
+{{--                    },--}}
+
+{{--                });--}}
+{{--            });--}}
+{{--        });--}}
+
+{{--            </script>--}}
+
+
         <script>
-        $(document).ready(function() {
-            $('.ajax-link').click(function(e) {
+            function confirmDelete(formId) {
+                swal({
+                    title: 'آیا مطمئن هستید؟',
+                    text: 'بعد از حذف این آیتم دیگر قابل بازیابی نخواهد بود!',
+                    icon: 'warning',
+                    buttons: ["انصراف", "حذف کن"],
+                    dangerMode: true
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            document.getElementById(formId).submit();
+                            swal('آیتم با موفقیت حذف شد.', {
+                                icon: 'success',
+                            });
+                        }
+                    });
+            }
 
-                e.preventDefault(); // Prevent the default action of the anchor tag
-
-                var valueToSend = $(this).data('value'); // Get the value from 'data-value' attribute
-
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    method: 'POST', // Change it to 'GET' or 'POST' as per your route requirements
-                    url: 'delete/img',
-                    data: {
-                        value: valueToSend
-                    },
-                    success: function() {
-
-                        setTimeout(function() {
-                            location.reload();
-                        },); // Refresh after 1 second
-                    },
-
+            $(function(e) {
+                $('.summernote').summernote({
+                    placeholder: "متن را اینجا وارد کنید...",
+                    tabsize: 3,
+                    height: 300
                 });
             });
-        });
-
-            </script>
-
-
+        </script>
 
     </body>
 </html>

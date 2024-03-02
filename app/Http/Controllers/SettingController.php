@@ -71,14 +71,12 @@ class SettingController extends Controller
     }
 
 
-    public function destroy(Request $request){
+    public function destroy(Setting $setting){
 
 
-        $input = $request->except('_token','_method');
-        $image=Setting::where('value',$input)->select('value');
-        Storage::disk('public')->delete($input);
+        Storage::disk('public')->delete($setting->value);
 
-        $image->update([
+        $setting->update([
 
             'value'=>''
 

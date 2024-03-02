@@ -116,7 +116,7 @@ Route::prefix('/setting')->middleware('auth')->group(function (){
     Route::get('/general', [SettingController::class,'general'])->name('setting.general');
     Route::get('/social', [SettingController::class,'social'])->name('setting.social');
     Route::patch('', [SettingController::class,'update'])->name('setting.update');
-    Route::post('/delete/img', [SettingController::class,'destroy'])->name('setting.destroy');
+    Route::delete('/delete/img/{setting}', [SettingController::class,'destroy'])->name('setting.destroy');
 
 
 });

@@ -1,6 +1,4 @@
-@extends('layout.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="page">
         <div class="page-main is-expanded">
@@ -29,69 +27,70 @@
                             </thead>
                             <tbody>
 
-                            @foreach($payments as $payment)
+                            <?php $__currentLoopData = $payments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $payment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                     <tr>
-                                        <th scope="row">{{$loop->index+1}}</th>
-                                        <td>{{$payment->invoices->doctors->name}}</td>
-                                        <td>@foreach($payment->invoices->surgeries as $surgery)
-                                                @foreach($surgery->operation as $operation)
+                                        <th scope="row"><?php echo e($loop->index+1); ?></th>
+                                        <td><?php echo e($payment->invoices->doctors->name); ?></td>
+                                        <td><?php $__currentLoopData = $payment->invoices->surgeries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $surgery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php $__currentLoopData = $surgery->operation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $operation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                                                    {{$operation->name}}
+                                                    <?php echo e($operation->name); ?>
 
-                                                @endforeach
 
-                                            @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </td>
-                                        <td>{{number_format($payment->amount)}}</td>
-                                        <td>{{__('custom.'.$payment->pay_type)}}</td>
-                                        <td><img width="50px" height="50px" src="{{asset('storage/'.$payment->receipt)}}" alt=""></td>
-                                        <td>{{$payment->jalaliDate('due_date')}}</td>
+                                        <td><?php echo e(number_format($payment->amount)); ?></td>
+                                        <td><?php echo e(__('custom.'.$payment->pay_type)); ?></td>
+                                        <td><img width="50px" height="50px" src="<?php echo e(asset('storage/'.$payment->receipt)); ?>" alt=""></td>
+                                        <td><?php echo e($payment->jalaliDate('due_date')); ?></td>
                                         <td>
-                                            @can('update payment')
-                                            <a href="{{route('payment.edit',$payment->id)}}" class="btn btn-warning">
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update payment')): ?>
+                                            <a href="<?php echo e(route('payment.edit',$payment->id)); ?>" class="btn btn-warning">
                                                 <i class="feather feather-edit"></i>
                                             </a>
-                                            @endcan
+                                            <?php endif; ?>
 
                                         </td>
                                     </tr>
 
 
-{{--                                    			<!--Change password Modal -->--}}
-{{--                                    <!-- The Modal -->--}}
-{{--                                    <div id="myModal{{}}" class="modal">--}}
-
-{{--                                        <!-- Modal content -->--}}
-{{--                                        <div class="modal-content">--}}
-{{--                                            <div class="modal-header" >--}}
-{{--                                                <h2 class="text">پرداخت</h2>--}}
-{{--                                                <span class="close">&times;</span>--}}
-
-{{--                                            </div>--}}
-{{--                                            <div class="modal-body">--}}
-{{--                                                <form>--}}
-
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label>مبلغ :</label>--}}
-{{--                                                        <input class="form-control">--}}
-{{--                                                    </div>--}}
-
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label>مبلغ :</label>--}}
-{{--                                                        <textarea class="form-control" name="description"></textarea>--}}
-{{--                                                    </div>--}}
 
 
 
-{{--                                                </form>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    			<!-- End Change password Modal  -->--}}
 
 
-                                @endforeach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                 </tbody>
                             </table>
@@ -103,7 +102,8 @@
                         <nav aria-label="Page navigation">
                             <ul class="pagination pagination-success mb-0">
 
-                                {{ $payments->onEachSide(3)->links()}}
+                                <?php echo e($payments->onEachSide(3)->links()); ?>
+
 
                             </ul>
                         </nav>
@@ -145,7 +145,7 @@
             }
 
         </script>
-    @endsection
+    <?php $__env->stopSection(); ?>
 
 
 
@@ -159,3 +159,5 @@
 
 
 
+
+<?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\hospital\resources\views/payment/index.blade.php ENDPATH**/ ?>

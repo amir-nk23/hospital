@@ -30,9 +30,110 @@
             <?php endif; ?>
 
 
+            <li class="slide">
+
+
+                <a class="side-menu__item" data-toggle="slide" href="#">
+                    <i class="feather  feather-users sidemenu_icon"></i>
+                    <span class="side-menu__label">پزشک</span><i class="angle fa fa-angle-left"></i>
+                </a>
+
+
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view doctor')): ?>
+                    <ul class="slide-menu">
+                        <li><a href="<?php echo e(route('doctor.index')); ?>" class="slide-item">پزشک</a></li>
+                        
+                    </ul>
+
+                <?php endif; ?>
+
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view specialities')): ?>
+                <ul class="slide-menu">
+                    <li><a href="<?php echo e(route('speciality.index')); ?>" class="slide-item">تخصص</a></li>
+                    
+                </ul>
+                <?php endif; ?>
+
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view doctor_role')): ?>
+                <ul class="slide-menu">
+                    <li><a href="<?php echo e(route('doctor.role.index')); ?>" class="slide-item">نقش</a></li>
+                    
+                </ul>
+
+                <?php endif; ?>
+
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view operation')): ?>
+                <ul class="slide-menu">
+                    <li><a href="<?php echo e(route('operation.index')); ?>" class="slide-item">عمل ها</a></li>
+                    
+                </ul>
+
+                <?php endif; ?>
+
+            </li>
+
+            <li class="slide">
+                <a class="side-menu__item"  href="<?php echo e(route('insurance.index')); ?>">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">بیمه</span>
+                </a>
+            </li>
+
+            <li class="slide">
+                <a class="side-menu__item"  href="<?php echo e(route('surgery.index')); ?>">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">جراحی</span>
+                </a>
+            </li>
+
+
+            <li class="slide">
+                <a class="side-menu__item text-white"  href="<?php echo e(route('setting.index')); ?>">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">تنظیمات</span>
+                </a>
+            </li>
+
+            <li class="slide">
+                <a class="side-menu__item text-white"  href="<?php echo e(route('log.index')); ?>">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">فعالبت ها</span>
+                </a>
+            </li>
 
 
 
+            <li class="slide">
+                <a class="side-menu__item text-white"  href="<?php echo e(route('preinvoice.filter')); ?>">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">پرداختی پزشک</span>
+                </a>
+            </li>
+
+
+            <li class="slide">
+                <a class="side-menu__item text-white"  href="<?php echo e(route('invoice.index')); ?>">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">صورتحساب</span>
+                </a>
+            </li>
+
+
+
+            <li class="slide">
+                <a class="side-menu__item text-white"  href="<?php echo e(route('payment.index')); ?>">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">پرداختی</span>
+                </a>
+            </li>
+
+
+            <li class="slide">
+                <a class="side-menu__item text-white"  href="<?php echo e(route('notification.index')); ?>">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">نوتیفیکیشن(ها)</span>
+                </a>
+            </li>
 
 
         </ul>

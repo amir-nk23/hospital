@@ -155,7 +155,10 @@
                 <div class="dropdown header-notify">
                     <a class="nav-link icon" data-toggle="sidebar-right" data-target=".sidebar-right">
                         <i class="feather feather-bell header-icon"></i>
-                        <span class="bg-dot"></span>
+                        <?php if(\App\Helpers\Helpers::notification()->count()>0): ?>
+                            <span class="bg-dot"></span>
+                        <?php endif; ?>
+
                     </a>
                 </div>
                 <div class="dropdown profile-dropdown">
@@ -185,13 +188,15 @@
                             <i class="feather feather-edit-2 ml-3 fs-16 my-auto"></i>
                             <div class="mt-1">Change Password</div>
                         </a>
-                        <a class="dropdown-item d-flex" href="#">
+                        <a class="dropdown-item d-flex" href="<?php echo e(route('auth.logout')); ?>">
                             <i class="feather feather-power ml-3 fs-16 my-auto"></i>
-                            <div class="mt-1">Sign Out</div>
+                            <div class="mt-1">Log Out</div>
                         </a>
                     </div>
                 </div>
             </div>
 
         </div>
+    </div>
+</div>
 <?php /**PATH D:\hospital\resources\views/layout/header.blade.php ENDPATH**/ ?>
