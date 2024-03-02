@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentStoreRequest;
+use App\Jobs\SendNotification;
 use App\Models\Invoice;
 use App\Models\Payment;
 use Illuminate\Http\Request;
@@ -20,8 +21,6 @@ class PaymentController extends Controller
     {
 
         $payments = Payment::query()->with(['invoices','invoices.surgeries','invoices.surgeries.operation'])->Paginate(5);
-
-
 
         return view('payment.index',compact('payments'));
     }
@@ -42,23 +41,19 @@ class PaymentController extends Controller
 
 
 
+
         $name =   Storage::disk('public')->put('/payment',$request->receipt);
 
-        $paydate = null;
 
-        if ($request->pay_type == 'cheque'){
-
-            $paydate = now();
-
-        }
 
         $payment = Payment::query()->create([
 
             'invoice_id'=>$request->invoice_id,
             'amount'=>$request->amount,
             'pay_type'=>$request->pay_type,
-            'due_date'=>$paydate,
+            'due_date'=>$request->due_date,
             'receipt'=>$name,
+
         ]);
 
         $paymentSum = 0;

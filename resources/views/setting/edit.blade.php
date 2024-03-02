@@ -40,32 +40,38 @@
                                                @endif
 
 
-{{--                                                   @if($general->type=='img')--}}
+                                                   @if($general->type=='img')
 
-{{--                                                        <div class="col-6 d-flex row">--}}
-{{--                                                            <div class="form-group">--}}
-{{--                                                                <label class="form-label">{{$general->label}}</label>--}}
-{{--                                                                <input class="form-control" type="file" value="{{$general->value}}" name="{{$general->name}}">--}}
-{{--                                                            </div>--}}
+                                                        <div class="col-6 d-flex row">
+                                                            <div class="form-group">
+                                                                <label class="form-label">{{$general->label}}</label>
+                                                                <input class="form-control" type="file" id="inputValue" value="{{$general->value}}" name="{{$general->name}}">
+                                                            </div>
 
-{{--                                                            <div class="col-6 mb-3 mr-3">--}}
+                                                            <div class="mb-3 mr-5">
 
-{{--                                                                @if($general->value)--}}
+                                                                @if($general->value)
 
-{{--                                                                    <figure class="" style="text-align: left">--}}
+                                                                    <figure class="" style="text-align: left">
 
-{{--                                                                        <a  class="mb-2 feather feather-x btn btn-danger ajax-link" href="{{route('setting.destroy')}}"></a>--}}
-{{--                                                                        <img  src="{{asset('storage/'.$general->value)}}" alt="">--}}
+                                                                            <input hidden value="{{$general->value}}">
 
-{{--                                                                    </figure>--}}
-
-{{--                                                                @endif--}}
-{{--                                                            </div>--}}
-
-{{--                                                        </div>--}}
+                                                                            <a  class="mb-2 feather feather-x btn btn-danger ajax-link" id="sendButton"></a>
 
 
-{{--                                                    @endif--}}
+                                                                        <img width="100px" height="100px" src="{{asset('storage/'.$general->value)}}" alt="">
+
+                                                                    </figure>
+
+
+
+                                                                @endif
+                                                            </div>
+
+                                                        </div>
+
+
+                                                    @endif
 
 
 
@@ -101,4 +107,7 @@
 
 
                     </form>
+
+
+
                 @endsection

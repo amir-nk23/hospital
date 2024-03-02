@@ -56,7 +56,7 @@
                     <label class="label">نوع پرداخت</label>
                     <span style="color: red">*</span>
 
-                    <select name="pay_type" class="form-control">
+                    <select name="pay_type" id="pay_type"  onchange="checkoption()" class="form-control">
 
                         <option value="cheque">چک</option>
                         <option value="cash">نقدی</option>
@@ -64,6 +64,16 @@
                     </select>
 
                 </div>
+
+
+                <div class="col-6 form-group">
+
+                    <label class="label">تاریح سرسید چک</label>
+                    <span style="color: red">*</span>
+
+                    <input type="text" class="form-control fc-datepicker"   id="due_date_show" name="due_date">
+
+                    <input type="text" class="form-control fc-datepicker"  hidden id="due_date" name="due_date">
 
                 </div>
 
@@ -74,7 +84,7 @@
                     <label  class="label">عکس رسید</label>
                     <span style="color: red">*</span>
 
-                    <input type="file"  name="receipt" class="form-control">
+                    <input type="file"  name="receipt"  id="cheque" class="form-control">
 
                     <div class="bold" id="result">
 

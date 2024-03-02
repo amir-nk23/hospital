@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('pay_type',['cash','cheque']);
             $table->date('due_date')->nullable();
             $table->string('receipt');
+            $table->timestamp('noted_at')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

@@ -8,6 +8,7 @@ use App\Http\Controllers\DoctorRoleController;
 use App\Http\Controllers\DoctorSurgeryController;
 use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\NotifController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SettingController;
@@ -115,7 +116,7 @@ Route::prefix('/setting')->middleware('auth')->group(function (){
     Route::get('/general', [SettingController::class,'general'])->name('setting.general');
     Route::get('/social', [SettingController::class,'social'])->name('setting.social');
     Route::patch('', [SettingController::class,'update'])->name('setting.update');
-    Route::get('/delete/img', [SettingController::class,'destroy'])->name('setting.destroy');
+    Route::post('/delete/img', [SettingController::class,'destroy'])->name('setting.destroy');
 
 
 });
@@ -147,6 +148,8 @@ Route::prefix('/payment')->middleware('auth')->group(function (){
 
 });
 
+Route::resource('notification', NotifController::class);
+
 Route::prefix('log')->middleware('auth')->group(function (){
 
     Route::get('/index',[ActivityLogController::class,'index'])->name('log.index');
@@ -157,6 +160,8 @@ Route::middleware('auth')->group(function ()
 {
   Route::resource('surgery', SurgeryController::class);
 });
+
+
 
 
 

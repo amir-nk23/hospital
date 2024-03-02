@@ -128,6 +128,12 @@
             </li>
 
 
+            <li class="slide">
+                <a class="side-menu__item text-white"  href="{{route('notification.index')}}">
+                    <i class="sidemenu_icon"></i>
+                    <span class="side-menu__label">نوتیفیکیشن(ها)</span>
+                </a>
+            </li>
 
 
         </ul>

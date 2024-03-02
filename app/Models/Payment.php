@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use function PHPUnit\Framework\assertGreaterThanOrEqual;
 
-class Payment extends Model
+class Payment extends BaseModel
 {
     use HasFactory;
 

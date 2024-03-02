@@ -71,23 +71,23 @@ class SettingController extends Controller
     }
 
 
-//    public function destroy(Request $request){
-//
-//        $input = $request->except('_token','_method');
-//        $image=Setting::where('value',$input)->select('value');
-//        Storage::disk('public')->delete($input);
-//
-//        $image->update([
-//
-//            'value'=>''
-//
-//        ]);
-//
-//        dd('hi');
-//
-//        return redirect()->back();
-//
-//    }
+    public function destroy(Request $request){
+
+
+        $input = $request->except('_token','_method');
+        $image=Setting::where('value',$input)->select('value');
+        Storage::disk('public')->delete($input);
+
+        $image->update([
+
+            'value'=>''
+
+        ]);
+
+
+        return redirect()->back();
+
+    }
 
 
 }
