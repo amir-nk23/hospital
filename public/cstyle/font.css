@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../fonts/webfonts/Vazirmatn[wght].woff2') format('woff2'),
+    url('../fonts/webfonts/Vazirmatn[wght].woff2') format('woff2');
+    /* سایر خاصیت‌های مورد نیاز مانند font-weight و font-style */
+}
+
+body {
+    font-family: 'Vazirmatn', سایر-فونت‌ها, sans-serif;
+}

@@ -155,7 +155,10 @@
                 <div class="dropdown header-notify">
                     <a class="nav-link icon" data-toggle="sidebar-right" data-target=".sidebar-right">
                         <i class="feather feather-bell header-icon"></i>
-                        <span class="bg-dot"></span>
+                        <?php if(\App\Helpers\Helpers::notification()->count()>0): ?>
+                            <span class="bg-dot"></span>
+                        <?php endif; ?>
+
                     </a>
                 </div>
                 <div class="dropdown profile-dropdown">
@@ -194,4 +197,6 @@
             </div>
 
         </div>
+    </div>
+</div>
 <?php /**PATH E:\hospital\resources\views/layout/header.blade.php ENDPATH**/ ?>

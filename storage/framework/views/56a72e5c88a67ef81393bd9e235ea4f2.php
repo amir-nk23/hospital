@@ -14,11 +14,11 @@
 
         <div>
 
-            <h2>پرداخت پزشک</h2>
+            <h2>گزارش صورت حساب</h2>
 
         </div>
 
-        <form method="get" action="<?php echo e(route('preinvoice.search')); ?>">
+        <form method="get" action="<?php echo e(route('report.invoice.index')); ?>">
 
 
             <?php if($errors->any()): ?>
@@ -54,21 +54,22 @@
 
                 <div class="col-6 form-group">
 
-                    <label class="label">تاریخ مبدا</label>
+                    <label class="label">از تاریخ</label>
                     <span style="color: red">*</span>
 
-                    <input type="date" class="form-control" name="start_date">
-
+                    <input type="text" autocomplete="off" class="form-control" id="start_date_show"  name="start_date_show">
+                    <input type="text" class="form-control" id="start_date"  hidden name="start_date">
 
                 </div>
 
 
                 <div class="col-6 form-group">
 
-                    <label class="label">تاریخ ترخیص</label>
+                    <label class="label">تا تاریخ</label>
                     <span style="color: red">*</span>
 
-                    <input type="date" class="form-control" name="end_date">
+                    <input type="text" autocomplete="off" class="form-control" id="end_date_show" name="end_date_show">
+                    <input type="text" class="form-control" hidden id="end_date" name="end_date">
 
 
                 </div>
@@ -103,6 +104,30 @@
     </div>
    </div>
 
+
+   <?php $__env->startSection('script'); ?>
+    <script>
+
+
+            $('#start_date_show').MdPersianDateTimePicker({
+            targetDateSelector: '#start_date',        targetTextSelector: '#start_date_show',
+            englishNumber: false,        toDate:true,
+            enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+            textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+        });
+
+
+            $('#end_date_show').MdPersianDateTimePicker({
+                targetDateSelector: '#end_date',        targetTextSelector: '#end_date_show',
+                englishNumber: false,        toDate:true,
+                enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+                textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+            });
+
+
+    </script>
+
+   <?php $__env->stopSection(); ?>
 <?php $__env->stopSection(); ?>
 
 
@@ -118,4 +143,4 @@
 
 
 
-<?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\hospital\resources\views/preinvoice/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\hospital\resources\views/report/invoice/filter.blade.php ENDPATH**/ ?>

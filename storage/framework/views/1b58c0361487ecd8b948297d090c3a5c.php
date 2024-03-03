@@ -2,13 +2,14 @@
 <!--aside open-->
 <aside class="app-sidebar">
     <div class="app-sidebar__logo">
-        <a class="header-brand" href="#">
-            <img src="<?php echo e(asset('image/logo.png')); ?>" class="header-brand-img desktop-lgo" alt="Dayonelogo">
-            <img src="<?php echo e(asset('image/logo.png')); ?>" class="header-brand-img dark-logo" alt="Dayonelogo">
-            <img src="#" class="header-brand-img mobile-logo" alt="Dayonelogo">
-            <img src="#" class="header-brand-img darkmobile-logo" alt="Dayonelogo">
+        <a class="header-brand"  href="#">
+            <img src="<?php echo e(asset('storage/'.\App\Helpers\Helpers::setting('img')->value)); ?>" height="36px" width="131px" class="header-brand-img  desktop-logo" alt="Dayonelogo">
+
+            <img src="<?php echo e(asset('storage/'.\App\Helpers\Helpers::setting('img')->value)); ?>" class="header-brand-img  mobile-logo" alt="Dayonelogo">
+
         </a>
     </div>
+
     <div class="app-sidebar3">
 
         <ul class="side-menu">
@@ -97,7 +98,7 @@
             <li class="slide">
                 <a class="side-menu__item text-white"  href="<?php echo e(route('log.index')); ?>">
                     <i class="sidemenu_icon"></i>
-                    <span class="side-menu__label">فعالبت ها</span>
+                    <span class="side-menu__label">فعالیت ها</span>
                 </a>
             </li>
 
@@ -133,6 +134,22 @@
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">نوتیفیکیشن(ها)</span>
                 </a>
+            </li>
+
+
+
+            <li class="slide">
+
+                <a class="side-menu__item" data-toggle="slide" href="#">
+                    <i class="feather  feather-users sidemenu_icon"></i>
+                    <span class="side-menu__label">گزارشات</span><i class="angle fa fa-angle-left"></i>
+                </a>
+
+
+                <ul class="slide-menu">
+                    <li><a href="<?php echo e(route('report.invoice.filter')); ?>" class="slide-item">گزارش صورتحساب</a></li>
+                    <li><a href="employee-attendance.html" class="slide-item">دکتر</a></li>
+                </ul>
             </li>
 
 

@@ -228,5 +228,9 @@ return [
         "operation"=>"عمل",
         "speciality_id"=>"تخصص",
         "percentage"=>"درصد تخفیف",
+        "doctor_id"=>'دکتر',
+        "start_date"=>'تاریخ مبدا',
+        "release_date"=>'تاریخ ترخیص',
+        "end_date"=>'تاریخ مقصد'
     ],
 ];

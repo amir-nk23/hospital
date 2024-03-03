@@ -45,7 +45,7 @@
                                         <td><?php echo e(number_format($payment->amount)); ?></td>
                                         <td><?php echo e(__('custom.'.$payment->pay_type)); ?></td>
                                         <td><img width="50px" height="50px" src="<?php echo e(asset('storage/'.$payment->receipt)); ?>" alt=""></td>
-                                        <td><?php echo e($payment->due_date); ?></td>
+                                        <td><?php echo e($payment->jalaliDate('due_date')); ?></td>
                                         <td>
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update payment')): ?>
                                             <a href="<?php echo e(route('payment.edit',$payment->id)); ?>" class="btn btn-warning">

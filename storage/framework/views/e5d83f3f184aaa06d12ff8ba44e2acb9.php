@@ -51,6 +51,7 @@
     <!-- PersianDateTimePicker css -->
         <link rel="stylesheet"      href="<?php echo e(asset('PersianDateTimePicker-bs4/src/jquery.md.bootstrap.datetimepicker.style.css')); ?>"/>
 
+        <link href="<?php echo e(asset('cstyle/font.css')); ?>" rel="stylesheet" />
     </head>
 
 	<body class="app sidebar-mini">
@@ -91,6 +92,8 @@
 
 			</div>
             <?php echo $__env->make('layout.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+            <?php echo $__env->make('layout.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
 
 
@@ -123,7 +126,7 @@
 
 
 
-        <!-- Trigger/Open The Modal -->
+
 
 
         <!-- Back to top -->
@@ -164,195 +167,10 @@
         <script src="<?php echo e(asset('PersianDateTimePicker-bs4/src/jquery.md.bootstrap.datetimepicker.js')); ?>"
                 type="text/javascript"></script>
 
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-        <script>
 
-            function conertToToman(goalInput,GoalId){
-                let txt=document.getElementById(goalInput)
-                let txtValue= txt.value;
-                const f = new Intl.NumberFormat('fa-IR', {
-                    style: 'currency',
-                    currency: 'IRR'
-                });
-                const number = parseFloat(txtValue);
-                if (!isNaN(number)) {
-                    const formattedNumber = f.format(number);
-                    const formattedTomans = formattedNumber.replace(/ریال/g, 'تومان');
-                    // Display the formatted number in the "result" div
-                    let result = document.getElementById(GoalId);
-                    result.innerText =  formattedTomans;
-                }
-            }
-
-
-
-
-            const f = new Intl.NumberFormat('es-us',{
-
-            })
-
-        </script>
-
-
-    <script>
-
-        $(".js-example-basic-multiple-limit").select2({
-            maximumSelectionLength: 100
-        });
-
-    </script>
-
-    <script>
-
-        // Assuming you have a reference to the element
-        var element = document.getElementById('buttom');
-
-        // Get the position of the element relative to the viewport
-        var elementRect = element.getBoundingClientRect();
-
-        // Check if the element is below the viewport
-        if (elementRect.bottom > window.innerHeight) {
-            // Scroll the page to show the element
-            window.scrollTo({
-                top: window.scrollY + elementRect.bottom - window.innerHeight,
-                behavior: 'smooth' // This will create a smooth scrolling effect
-            });
-        }
-
-    </script>
-
-
-
-        <script>
-
-            $(document).ready(function() {
-                $('.record-checkbox').change(function() {
-                    var totalAmount = 0;
-                    $('.record-checkbox:checked').each(function() {
-                        var amount = $(this).closest('tr').find('td:nth-child(6)').text().replace(/,/g,'');
-                        totalAmount += parseInt(amount);
-                    });
-                    $('#total-amount').val(totalAmount);
-                    $('#total-amount-f').text(totalAmount.toLocaleString());
-                });
-            });
-
-
-
-        </script>
-
-
-
-            <script>
-
-
-                $('#due_date_show').MdPersianDateTimePicker({
-                    targetDateSelector: '#due_date',        targetTextSelector: '#due_date_show',
-                    englishNumber: false,        toDate:true,
-                    enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
-                    textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
-                });</script>
-
-
-            <script>
-
-        function checkoption(){
-
-            const payType = document.getElementById('pay_type');
-
-            const due_date = document.getElementById('due_date');
-
-
-
-            if(payType.value === 'cheque'){
-
-
-                due_date.disabled = false;
-
-            }else{
-
-                due_date.disabled = true;
-
-            }
-
-        }
-
-
-            </script>
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <script>
-        $(document).ready(function() {
-            $('.ajax-link').click(function(e) {
-
-                e.preventDefault(); // Prevent the default action of the anchor tag
-
-                var valueToSend = $(this).data('value'); // Get the value from 'data-value' attribute
-                console.log(valueToSend)
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    method: 'POST', // Change it to 'GET' or 'POST' as per your route requirements
-                    url: 'delete/img',
-                    data: {
-                        value: valueToSend
-                    },
-                    success: function() {
-
-                        setTimeout(function() {
-                            location.reload();
-                        },); // Refresh after 1 second
-                    },
-
-                });
-            });
-        });
-
-            </script>
-
-
-
+    <?php echo $__env->make('layout.scrtipt ', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </body>
 </html>
 <?php /**PATH E:\hospital\resources\views/layout/master.blade.php ENDPATH**/ ?>

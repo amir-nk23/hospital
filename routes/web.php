@@ -11,6 +11,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\NotifController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SpecialityController;
 use App\Http\Controllers\SuperAdminController;
@@ -117,8 +118,6 @@ Route::prefix('/setting')->middleware('auth')->group(function (){
     Route::get('/social', [SettingController::class,'social'])->name('setting.social');
     Route::patch('', [SettingController::class,'update'])->name('setting.update');
     Route::delete('/delete/img/{setting}', [SettingController::class,'destroy'])->name('setting.destroy');
-
-
 });
 
 
@@ -163,6 +162,11 @@ Route::middleware('auth')->group(function ()
 
 
 
+Route::prefix('/report')->middleware('auth')->group(function (){
+
+    Route::get('/invoice',[ReportController::class ,'filter'])->name('report.invoice.filter');
+    Route::get('/invoice/index',[ReportController::class ,'invoiceIndex'])->name('report.invoice.index');
 
 
+});
 

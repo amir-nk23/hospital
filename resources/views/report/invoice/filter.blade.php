@@ -22,7 +22,7 @@
 
         </div>
 
-        <form method="get" action="{{route('preinvoice.search')}}">
+        <form method="get" action="{{route('report.invoice.index')}}">
 
 
             @if ($errors->any())
@@ -58,21 +58,22 @@
 
                 <div class="col-6 form-group">
 
-                    <label class="label">تاریخ مبدا</label>
+                    <label class="label">از تاریخ</label>
                     <span style="color: red">*</span>
 
-                    <input type="date" class="form-control" name="start_date">
-
+                    <input type="text" autocomplete="off" class="form-control" id="start_date_show"  name="start_date_show">
+                    <input type="text" class="form-control" id="start_date"  hidden name="start_date">
 
                 </div>
 
 
                 <div class="col-6 form-group">
 
-                    <label class="label">تاریخ ترخیص</label>
+                    <label class="label">تا تاریخ</label>
                     <span style="color: red">*</span>
 
-                    <input type="date" class="form-control" name="end_date">
+                    <input type="text" autocomplete="off" class="form-control" id="end_date_show" name="end_date_show">
+                    <input type="text" class="form-control" hidden id="end_date" name="end_date">
 
 
                 </div>
@@ -107,6 +108,30 @@
     </div>
    </div>
 
+
+   @section('script')
+    <script>
+
+
+            $('#start_date_show').MdPersianDateTimePicker({
+            targetDateSelector: '#start_date',        targetTextSelector: '#start_date_show',
+            englishNumber: false,        toDate:true,
+            enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+            textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+        });
+
+
+            $('#end_date_show').MdPersianDateTimePicker({
+                targetDateSelector: '#end_date',        targetTextSelector: '#end_date_show',
+                englishNumber: false,        toDate:true,
+                enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+                textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+            });
+
+
+    </script>
+
+   @endsection
 @endsection
 
 

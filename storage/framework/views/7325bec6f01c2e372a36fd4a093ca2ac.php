@@ -52,7 +52,7 @@
 
                                                                             <input hidden value="<?php echo e($general->value); ?>">
 
-                                                                            <a  class="mb-2 feather feather-x btn btn-danger ajax-link" id="sendButton"></a>
+                                                                            <a  class="mb-2 feather feather-x btn btn-danger ajax-link" onclick="confirmDelete('delete-image-<?php echo e($general->id); ?>')"></a>
 
 
                                                                         <img width="100px" height="100px" src="<?php echo e(asset('storage/'.$general->value)); ?>" alt="">
@@ -103,6 +103,14 @@
 
 
                     </form>
+
+
+                    <?php $__currentLoopData = $generals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $general): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <form action="<?php echo e(route('setting.destroy', $general)); ?>" id="delete-image-<?php echo e($general->id); ?>" method="POST" style="display: none;">
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field("DELETE"); ?>
+                        </form>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
