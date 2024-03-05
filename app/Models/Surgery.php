@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use http\Env\Url;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
@@ -44,6 +45,7 @@ class Surgery extends BaseModel
 
 
     }
+
 
 
     public function doctors(){

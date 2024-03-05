@@ -166,6 +166,7 @@ Route::prefix('/report')->middleware('auth')->group(function (){
 
     Route::get('/invoice',[ReportController::class ,'filter'])->name('report.invoice.filter');
     Route::get('/invoice/index',[ReportController::class ,'invoiceIndex'])->name('report.invoice.index');
+    Route::get('/invoice/{invoice}',[ReportController::class ,'invoiceShow'])->name('report.invoice.show');
 
 
 });

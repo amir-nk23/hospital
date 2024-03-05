@@ -48,35 +48,13 @@
                                         @endif
                                         <td>
 
-                                            @can('update invoice')
-                                            <a href="{{route('invoice.edit',$invoice->id)}}" class="btn btn-warning">
-                                                <i class="feather feather-edit"></i>
-                                            </a>
-                                            @endcan
-
-                                                <a href="{{route('invoice.show',$invoice->id)}}" class="btn btn-info">
+                                                <a href="{{route('report.invoice.show',$invoice->id)}}" class="btn btn-info">
                                                     <i class="feather feather-eye"></i>
                                                 </a>
-                                                <!-- Button trigger modal -->
-                                                <a href="{{route('payment.create',$invoice->id)}}" class="btn btn-success">
-                                                    <i class="feather feather-dollar-sign"></i>
 
-                                                </a>
-
-
-{{--                                                <button  id="#myBtn-{{$invoice->id}}" class="btn btn-success">--}}
-{{--                                                    <i class="feather feather-dollar-sign"></i>--}}
-{{--                                                </button>--}}
-                                            @can('delete invoice')
-
-
-                                            <a @disabled($invoice->isDeletable()) href="{{route('invoice.destroy',$invoice->id)}}" class="btn @if($invoice->isDeletable()) btn-gray  @else btn-danger @endif" >
-                                                <i class="feather feather-trash"></i>
-                                            </a>
-
-                                                @endcan
                                         </td>
                                     </tr>
+
 
                                 @endforeach
 
@@ -91,7 +69,6 @@
             </div>
         </div>
         </div>
-
 
     @endsection
 

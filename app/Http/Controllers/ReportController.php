@@ -25,23 +25,32 @@ class ReportController extends Controller
         $doctor_id = $request->doctor_id;
 
 
-        $invoice = Invoice::query()
+
+        $invoices = Invoice::query()
             ->where('doctor_id',$doctor_id)
-            ->whereIn(,function($query) use ($startDate){
+            ->when($startDate,function($query) use ($startDate){
 
                 $query->where('created_at','>=',$startDate);
 
             })
-//            ->whereIn($startDate,function ($query) use ($endDate){
-//
-//                $query->where('created_at','<=',$endDate)->get();
-//
-//            })
+            ->when($endDate,function ($query) use ($endDate){
+
+                $query->where('created_at','<=',$endDate)->get();
+
+            })
         ->get();
 
-        dd($invoice);
 
-        return view('report.invoice.index');
+
+        return view('report.invoice.index',compact('invoices'));
+
+    }
+
+    public function invoiceShow(Invoice $invoice){
+
+
+
+        return view('report.invoice.show',compact('invoice'));
 
     }
 

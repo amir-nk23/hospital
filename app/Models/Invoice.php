@@ -28,7 +28,7 @@ class Invoice extends BaseModel
     public function surgeries(){
 
 
-        return $this->belongsToMany(Surgery::class,'doctor_surgery','invoice_id','surgery_id')->withPivot('doctor_role_id');
+        return $this->belongsToMany(Surgery::class,'doctor_surgery','invoice_id','surgery_id')->withPivot('doctor_role_id','amount');
 
     }
 
@@ -38,6 +38,14 @@ class Invoice extends BaseModel
         return $this->payments->where('status',1)->count()>1 || $this->attributes['status']==1;
 
     }
+
+    public function doctorSurgery(){
+
+
+        return $this->belongsTo(DoctorSurgery::class,'invoice_id');
+
+    }
+
 
     public function payments(){
 

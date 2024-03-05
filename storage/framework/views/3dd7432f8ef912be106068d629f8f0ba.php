@@ -46,35 +46,13 @@
                                         <?php endif; ?>
                                         <td>
 
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update invoice')): ?>
-                                            <a href="<?php echo e(route('invoice.edit',$invoice->id)); ?>" class="btn btn-warning">
-                                                <i class="feather feather-edit"></i>
-                                            </a>
-                                            <?php endif; ?>
-
-                                                <a href="<?php echo e(route('invoice.show',$invoice->id)); ?>" class="btn btn-info">
+                                                <a href="<?php echo e(route('report.invoice.show',$invoice->id)); ?>" class="btn btn-info">
                                                     <i class="feather feather-eye"></i>
                                                 </a>
-                                                <!-- Button trigger modal -->
-                                                <a href="<?php echo e(route('payment.create',$invoice->id)); ?>" class="btn btn-success">
-                                                    <i class="feather feather-dollar-sign"></i>
 
-                                                </a>
-
-
-
-
-
-                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete invoice')): ?>
-
-
-                                            <a <?php if($invoice->isDeletable()): echo 'disabled'; endif; ?> href="<?php echo e(route('invoice.destroy',$invoice->id)); ?>" class="btn <?php if($invoice->isDeletable()): ?> btn-gray  <?php else: ?> btn-danger <?php endif; ?>" >
-                                                <i class="feather feather-trash"></i>
-                                            </a>
-
-                                                <?php endif; ?>
                                         </td>
                                     </tr>
+
 
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -89,7 +67,6 @@
             </div>
         </div>
         </div>
-
 
     <?php $__env->stopSection(); ?>
 
@@ -106,4 +83,4 @@
 
 
 
-<?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\hospital\resources\views/invoice/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\hospital\resources\views/report/invoice/index.blade.php ENDPATH**/ ?>
