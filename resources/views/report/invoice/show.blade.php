@@ -43,7 +43,8 @@
 													<strong class="text-danger">
                                                     @if($invoice->status == 0)
 
-                                                        غیر فعال
+
+                                                        پرداخت نشده
 
                                                         @endif
 
@@ -51,7 +52,7 @@
                                                     <strong class="text-success">
                                                         @if($invoice->status == 1)
 
-                                                             فعال
+                                                            پرداخت شده
 
                                                         @endif
 

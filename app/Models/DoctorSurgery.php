@@ -23,6 +23,13 @@ class DoctorSurgery extends Model
 
     }
 
+    public function invoice(){
+
+        return $this->belongsTo(Invoice::class,);
+
+    }
+
+
     public function doctors(){
 
         return $this->belongsTo(Doctor::class,'doctor_id');

@@ -1,19 +1,19 @@
 
 <!--aside open-->
 <aside class="app-sidebar">
-    <div class="app-sidebar__logo">
+    <div class="app-sidebar__logo" style="border-bottom: none">
         <a class="header-brand"  href="#">
-            <img src="{{asset('storage/'.\App\Helpers\Helpers::setting('img')->value)}}" height="36px" width="131px" class="header-brand-img  desktop-logo" alt="Dayonelogo">
+            <img src="{{asset('storage/'.$logo)}}" height="80px" width="131px"  style="border-radius: 200px;" class="header-brand-img  desktop-logo" alt="Dayonelogo">
 {{--            <img src="{{asset('storage/'.\App\Helpers\Helpers::setting('img')->value)}}" class="header-brand-img dark-logo" alt="Dayonelogo">--}}
-            <img src="{{asset('storage/'.\App\Helpers\Helpers::setting('img')->value)}}" class="header-brand-img  mobile-logo" alt="Dayonelogo">
+            <img src="{{asset('storage/'.$logo)}}" class="header-brand-img  mobile-logo" alt="Dayonelogo">
 {{--            <img src="#" class="header-brand-img darkmobile-logo" alt="Dayonelogo">--}}
         </a>
     </div>
 
     <div class="app-sidebar3">
 
-        <ul class="side-menu">
-            <li class="side-item side-item-category mt-4">Dashboards</li>
+        <ul class="side-menu mt-5">
+
             @can('view users')
             <li class="slide">
 

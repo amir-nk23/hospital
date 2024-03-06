@@ -1,9 +1,3 @@
-@extends('layout.master')
-
-
-
-
-
 		<div class="page">
 			<div class="page-main">
 
@@ -21,7 +15,7 @@
 
                                             <div>
 
-                                                <img src="{{asset('storage/'.\App\Helpers\Helpers::setting('img')->value)}}" height="50" width="50">
+                                                <img src="<?php echo e(asset('storage/'.\App\Helpers\Helpers::setting('img')->value)); ?>" height="50" width="50">
 
                                             </div>
 
@@ -29,32 +23,32 @@
 
 										<h2 class="text-muted font-weight-bold">صورت حساب</h2>
 										<div class="">
-											<h5 class="mb-1"><strong>{{$invoice->doctors->name}}</strong></h5>
+											<h5 class="mb-1"><strong><?php echo e($invoice->doctors->name); ?></strong></h5>
 										</div>
 
 										<div class="card-body pl-0 pr-0">
 											<div class="row">
 												<div class="col-sm-6">
 													<span>تاریخ صدور</span><br>
-													<strong>{{$invoice->jalaliDate()}}</strong>
+													<strong><?php echo e($invoice->jalaliDate()); ?></strong>
 												</div>
 												<div class="col-sm-6 inline text-left">
 													<span>وضعیت پرداخت :</span><br>
 													<strong class="text-danger">
-                                                    @if($invoice->status == 0)
+                                                    <?php if($invoice->status == 0): ?>
 
 
                                                         پرداخت نشده
 
-                                                        @endif
+                                                        <?php endif; ?>
 
                                                     </strong>
                                                     <strong class="text-success">
-                                                        @if($invoice->status == 1)
+                                                        <?php if($invoice->status == 1): ?>
 
                                                             پرداخت شده
 
-                                                        @endif
+                                                        <?php endif; ?>
 
                                                     </strong>
 												</div>
@@ -72,23 +66,23 @@
                                                     <th class="text-center" style="width: 1%">قمیت</th>
                                                 </tr>
 
-                                                @foreach($invoice->surgeries as $surgery)
+                                                <?php $__currentLoopData = $invoice->surgeries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $surgery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
 
 
                                                         <tr>
-                                                            <td class="text-center">{{$loop->index +1 }}</td>
+                                                            <td class="text-center"><?php echo e($loop->index +1); ?></td>
                                                             <td class="text-center">
-                                                                <p class="font-weight-semibold mb-1">@foreach($surgery->operation as $operation) {{$operation->name}} @endforeach</p>
+                                                                <p class="font-weight-semibold mb-1"><?php $__currentLoopData = $surgery->operation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $operation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($operation->name); ?> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></p>
                                                                 <div class="text-muted"></div>
                                                             </td>
 
-                                                            <td class="text-center text-success">{{number_format($surgery->pivot->amount)}}</td>
+                                                            <td class="text-center text-success"><?php echo e(number_format($surgery->pivot->amount)); ?></td>
                                                         </tr>
 
 
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
@@ -111,28 +105,28 @@
                                                 <th class="text-center" style="width: 1%">تاریخ پرداخت</th>
                                             </tr>
 
-                                            @foreach($invoice->payments as $payment)
+                                            <?php $__currentLoopData = $invoice->payments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $payment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
-                                                @if($payment->status == 1)
+                                                <?php if($payment->status == 1): ?>
                                                 <tr>
-                                                    <td class="text-center">{{$loop->index +1 }}</td>
+                                                    <td class="text-center"><?php echo e($loop->index +1); ?></td>
 
-                                                    <td class="text-center text-success">{{number_format($surgery->pivot->amount)}}</td>
+                                                    <td class="text-center text-success"><?php echo e(number_format($surgery->pivot->amount)); ?></td>
 
                                                     <td class="text-center">
-{{--                                                        <p class="font-weight-semibold mb-1"></p>--}}
-                                                        <div class="text-muted">{{__('custom.'.$payment->pay_type)}}</div>
+
+                                                        <div class="text-muted"><?php echo e(__('custom.'.$payment->pay_type)); ?></div>
                                                     </td>
 
 
                                                     <td class="text-center">
-                                                        <div class="">{{$payment->jalaliDate()}}</div>
+                                                        <div class=""><?php echo e($payment->jalaliDate()); ?></div>
                                                     </td>
                                                 </tr>
-                                                @endif
+                                                <?php endif; ?>
 
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
@@ -157,7 +151,7 @@
 
                                                         <td class="text-center">
 
-                                                            <div class="bold"> {{number_format($invoice->Surgeries->sum('pivot.amount'))}} </div>
+                                                            <div class="bold"> <?php echo e(number_format($invoice->Surgeries->sum('pivot.amount'))); ?> </div>
                                                         </td>
 
 
@@ -171,7 +165,7 @@
 
                                                 <td class="text-center">
 
-                                                    <div class="bold text-success">{{number_format($invoice->payments->sum('amount')).' '.'(تومان)'}} </div>
+                                                    <div class="bold text-success"><?php echo e(number_format($invoice->payments->sum('amount')).' '.'(تومان)'); ?> </div>
                                                 </td>
 
 
@@ -186,7 +180,7 @@
 
                                                 <td class="text-center">
 
-                                                    <div class="bold text-danger">{{number_format($invoice->Surgeries->sum('pivot.amount')-$invoice->payments->sum('amount')).' '.'(تومان)'}} </div>
+                                                    <div class="bold text-danger"><?php echo e(number_format($invoice->Surgeries->sum('pivot.amount')-$invoice->payments->sum('amount')).' '.'(تومان)'); ?> </div>
                                                 </td>
 
 
@@ -216,7 +210,9 @@
 				</div><!-- end app-content-->
 			</div>
 
-            @section('content')
+            <?php $__env->startSection('content'); ?>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\hospital\resources\views/report/invoice/show.blade.php ENDPATH**/ ?>

@@ -20,7 +20,7 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //        View::share('logo',Helpers::setting('img'));
+//                View::share('logo',Helpers::setting('img'));
         \view()->composer('layout.aside',function ($view){
 
             $logo = Helpers::setting('img');

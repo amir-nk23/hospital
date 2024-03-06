@@ -18,7 +18,7 @@ class Helpers
 
     public static function setting(string $key ,string $deafault = ''){
 
-        $setting = Cache::rememberForever('settings',function (){
+        $settings = Cache::rememberForever('settings',function (){
 
           return  Setting::query()
                 ->select('id','label','value','name')
@@ -26,7 +26,9 @@ class Helpers
 
         });
 
-        return $setting->where('name',$key)->first();
+        $setting = $settings->where('name',$key)->first();
+
+        return $setting?$setting->value : $deafault;
 
     }
 

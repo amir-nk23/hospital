@@ -99,6 +99,7 @@ class InvoiceController extends Controller
     public function show(Invoice $invoice){
 
         $invoice->surgeries();
+
         return view('invoice.show',compact('invoice'));
 
     }

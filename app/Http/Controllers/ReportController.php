@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReportIndexRequest;
 use App\Models\Doctor;
+use App\Models\DoctorSurgery;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 
@@ -20,29 +21,41 @@ class ReportController extends Controller
 
     public function invoiceIndex(ReportIndexRequest $request){
 
+        $startDateshow =$request->start_date_show;
+        $endDateshow =$request->end_date_show;
         $startDate = $request->start_date;
-        $endDate  = $request->end_date;
+        $endDate  = $request->end_date ?:today() ;
         $doctor_id = $request->doctor_id;
 
 
-
-        $invoices = Invoice::query()
+        $DoctorSurgeries = DoctorSurgery::query()->with(['surgery','surgery.operation','doctors','invoice','invoice.payments'])
             ->where('doctor_id',$doctor_id)
-            ->when($startDate,function($query) use ($startDate){
+            ->whereHas('surgery',function($query) use ($startDate,$endDate){
 
-                $query->where('created_at','>=',$startDate);
+                $query->where('surgeried_at','>=',$startDate)->
+                where('surgeried_at','<=',$endDate);;
 
-            })
-            ->when($endDate,function ($query) use ($endDate){
-
-                $query->where('created_at','<=',$endDate)->get();
 
             })
         ->get();
 
+        $pay =0;
+        foreach ($DoctorSurgeries as $doctorSurgery){
+
+            if ($doctorSurgery->invoice){
+
+                foreach ($doctorSurgery->invoice->payments as $payment){
+
+                    $pay += $payment->amount;
+
+                }
+
+            }
+
+        }
 
 
-        return view('report.invoice.index',compact('invoices'));
+        return view('report.invoice.index',compact(['DoctorSurgeries','startDateshow','endDateshow','pay']));
 
     }
 
