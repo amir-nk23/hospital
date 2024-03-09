@@ -48,7 +48,7 @@
                                     <td>@foreach($doctorsurgery->surgery->operation as $operation) {{$operation->name}} - @endforeach</td>
                                     <td class="text">{{number_format($doctorsurgery->amount)}}</td>
                                     <td class="text-success">@if($doctorsurgery->doctor_id) <span class="badge badge-success">دارد</span> @else <span class="badge badge-danger">ندارد</span> @endif</td>
-                                    <td class="text-success">@if($doctorsurgery->invoice) @if($doctorsurgery->invoice->status ==1) @endif<span class="text-primary">تسویه شده</span> @else <span class="text-azure">تسویه نشده</span> @endif</td>
+                                    <td class="text-success">@if($doctorsurgery->invoice) @if($doctorsurgery->invoice->status ==1) <span class="text-primary">تسویه شده</span> @endif @if($doctorsurgery->invoice->status == 0) <span class="text-warning   ">تسویه نشده</span> @endif @endif</td>
                                     <td class="text">{{$doctorsurgery->surgery->jalaliDate('surgeried_at')}}</td>
                                 </tr>
                                 @endforeach

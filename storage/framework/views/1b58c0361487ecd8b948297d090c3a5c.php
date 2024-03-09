@@ -1,19 +1,19 @@
 
 <!--aside open-->
 <aside class="app-sidebar">
-    <div class="app-sidebar__logo">
+    <div class="app-sidebar__logo" style="border-bottom: none">
         <a class="header-brand"  href="#">
-            <img src="<?php echo e(asset('storage/'.\App\Helpers\Helpers::setting('img')->value)); ?>" height="36px" width="131px" class="header-brand-img  desktop-logo" alt="Dayonelogo">
+            <img src="<?php echo e(asset('storage/'.$logo)); ?>" height="80px" width="131px"  style="border-radius: 200px;" class="header-brand-img  desktop-logo" alt="Dayonelogo">
 
-            <img src="<?php echo e(asset('storage/'.\App\Helpers\Helpers::setting('img')->value)); ?>" class="header-brand-img  mobile-logo" alt="Dayonelogo">
+            <img src="<?php echo e(asset('storage/'.$logo)); ?>" class="header-brand-img  mobile-logo" alt="Dayonelogo">
 
         </a>
     </div>
 
     <div class="app-sidebar3">
 
-        <ul class="side-menu">
-            <li class="side-item side-item-category mt-4">Dashboards</li>
+        <ul class="side-menu mt-5">
+
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view users')): ?>
             <li class="slide">
 
@@ -148,7 +148,7 @@
 
                 <ul class="slide-menu">
                     <li><a href="<?php echo e(route('report.invoice.filter')); ?>" class="slide-item">گزارش صورتحساب</a></li>
-                    <li><a href="employee-attendance.html" class="slide-item">دکتر</a></li>
+                    <li><a href="<?php echo e(route('report.insurance.filter')); ?>" class="slide-item">گزارش بیمه</a></li>
                 </ul>
             </li>
 

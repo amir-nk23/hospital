@@ -168,6 +168,9 @@ Route::prefix('/report')->middleware('auth')->group(function (){
     Route::get('/invoice/index',[ReportController::class ,'invoiceIndex'])->name('report.invoice.index');
     Route::get('/invoice/{invoice}',[ReportController::class ,'invoiceShow'])->name('report.invoice.show');
 
+    Route::get('/insurance',[ReportController::class ,'insuranceFilter'])->name('report.insurance.filter');
+    Route::get('/insurance/index',[ReportController::class ,'insuranceIndex'])->name('report.insurance.index');
+
 
 });
 

@@ -33,6 +33,7 @@ class Surgery extends BaseModel
     }
 
 
+
     public function suppinsurance()
     {
         return $this->belongsTo(Insurance::class,'supp_insurance_id');
@@ -64,6 +65,28 @@ class Surgery extends BaseModel
        return $amount;
 
 
+        }
+
+    public function getDoctorInsuranceAmount($id):int
+    {
+
+        $insurance = Insurance::find($id);
+        $amount =  round(($insurance->percentage /100) * $this->getTotalPrice());
+
+        return $amount;
+
+
+    }
+
+    public static function getTotalInsuranceAmount($id,$total):int
+    {
+
+        $insurance = Insurance::find($id);
+        $amount =  round(($insurance->percentage /100) * $total);
+
+        return $amount;
+
+
     }
 
 
@@ -77,4 +100,6 @@ class Surgery extends BaseModel
 
 
     }
+
+
 }

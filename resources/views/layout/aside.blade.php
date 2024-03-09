@@ -148,7 +148,7 @@
 
                 <ul class="slide-menu">
                     <li><a href="{{route('report.invoice.filter')}}" class="slide-item">گزارش صورتحساب</a></li>
-                    <li><a href="employee-attendance.html" class="slide-item">دکتر</a></li>
+                    <li><a href="{{route('report.insurance.filter')}}" class="slide-item">گزارش بیمه</a></li>
                 </ul>
             </li>
 

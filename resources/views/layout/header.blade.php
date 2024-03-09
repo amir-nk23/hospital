@@ -164,30 +164,16 @@
                 <div class="dropdown profile-dropdown">
                     <a href="#" class="nav-link pr-1 pl-0 leading-none" data-toggle="dropdown">
 												<span>
-													<img src="#" alt="img" class="avatar avatar-md bradius">
+													<img src="{{asset('image/setting.png')}}" alt="img" class=" avatar-md bradius">
 												</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow animated">
                         <div class="p-3 text-center border-bottom">
-                            <a href="#" class="text-center user pb-0 font-weight-bold">John Thomson</a>
+                            <a href="#" class="text-center user pb-0 font-weight-bold">َ{{auth()->user()->name}}</a>
                             <p class="text-center user-semi-title">App Developer</p>
                         </div>
-                        <a class="dropdown-item d-flex" href="#">
-                            <i class="feather feather-user ml-3 fs-16 my-auto"></i>
-                            <div class="mt-1">Profile</div>
-                        </a>
-                        <a class="dropdown-item d-flex" href="#">
-                            <i class="feather feather-settings ml-3 fs-16 my-auto"></i>
-                            <div class="mt-1">Settings</div>
-                        </a>
-                        <a class="dropdown-item d-flex" href="#">
-                            <i class="feather feather-mail ml-3 fs-16 my-auto"></i>
-                            <div class="mt-1">Messages</div>
-                        </a>
-                        <a class="dropdown-item d-flex" href="#" data-toggle="modal" data-target="#changepasswordnmodal">
-                            <i class="feather feather-edit-2 ml-3 fs-16 my-auto"></i>
-                            <div class="mt-1">Change Password</div>
-                        </a>
+
+
                         <a class="dropdown-item d-flex" href="{{route('auth.logout')}}">
                             <i class="feather feather-power ml-3 fs-16 my-auto"></i>
                             <div class="mt-1">Log Out</div>
