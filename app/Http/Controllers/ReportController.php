@@ -136,7 +136,7 @@ class ReportController extends Controller
 
 
 
-        return view('report.insurance.index',compact('surgeries','startDateshow','endDateshow','name','id','totalPrice'));
+        return view('report.insurance.index',compact('surgeries','startDateshow','endDateshow','name','id','totalPrice','insuranceType'));
     }
 
 

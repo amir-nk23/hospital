@@ -73,27 +73,35 @@
 
             </li>
 
+                @can('view insurance')
             <li class="slide">
                 <a class="side-menu__item"  href="{{route('insurance.index')}}">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">بیمه</span>
                 </a>
             </li>
+                @endcan
 
+                @can('view surgeries')
             <li class="slide">
                 <a class="side-menu__item"  href="{{route('surgery.index')}}">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">جراحی</span>
                 </a>
             </li>
+                @endcan
 
 
+                @can('setting')
             <li class="slide">
                 <a class="side-menu__item text-white"  href="{{route('setting.index')}}">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">تنظیمات</span>
                 </a>
             </li>
+                @endcan
+
+
 
             <li class="slide">
                 <a class="side-menu__item text-white"  href="{{route('log.index')}}">
@@ -104,14 +112,16 @@
 
 
 
+                @can('view payment')
             <li class="slide">
                 <a class="side-menu__item text-white"  href="{{route('preinvoice.filter')}}">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">پرداختی پزشک</span>
                 </a>
             </li>
+                @endcan
 
-
+                @can('view invoice')
             <li class="slide">
                 <a class="side-menu__item text-white"  href="{{route('invoice.index')}}">
                     <i class="sidemenu_icon"></i>
@@ -119,23 +129,25 @@
                 </a>
             </li>
 
+                @endcan
 
-
+                @can('view payment')
             <li class="slide">
                 <a class="side-menu__item text-white"  href="{{route('payment.index')}}">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">پرداختی</span>
                 </a>
             </li>
+                @endcan
 
-
+                @can('view notification')
             <li class="slide">
                 <a class="side-menu__item text-white"  href="{{route('notification.index')}}">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">نوتیفیکیشن(ها)</span>
                 </a>
             </li>
-
+                @endcan
 
 
             <li class="slide">

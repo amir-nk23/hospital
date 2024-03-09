@@ -73,27 +73,35 @@
 
             </li>
 
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view insurance')): ?>
             <li class="slide">
                 <a class="side-menu__item"  href="<?php echo e(route('insurance.index')); ?>">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">بیمه</span>
                 </a>
             </li>
+                <?php endif; ?>
 
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view surgeries')): ?>
             <li class="slide">
                 <a class="side-menu__item"  href="<?php echo e(route('surgery.index')); ?>">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">جراحی</span>
                 </a>
             </li>
+                <?php endif; ?>
 
 
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('setting')): ?>
             <li class="slide">
                 <a class="side-menu__item text-white"  href="<?php echo e(route('setting.index')); ?>">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">تنظیمات</span>
                 </a>
             </li>
+                <?php endif; ?>
+
+
 
             <li class="slide">
                 <a class="side-menu__item text-white"  href="<?php echo e(route('log.index')); ?>">
@@ -104,14 +112,16 @@
 
 
 
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view payment')): ?>
             <li class="slide">
                 <a class="side-menu__item text-white"  href="<?php echo e(route('preinvoice.filter')); ?>">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">پرداختی پزشک</span>
                 </a>
             </li>
+                <?php endif; ?>
 
-
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view invoice')): ?>
             <li class="slide">
                 <a class="side-menu__item text-white"  href="<?php echo e(route('invoice.index')); ?>">
                     <i class="sidemenu_icon"></i>
@@ -119,23 +129,25 @@
                 </a>
             </li>
 
+                <?php endif; ?>
 
-
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view payment')): ?>
             <li class="slide">
                 <a class="side-menu__item text-white"  href="<?php echo e(route('payment.index')); ?>">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">پرداختی</span>
                 </a>
             </li>
+                <?php endif; ?>
 
-
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view notification')): ?>
             <li class="slide">
                 <a class="side-menu__item text-white"  href="<?php echo e(route('notification.index')); ?>">
                     <i class="sidemenu_icon"></i>
                     <span class="side-menu__label">نوتیفیکیشن(ها)</span>
                 </a>
             </li>
-
+                <?php endif; ?>
 
 
             <li class="slide">
@@ -148,7 +160,7 @@
 
                 <ul class="slide-menu">
                     <li><a href="<?php echo e(route('report.invoice.filter')); ?>" class="slide-item">گزارش صورتحساب</a></li>
-                    <li><a href="employee-attendance.html" class="slide-item">دکتر</a></li>
+                    <li><a href="<?php echo e(route('report.insurance.filter')); ?>" class="slide-item">گزارش بیمه</a></li>
                 </ul>
             </li>
 

@@ -1,8 +1,4 @@
-@extends('layout.master')
-
-
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
    <div class="row">
     <div class="col-md-12">
@@ -22,20 +18,20 @@
 
         </div>
 
-        <form method="get" action="{{route('report.insurance.index')}}">
+        <form method="get" action="<?php echo e(route('report.insurance.index')); ?>">
 
 
-            @if ($errors->any())
+            <?php if($errors->any()): ?>
                 <div class="alert alert-danger">
                     <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
-            @endif
+            <?php endif; ?>
 
-            @csrf
+            <?php echo csrf_field(); ?>
             <div class="row">
 
                 <div class="col-6 form-group">
@@ -123,7 +119,7 @@
    </div>
 
 
-   @section('script')
+   <?php $__env->startSection('script'); ?>
     <script>
 
 
@@ -159,25 +155,25 @@
             // Populate options based on selected type
             if (selectedType === "basic") {
                 // Assuming $basicData is the array of data for basic insurance in your controller
-                @foreach($insurances->where('type','basic') as $basicdata)
+                <?php $__currentLoopData = $insurances->where('type','basic'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $basicdata): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 var option = document.createElement("option");
-                option.value = "{{ $basicdata['id'].'-'.$basicdata['name'] }}";
-                option.text = "{{ $basicdata['name'] }}";
+                option.value = "<?php echo e($basicdata['id'].'-'.$basicdata['name']); ?>";
+                option.text = "<?php echo e($basicdata['name']); ?>";
                 dataSelect.appendChild(option);
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             } else if (selectedType === "supplementary") {
                 // Assuming $supplementData is the array of data for supplement insurance in your controller
-                @foreach($insurances->where('type','supplementary') as $suppdata)
+                <?php $__currentLoopData = $insurances->where('type','supplementary'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $suppdata): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 var option = document.createElement("option");
-                option.value = "{{ $suppdata['id'].'-'.$suppdata['name']}}}";
-                option.text = "{{ $suppdata['name'] }}";
+                option.value = "<?php echo e($suppdata['id'].'-'.$suppdata['name']); ?>}";
+                option.text = "<?php echo e($suppdata['name']); ?>";
                 dataSelect.appendChild(option);
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             }
         }
     </script>
-   @endsection
-@endsection
+   <?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
 
 
 
@@ -191,3 +187,5 @@
 
 
 
+
+<?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\hospital\resources\views/report/insurance/filter.blade.php ENDPATH**/ ?>

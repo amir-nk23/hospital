@@ -31,6 +31,7 @@
                                     <th>کد ملی بیمار</th>
                                     <th>عمل ها</th>
                                     <th>ملبغ(تومان)</th>
+                                    <th>درصد سهم بیمه</th>
                                     <th>سهم بیمه(تومان)</th>
                                     <th>تاریخ تریخیص</th>
                                 </tr>
@@ -44,6 +45,8 @@
                                     <td>{{$surgery->patient_national_code}}</td>
                                     <td>@foreach($surgery->operation as $operation){{$operation->name}}-@endforeach</td>
                                     <td>{{number_format($surgery->getTotalPrice())}}</td>
+
+                                        <td>{{$surgery->insurance($insuranceType)->percentage}}%</td>
                                     <td class="text">{{number_format($surgery->getDoctorInsuranceAmount($id))}}</td>
                                     <td class="text">{{$surgery->jalaliDate('released_at')}}</td>
                                 </tr>

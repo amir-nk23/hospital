@@ -56,6 +56,12 @@ class Surgery extends BaseModel
 
     }
 
+    public function insurance(string $type){
+
+        return $type == 'basic'?$this->basicInsurance:$this->suppinsurance;
+
+    }
+
     public function getDoctorQuotaAmount(DoctorRole $doctorRole):int
     {
 
