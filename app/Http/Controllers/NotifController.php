@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class NotifController extends Controller
 {
@@ -13,7 +14,11 @@ class NotifController extends Controller
     public function index()
     {
 
-        $notifs = Notification::query()->get();
+        $notifs = Cache::rememberForever('notif',function (){
+
+            return Notification::query()->paginate(12);
+
+        });
 
         return view('notification.index',compact('notifs'));
 

@@ -155,15 +155,15 @@
             // Populate options based on selected type
             if (selectedType === "basic") {
                 // Assuming $basicData is the array of data for basic insurance in your controller
-                <?php $__currentLoopData = $insurances; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $basicdata): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $insurances->where('type','basic'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $basicdata): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 var option = document.createElement("option");
                 option.value = "<?php echo e($basicdata['id'].'-'.$basicdata['name']); ?>";
                 option.text = "<?php echo e($basicdata['name']); ?>";
                 dataSelect.appendChild(option);
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            } else if (selectedType === "supplement") {
+            } else if (selectedType === "supplementary") {
                 // Assuming $supplementData is the array of data for supplement insurance in your controller
-                <?php $__currentLoopData = $insurances; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $suppdata): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $insurances->where('type','supplementary'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $suppdata): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 var option = document.createElement("option");
                 option.value = "<?php echo e($suppdata['id'].'-'.$suppdata['name']); ?>}";
                 option.text = "<?php echo e($suppdata['name']); ?>";

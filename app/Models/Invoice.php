@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\ValidationException;
 
 class Invoice extends BaseModel
@@ -52,6 +54,18 @@ class Invoice extends BaseModel
         return $this->hasMany(Payment::class,'invoice_id');
 
     }
+
+    public static function clearAllCaches(){
+
+        if (Cache::has('invoice')){
+
+            Cache::forget('invoice');
+
+        }
+
+    }
+
+
     public static function booted()
     {
 
@@ -60,10 +74,32 @@ class Invoice extends BaseModel
             if ($invoice->payments->where('status',1)->count()>0){
 
                 toastr()->error('صورت حابی که قصد حذف ان را دارید دارای مقدار پرداختی میباشد');
+                static::clearAllCaches();
                 redirect()->back();
 
             }
 
+
+        });
+
+
+        static::created(function ($invoice){
+
+            activity()->log("کاربر با شناسه".Auth::id()."یک صورتحساب جدید با شناسه".$invoice->id."ایجاد کرد");
+            static::clearAllCaches();
+
+        });
+        static::updated(function ($invoice){
+
+            activity()->log("کاربر با شناسه".Auth::id()." صورتحساب با شناسه".$invoice->id."را اپدیت کرد");
+            static::clearAllCaches();
+
+        });
+
+        static::deleted(function ($invoice){
+
+            activity()->log("کاربر با شناسه".Auth::id()." صورتحساب با شناسه".$invoice->id."را حذف کرد");
+            static::clearAllCaches();
 
         });
 

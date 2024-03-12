@@ -8,6 +8,7 @@ use App\Models\Insurance;
 use App\Models\Operation;
 use App\Models\Surgery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class SurgeryController extends Controller
@@ -18,7 +19,13 @@ class SurgeryController extends Controller
     public function index()
     {
 
-        $surgeries = Surgery::query()->with(['basicInsurance','suppinsurance','operation'])->get();
+        $surgeries =  Cache::rememberForever('Surgery',function (){
+
+          return Surgery::query()->with(['basicInsurance','suppinsurance','operation'])->latest()->paginate(13);
+
+
+       });
+
 
         $amount =0;
         foreach ($surgeries as $surgery){
@@ -29,8 +36,9 @@ class SurgeryController extends Controller
                 $amount += $operation->pivot->amount;
 
 
-             }
-          }
+            }
+        }
+
 
         return view('surgery.index',compact('surgeries',));
 

@@ -10,6 +10,7 @@ use App\Models\DoctorRole;
 use App\Models\Speciality;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class DoctorController extends Controller
 {
@@ -18,11 +19,12 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::query()->latest("id")->get();
-        $doctors->load([
-           'speciality'
+        $doctors = Cache::rememberForever('doctor',function (){
 
-        ]);
+            return Doctor::query()->latest("id")->with('speciality')->paginate(10);
+
+        });
+
         return view('user.doctor.index',compact('doctors'));
     }
 

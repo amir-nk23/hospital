@@ -6,6 +6,7 @@ use App\Http\Requests\OperationStoreRequest;
 use App\Http\Requests\OperationUpdateRequest;
 use App\Models\Operation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
@@ -17,7 +18,9 @@ class OperationController extends Controller
      */
     public function index()
     {
-        $OPs = Operation::query()->get();
+        $OPs = Cache::rememberForever('operation',function (){
+            return Operation::query()->get();
+        });
         return view('operation.index',compact('OPs'));
     }
 

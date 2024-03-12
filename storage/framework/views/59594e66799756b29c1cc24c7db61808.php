@@ -96,16 +96,18 @@
 
                     <label class="label">تاریخ عمل</label>
 
-                    <input name="surgeried_at" value="<?php echo e($surgery->surgeried_at); ?>" type="date" class="form-control">
+                    <input name="surgeried_at" value="<?php echo e(verta($surgery->surgeried_at)->format('Y-m-d')); ?>" id="surgeried_at_show" type="text" class="form-control">
+                    <input name="surgeried_at" value="<?php echo e($surgery->surgeried_at); ?>" hidden id="surgeried_at" type="text" class="form-control">
 
                 </div>
 
 
                 <div class="col-6 form-group">
 
-                    <label class="label">تاریخ عمل</label>
+                    <label class="label">تاریخ تریخیص</label>
 
-                    <input name="released_at" value="<?php echo e($surgery->released_at); ?>" type="date" class="form-control">
+                    <input name="released_at" value="<?php echo e(verta($surgery->released_at)->format('Y-m-d')); ?>" id="released_at_show" type="text" class="form-control">
+                    <input name="released_at" value="<?php echo e($surgery->released_at); ?>" hidden id="released_at" type="text" class="form-control">
 
                 </div>
 
@@ -133,50 +135,60 @@
 
 
                 <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
                     <div class="col-4 form-group">
 
                         <label class="label"><?php echo e($role->title); ?></label>
 
                         <select class="form-control" name="doctor_id[]">
 
-                            <?php $__currentLoopData = $role->doctor; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $DR): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                            <?php $__currentLoopData = $role->doctors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $DR): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
-                                <option value="<?php echo e($DR->id); ?>"  <?php if($surgery->doctor->contains($DR->id)): echo 'selected'; endif; ?>><?php echo e($DR->name); ?></option>
-
+                                <option value="<?php echo e($DR->id); ?>" <?php if($surgery->doctors->where('pivot.doctor_role_id', $role->id)->contains($DR->id)): echo 'selected'; endif; ?>><?php echo e($DR->name); ?></option>
 
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                         </select>
 
+                        <input hidden value="<?php echo e($role->id); ?>" name="role_id[]">
+
                     </div>
-
-
-
 
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
 
-                <div class="col-10 form-group">
+                <div class="col-8 form-group">
 
                     <label class="label">توضیحات</label>
 
-                    <textarea name="description" cols="1" rows="2"  class="form-control"><?php echo e(old('description')); ?></textarea>
+                    <textarea name="description" cols="1" rows="2"  class="form-control"><?php echo e($surgery->description); ?></textarea>
 
                 </div>
 
 
-                <div id="buttom" class="col-2" style="margin-top: 50px;">
+                <div  class="col-4 d-flex" style="margin-top: 50px;">
 
-                    <div class=" ml-5" style="text-align: left;">
+
+                    <div class="ml-5" style="text-align: left;">
+
+                        <a href="<?php echo e(route('surgery.index')); ?>" class="btn btn-danger"> برگشت </a>
+
+
+                    </div>
+
+                    <div class="ml-5" style="text-align: left;">
 
                         <button class="btn btn-warning"> ویرایش </button>
 
 
                     </div>
+
+
+
+
 
                 </div>
 
@@ -186,6 +198,31 @@
 
 
     </div>
+
+
+<?php $__env->startSection('script'); ?>
+    <script>
+
+
+        $('#surgeried_at_show').MdPersianDateTimePicker({
+            targetDateSelector: '#surgeried_at',        targetTextSelector: '#surgeried_at_show',
+            englishNumber: false,        toDate:true,
+            enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+            textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+        });
+
+
+        $('#released_at_show').MdPersianDateTimePicker({
+            targetDateSelector: '#released_at',        targetTextSelector: '#released_at_show',
+            englishNumber: false,        toDate:true,
+            enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+            textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+        });
+
+
+    </script>
+
+<?php $__env->stopSection(); ?>
 
 <?php $__env->stopSection(); ?>
 

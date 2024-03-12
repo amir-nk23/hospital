@@ -6,6 +6,7 @@ use App\Http\Requests\InsuranceStoreFormRequest;
 use App\Http\Requests\InsuranceUpdateFormRequest;
 use App\Models\Insurance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class InsuranceController extends Controller
 {
@@ -14,7 +15,13 @@ class InsuranceController extends Controller
      */
     public function index()
     {
-        $insurances = Insurance::query()->where('status',1)->get();
+
+        $insurances =    Cache::rememberForever('insurance',function (){
+
+            return Insurance::query()->where('status',1)->paginate('10');
+
+        });
+
         return view('insurance.index',compact('insurances'));
     }
 

@@ -8,6 +8,7 @@ use App\Models\DoctorSurgery;
 use App\Models\Invoice;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\ValidationException;
 
 class InvoiceController extends Controller
@@ -15,12 +16,13 @@ class InvoiceController extends Controller
 
     public function filter(){
 
+      $doctors =  Cache::rememberForever('invoiceDoctor',function (){
 
-        return view('preinvoice.index',[
+            return Doctor::query()->where('status',1)->get();
 
-            'doctors'=>Doctor::query()->where('status',1)->get(),
+        });
 
-        ]);
+        return view('preinvoice.index',compact(   'doctors'));
 
     }
 
@@ -89,7 +91,9 @@ class InvoiceController extends Controller
 
     public function index()
     {
-        $invoices = Invoice::query()->with(['doctors','payments'])->get();
+        $invoices = Cache::rememberForever('invoice',function (){
+           return Invoice::query()->with(['doctors','payments'])->paginate(10);
+        });
 
 
         return view('invoice.index',compact('invoices',));

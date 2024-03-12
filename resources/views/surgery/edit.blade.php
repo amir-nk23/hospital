@@ -100,16 +100,18 @@
 
                     <label class="label">تاریخ عمل</label>
 
-                    <input name="surgeried_at" value="{{$surgery->surgeried_at}}" type="date" class="form-control">
+                    <input name="surgeried_at" value="{{verta($surgery->surgeried_at)->format('Y-m-d')}}" id="surgeried_at_show" type="text" class="form-control">
+                    <input name="surgeried_at" value="{{$surgery->surgeried_at}}" hidden id="surgeried_at" type="text" class="form-control">
 
                 </div>
 
 
                 <div class="col-6 form-group">
 
-                    <label class="label">تاریخ عمل</label>
+                    <label class="label">تاریخ تریخیص</label>
 
-                    <input name="released_at" value="{{$surgery->released_at}}" type="date" class="form-control">
+                    <input name="released_at" value="{{verta($surgery->released_at)->format('Y-m-d')}}" id="released_at_show" type="text" class="form-control">
+                    <input name="released_at" value="{{$surgery->released_at}}" hidden id="released_at" type="text" class="form-control">
 
                 </div>
 
@@ -137,7 +139,6 @@
 
 
                 @foreach($roles as $role)
-
                     <div class="col-4 form-group">
 
                         <label class="label">{{$role->title}}</label>
@@ -157,9 +158,6 @@
                         <input hidden value="{{$role->id}}" name="role_id[]">
 
                     </div>
-
-
-
 
                 @endforeach
 
@@ -204,6 +202,31 @@
 
 
     </div>
+
+
+@section('script')
+    <script>
+
+
+        $('#surgeried_at_show').MdPersianDateTimePicker({
+            targetDateSelector: '#surgeried_at',        targetTextSelector: '#surgeried_at_show',
+            englishNumber: false,        toDate:true,
+            enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+            textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+        });
+
+
+        $('#released_at_show').MdPersianDateTimePicker({
+            targetDateSelector: '#released_at',        targetTextSelector: '#released_at_show',
+            englishNumber: false,        toDate:true,
+            enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+            textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+        });
+
+
+    </script>
+
+@endsection
 
 @endsection
 

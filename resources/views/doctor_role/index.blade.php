@@ -71,6 +71,18 @@
 
                     </div>
                     <!-- table-responsive -->
+
+
+                    <div class="card-body">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-success mb-0">
+
+                                {{$DRs->onEachSide(3)->links()}}
+
+                            </ul>
+                        </nav>
+                        <!-- pagination-wrapper -->
+                    </div>
                 </div>
             </div>
         </div>

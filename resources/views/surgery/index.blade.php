@@ -54,8 +54,8 @@
 
                                         </td>
                                         <td>{{$surgery->description}}</td>
-                                        <td>{{$surgery->surgeried_at}}</td>
-                                        <td>{{$surgery->released_at}}</td>
+                                        <td>{{$surgery->jalaliDate('surgeried_at')}}</td>
+                                        <td>{{$surgery->jalaliDate('released_at')}}</td>
                                         <td>
 
                                             <a href="{{route('surgery.edit',$surgery->id)}}" class="btn btn-warning">
@@ -77,6 +77,17 @@
                         </table>
                     </div>
                     <!-- table-responsive -->
+
+                    <div class="card-body">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-success mb-0">
+
+                                {{$surgeries->onEachSide(3)->links()}}
+
+                            </ul>
+                        </nav>
+                        <!-- pagination-wrapper -->
+                    </div>
                 </div>
             </div>
         </div>

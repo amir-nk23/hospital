@@ -25,12 +25,12 @@
             <?php echo csrf_field(); ?>
             <div class="row">
 
-                <div class="col-6 form-group">
+                <div class="col-12 form-group">
 
                     <label  class="label">توضیحات</label>
                     <span style="color: red">*</span>
 
-                    <textarea class="form-control" name="description"><?php echo e($invoice->description); ?></textarea>
+                    <textarea class="form-control" rows="10" name="description"><?php echo e($invoice->description); ?></textarea>
 
                 </div>
 

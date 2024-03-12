@@ -5,6 +5,8 @@ namespace App\Models;
 use http\Env\Url;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -106,6 +108,46 @@ class Surgery extends BaseModel
 
 
     }
+
+
+
+    public static function clearAllCaches(){
+
+        if (Cache::has('surgery')){
+
+            Cache::forget('surgery');
+
+        }
+
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($surgery){
+
+            activity()->log("کاربر با شناسه".Auth::id()."یک جراحی جدید با شناسه".$surgery->id."ایجاد کرد");
+            static::clearAllCaches();
+
+        });
+        static::updated(function ($surgery){
+
+            activity()->log("کاربر با شناسه".Auth::id()." جراحی با شناسه".$surgery->id."را اپدیت کرد");
+            static::clearAllCaches();
+
+        });
+
+        static::deleted(function ($surgery){
+
+            activity()->log("کاربر با شناسه".Auth::id()." جراحی با شناسه".$surgery->id."را حذف کرد");
+            static::clearAllCaches();
+
+        });
+    }
+
+
+
+
+
 
 
 }

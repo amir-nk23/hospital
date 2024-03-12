@@ -7,6 +7,7 @@ use App\Models\DoctorRole;
 use App\Models\Speciality;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Yoeunes\Toastr\Toastr;
 
@@ -17,7 +18,11 @@ class SpecialityController extends Controller
      */
     public function index()
     {
-        $specialities = Speciality::query()->get();
+        $specialities = Cache::rememberForever('speciality',function (){
+
+            return Speciality::query()->paginate(10);
+
+        });
         return view('speciality.index',compact('specialities'));
     }
 

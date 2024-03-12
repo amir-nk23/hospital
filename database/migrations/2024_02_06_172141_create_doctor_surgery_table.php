@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('surgery_id');
             $table->bigInteger('doctor_role_id');
             $table->unsignedBigInteger('invoice_id')->nullable();
-            $table->unsignedBigInteger('amount');
+            $table->unsignedBigInteger('amount')->nullable();
         });
     }
 

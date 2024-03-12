@@ -95,7 +95,8 @@
 
                     <label class="label">تاریخ عمل</label>
 
-                    <input name="surgeried_at" value="<?php echo e(old('surgeried_at')); ?>" type="date" class="form-control">
+                    <input name="surgeried_at" value="<?php echo e(old('surgeried_at')); ?>" id="surgeried_at_show" type="text" class="form-control">
+                    <input name="surgeried_at" hidden value="<?php echo e(old('surgeried_at')); ?>" id="surgeried_at" type="date" class="form-control">
 
                 </div>
 
@@ -104,7 +105,8 @@
 
                     <label class="label">تاریخ تریخیص</label>
 
-                    <input name="released_at" value="<?php echo e(old('released_at')); ?>" type="date" class="form-control">
+                    <input name="released_at" value="<?php echo e(old('released_at_show')); ?>" id="released_at_show" type="text" class="form-control">
+                    <input name="released_at" hidden value="<?php echo e(old('released_at')); ?>" id="released_at" type="text" class="form-control">
 
                 </div>
 
@@ -190,6 +192,31 @@
 
 
     </div>
+
+
+<?php $__env->startSection('script'); ?>
+    <script>
+
+
+        $('#surgeried_at_show').MdPersianDateTimePicker({
+            targetDateSelector: '#surgeried_at',        targetTextSelector: '#surgeried_at_show',
+            englishNumber: false,        toDate:true,
+            enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+            textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+        });
+
+
+        $('#released_at_show').MdPersianDateTimePicker({
+            targetDateSelector: '#released_at',        targetTextSelector: '#released_at_show',
+            englishNumber: false,        toDate:true,
+            enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+            textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+        });
+
+
+    </script>
+
+<?php $__env->stopSection(); ?>
 
 <?php $__env->stopSection(); ?>
 

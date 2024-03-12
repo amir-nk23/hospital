@@ -4,12 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Doctor extends Model
+class Doctor extends Authenticatable
 {
-    use HasFactory,LogsActivity;
+    use HasFactory,HasApiTokens;
 
     protected $fillable = [
 
@@ -27,10 +31,10 @@ class Doctor extends Model
 
 
 
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()->logFillable();
-    }
+//    public function getActivitylogOptions(): LogOptions
+//    {
+//        return LogOptions::defaults()->logFillable();
+//    }
 
 
     public function doctor_role(){
@@ -54,4 +58,40 @@ class Doctor extends Model
 
 
     }
+
+    public static function clearAllCaches(){
+
+        if (Cache::has('doctor')){
+
+            Cache::forget('doctor');
+            Cache::forget('invoiceDoctor');
+
+        }
+
+    }
+
+
+
+    protected static function booted()
+   {
+       static::created(function ($doctor){
+
+           activity()->log("کاربر با شناسه".Auth::id()."یک دکتر جدید با شناسه".$doctor->id."ایجاد کرد");
+           static::clearAllCaches();
+
+       });
+       static::updated(function ($doctor){
+
+           activity()->log("کاربر با شناسه".Auth::id()." دکتر  با شناسه".$doctor->id."را اپدیت کرد");
+           static::clearAllCaches();
+
+       });
+
+       static::deleted(function ($doctor){
+
+           activity()->log("کاربر با شناسه".Auth::id()." دکتر  با شناسه".$doctor->id."را حذف کرد");
+           static::clearAllCaches();
+
+       });
+   }
 }

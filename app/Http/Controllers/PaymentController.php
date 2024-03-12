@@ -7,6 +7,8 @@ use App\Jobs\SendNotification;
 use App\Models\Invoice;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
@@ -20,7 +22,11 @@ class PaymentController extends Controller
     public function index()
     {
 
-        $payments = Payment::query()->with(['invoices','invoices.surgeries','invoices.surgeries.operation'])->Paginate(5);
+        $payments = Cache::rememberForever('payment',function (){
+
+            return Payment::query()->with(['invoices','invoices.surgeries','invoices.surgeries.operation'])->Paginate(5);
+
+        });
 
         return view('payment.index',compact('payments'));
     }
@@ -42,9 +48,9 @@ class PaymentController extends Controller
 
 
 
+        DB::beginTransaction();
+
         $name =   Storage::disk('public')->put('/payment',$request->receipt);
-
-
 
         $payment = Payment::query()->create([
 
@@ -76,7 +82,7 @@ class PaymentController extends Controller
 
             ]);
         }
-
+        DB::commit();
             toastr()->success('پرداخت با موفقیت انجام شد');
             return redirect()->route('invoice.index');
     }

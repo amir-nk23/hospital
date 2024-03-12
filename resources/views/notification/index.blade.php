@@ -45,40 +45,6 @@
                                         <td>{{$notif->jalaliDate('created_at')}}</td>
                                     </tr>
 
-
-{{--                                    			<!--Change password Modal -->--}}
-{{--                                    <!-- The Modal -->--}}
-{{--                                    <div id="myModal{{}}" class="modal">--}}
-
-{{--                                        <!-- Modal content -->--}}
-{{--                                        <div class="modal-content">--}}
-{{--                                            <div class="modal-header" >--}}
-{{--                                                <h2 class="text">پرداخت</h2>--}}
-{{--                                                <span class="close">&times;</span>--}}
-
-{{--                                            </div>--}}
-{{--                                            <div class="modal-body">--}}
-{{--                                                <form>--}}
-
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label>مبلغ :</label>--}}
-{{--                                                        <input class="form-control">--}}
-{{--                                                    </div>--}}
-
-{{--                                                    <div class="form-group">--}}
-{{--                                                        <label>مبلغ :</label>--}}
-{{--                                                        <textarea class="form-control" name="description"></textarea>--}}
-{{--                                                    </div>--}}
-
-
-
-{{--                                                </form>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    			<!-- End Change password Modal  -->--}}
-
-
                                 @endforeach
 
 
@@ -87,6 +53,17 @@
 
                         </div>
                         <!-- table-responsive -->
+
+                    <div class="card-body">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-success mb-0">
+
+                                {{$notifs->onEachSide(3)->links()}}
+
+                            </ul>
+                        </nav>
+                        <!-- pagination-wrapper -->
+                    </div>
 
                 </div>
             </div>

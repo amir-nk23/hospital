@@ -53,8 +53,8 @@
 
                                         </td>
                                         <td><?php echo e($surgery->description); ?></td>
-                                        <td><?php echo e($surgery->surgeried_at); ?></td>
-                                        <td><?php echo e($surgery->released_at); ?></td>
+                                        <td><?php echo e($surgery->jalaliDate('surgeried_at')); ?></td>
+                                        <td><?php echo e($surgery->jalaliDate('released_at')); ?></td>
                                         <td>
 
                                             <a href="<?php echo e(route('surgery.edit',$surgery->id)); ?>" class="btn btn-warning">
@@ -76,6 +76,18 @@
                         </table>
                     </div>
                     <!-- table-responsive -->
+
+                    <div class="card-body">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-success mb-0">
+
+                                <?php echo e($surgeries->onEachSide(3)->links()); ?>
+
+
+                            </ul>
+                        </nav>
+                        <!-- pagination-wrapper -->
+                    </div>
                 </div>
             </div>
         </div>

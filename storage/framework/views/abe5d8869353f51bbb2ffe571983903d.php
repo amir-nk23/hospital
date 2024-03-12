@@ -43,40 +43,6 @@
                                         <td><?php echo e($notif->jalaliDate('created_at')); ?></td>
                                     </tr>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
@@ -85,6 +51,18 @@
 
                         </div>
                         <!-- table-responsive -->
+
+                    <div class="card-body">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-success mb-0">
+
+                                <?php echo e($notifs->onEachSide(3)->links()); ?>
+
+
+                            </ul>
+                        </nav>
+                        <!-- pagination-wrapper -->
+                    </div>
 
                 </div>
             </div>

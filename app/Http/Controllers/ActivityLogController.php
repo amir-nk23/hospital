@@ -11,7 +11,7 @@ class ActivityLogController extends Controller
     public function index()
     {
 
-      $activities =  Activity::all();
+      $activities =  Activity::query()->paginate(12);
 
 
         return view('log.index',compact('activities'));

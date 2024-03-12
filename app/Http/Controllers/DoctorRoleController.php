@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DoctorRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class DoctorRoleController extends Controller
@@ -14,7 +15,14 @@ class DoctorRoleController extends Controller
      */
     public function index()
     {
-        $DRs = DoctorRole::query()->get();
+
+        $DRs = Cache::rememberForever('doctorRole',function (){
+
+            return DoctorRole::query()->paginate(10);
+
+        });
+
+
         return view('doctor_role.index',compact('DRs'));
     }
 
