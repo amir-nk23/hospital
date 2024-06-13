@@ -37,15 +37,16 @@
                                         <th scope="row"><?php echo e($loop->index+1); ?></th>
                                         <td><?php echo e($insurance->name); ?></td>
                                         <td><?php echo e(__('custom.'.$insurance->type)); ?></td>
-                                        <td><?php echo e($insurance->percentage); ?></td>
+                                        <td><?php echo e($insurance->percentage); ?>%</td>
+                                        <td>
                                         <?php if($insurance->status==1): ?>
-                                            <td class="mt-2 badge badge-success">فعال</td>
+                                                <span class="mt-2 badge badge-success">غیر فعال</span>
                                         <?php endif; ?>
                                         <?php if($insurance->status==0): ?>
-                                            <td class="mt-2 badge badge-danger">غیر فعال</td>
+                                            <span class="mt-2 badge badge-danger">غیر فعال</span>
                                         <?php endif; ?>
+                                        </td>
                                         <td>
-
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update insurance')): ?>
                                             <a href="<?php echo e(route('insurance.edit',$insurance->id)); ?>" class="btn btn-warning">
                                                 <i class="feather feather-edit"></i>
@@ -53,9 +54,15 @@
                                             <?php endif; ?>
 
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete insurance')): ?>
-                                            <a href="<?php echo e(route('insurance.destroy',$insurance->id)); ?>" class="btn btn-danger">
-                                                <i class="feather feather-trash"></i>
-                                            </a>
+
+                                                <form style="display: inline" action="<?php echo e(route('insurance.destroy',$insurance->id)); ?>" method="post">
+
+                                                    <?php echo csrf_field(); ?>
+                                                    <?php echo method_field('delete'); ?>
+                                                    <button  class="btn btn-danger">
+                                                        <i class="feather feather-trash"></i>
+                                                    </button>
+                                                </form>
 
                                                 <?php endif; ?>
                                         </td>
@@ -70,6 +77,20 @@
 
                     </div>
                     <!-- table-responsive -->
+
+
+                    <div class="card-body">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-success mb-0">
+
+                                <?php echo e($insurances->onEachSide(3)->links()); ?>
+
+
+                            </ul>
+                        </nav>
+                        <!-- pagination-wrapper -->
+                    </div>
+
                 </div>
             </div>
         </div>

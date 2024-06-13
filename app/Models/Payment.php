@@ -33,6 +33,7 @@ class Payment extends BaseModel
         if (Cache::has('payment')){
 
             Cache::forget('payment');
+            Cache::forget('invoice');
 
         }
 

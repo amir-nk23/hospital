@@ -96,7 +96,7 @@ Route::prefix('doctor')->middleware('auth')->group(function ()
     Route::post('',[DoctorController::class,'store'])->name('doctor.store');
     Route::get('/edit/{doctor}',[DoctorController::class,'edit'])->name('doctor.edit')->middleware('can:update doctor');
     Route::patch('/{doctor}',[DoctorController::class,'update'])->name('doctor.update');
-    Route::get('/{id}',[DoctorController::class,'destroy'])->name('doctor.destroy')->middleware('can:delete doctor');;
+    Route::get('/{doctor}',[DoctorController::class,'destroy'])->name('doctor.destroy')->middleware('can:delete doctor');;
 });
 
 
@@ -107,7 +107,7 @@ Route::prefix('insurance')->middleware('auth')->group(function ()
     Route::post('',[InsuranceController::class,'store'])->name('insurance.store');
     Route::get('/edit/{insurance}',[InsuranceController::class,'edit'])->name('insurance.edit')->middleware('can:update insurance');
     Route::patch('/{insurance}',[InsuranceController::class,'update'])->name('insurance.update');
-    Route::get('/{id}',[InsuranceController::class,'destroy'])->name('insurance.destroy')->middleware('can:delete insurance');;
+    Route::delete('/{insurance}',[InsuranceController::class,'destroy'])->name('insurance.destroy')->middleware('can:delete insurance');;
 });
 
 

@@ -37,7 +37,7 @@
                                         <td>@foreach($payment->invoices->surgeries as $surgery)
                                                 @foreach($surgery->operation as $operation)
 
-                                                    {{$operation->name}}
+                                                    {{$operation->name}},
 
                                                 @endforeach
 

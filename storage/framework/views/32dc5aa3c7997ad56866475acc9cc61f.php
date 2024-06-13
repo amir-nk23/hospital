@@ -1,122 +1,218 @@
-<?php $__env->startSection('content'); ?>
+		<div class="page">
+			<div class="page-main">
 
-    <div class="page">
-        <div class="page-main is-expanded">
-            <div class="row">
-                <div class="col-md-12 col-lg-12 mt-5">
 
-                    <div class="col-12" style="box-shadow:0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+				<div class="app-content main-content">
+					<div class="side-app">
 
-                        <div class="card">
-                            <div class="card-header text-center" style="border-bottom: 2px; border-bottom-style:groove;"><h2> مشخصات صورتحساب</h2></div>
+						<!-- Row-->
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card overflow-hidden">
+									<div class="card-body">
 
-                            <div class="card-body">
+                                        <figure class="image-container text-center">
 
-                                <div class="col-12">
+                                            <div>
 
-                                    <table class="table card-table table-vcenter text-nowrap table-primary mb-0">
-                                        <thead class="bg-primary text-white">
-                                        <tr>
-                                            <th class="text-white">ردیف</th>
-                                            <th class="text-white"> نام پزشک </th>
-                                            <th class="text-white">مبلغ صورتحساب</th>
-                                            <th class="text-white">توضیحات</th>
-                                            <th class="text-white">تاریخ ثبت</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+                                                <img src="<?php echo e(asset('storage/'.\App\Helpers\Helpers::setting('img'))); ?>" height="50" width="50">
 
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td><?php echo e($invoice->doctors->name); ?></td>
-                                                <td><?php echo e(number_format($invoice->amount)); ?></td>
-                                                <td><?php echo e($invoice->description); ?></td>
-                                                <td><?php echo e($invoice->jalaliDate()); ?></td>
+                                            </div>
+
+                                        </figure>
+
+										<h2 class="text-muted font-weight-bold">صورت حساب</h2>
+										<div class="">
+											<h5 class="mb-1"><strong><?php echo e($invoice->doctors->name); ?></strong></h5>
+										</div>
+
+										<div class="card-body pl-0 pr-0">
+											<div class="row">
+												<div class="col-sm-6">
+													<span>تاریخ صدور</span><br>
+													<strong><?php echo e($invoice->jalaliDate()); ?></strong>
+												</div>
+												<div class="col-sm-6 inline text-left">
+													<span>وضعیت پرداخت :</span><br>
+													<strong class="text-danger">
+                                                    <?php if($invoice->status == 0): ?>
+
+
+                                                        پرداخت نشده
+
+                                                        <?php endif; ?>
+
+                                                    </strong>
+                                                    <strong class="text-success">
+                                                        <?php if($invoice->status == 1): ?>
+
+                                                            پرداخت شده
+
+                                                        <?php endif; ?>
+
+                                                    </strong>
+												</div>
+											</div>
+										</div>
+
+                                        <div class="table-responsive push mt-3">
+
+                                            <h6 class="text-muted font-weight-bold">لیست جراحی ها</h6>
+
+                                            <table class="table table-bordered text-nowrap">
+                                                <tr class=" ">
+                                                    <th class="text-center " style="width: 1%">ردیف</th>
+                                                    <th class="text-center" style="width: 1%">نام عمل(ها)</th>
+                                                    <th class="text-center" style="width: 1%">قمیت</th>
+                                                </tr>
+
+                                                <?php $__currentLoopData = $invoice->surgeries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $surgery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+
+
+
+                                                        <tr>
+                                                            <td class="text-center"><?php echo e($loop->index +1); ?></td>
+                                                            <td class="text-center">
+                                                                <p class="font-weight-semibold mb-1"><?php $__currentLoopData = $surgery->operation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $operation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($operation->name); ?> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></p>
+                                                                <div class="text-muted"></div>
+                                                            </td>
+
+                                                            <td class="text-center text-success"><?php echo e(number_format($surgery->pivot->amount)); ?></td>
+                                                        </tr>
+
+
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
+
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="table-responsive push mt-3">
+
+                                        <h6 class="text-muted font-weight-bold">لیست پرداختی</h6>
+
+                                        <table class="table table-bordered text-nowrap">
+                                            <tr class=" ">
+                                                <th class="text-center " style="width: 1%">ردیف</th>
+                                                <th class="text-center" style="width: 1%">قیمت</th>
+                                                <th class="text-center" style="width: 1%">نوع پرداختی</th>
+                                                <th class="text-center" style="width: 1%">تاریخ پرداخت</th>
                                             </tr>
 
-                                        </tbody>
-                                    </table>
+                                            <?php $__currentLoopData = $invoice->payments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $payment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
+                                                <?php if($payment->status == 1): ?>
+                                                <tr>
+                                                    <td class="text-center"><?php echo e($loop->index +1); ?></td>
+
+                                                    <td class="text-center text-success"><?php echo e(number_format($surgery->pivot->amount)); ?></td>
+
+                                                    <td class="text-center">
+
+                                                        <div class="text-muted"><?php echo e(__('custom.'.$payment->pay_type)); ?></div>
+                                                    </td>
+
+
+                                                    <td class="text-center">
+                                                        <div class=""><?php echo e($payment->jalaliDate()); ?></div>
+                                                    </td>
+                                                </tr>
+                                                <?php endif; ?>
+
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
+
+                                        </table>
+                                    </div>
+
+
+
+
+                                    <div class="table-responsive push mt-5">
+
+
+                                        <table class="table table-bordered text-nowrap">
+
+
+
+
+                                                    <tr>
+
+
+                                                        <td class="text-center">جمع کل صورتحساب</td>
+
+                                                        <td class="text-center">
+
+                                                            <div class="bold"> <?php echo e(number_format($invoice->Surgeries->sum('pivot.amount'))); ?> </div>
+                                                        </td>
+
+
+                                                    </tr>
+
+
+                                            <tr>
+
+
+                                                <td class="text-center">جمع پرداختی ها</td>
+
+                                                <td class="text-center">
+
+                                                    <div class="bold text-success"><?php echo e(number_format($invoice->payments->sum('amount')).' '.'(تومان)'); ?> </div>
+                                                </td>
+
+
+                                            </tr>
+
+
+
+                                            <tr>
+
+
+                                                <td class="text-center">باقیمانده</td>
+
+                                                <td class="text-center">
+
+                                                    <div class="bold text-danger"><?php echo e(number_format($invoice->Surgeries->sum('pivot.amount')-$invoice->payments->sum('amount')).' '.'(تومان)'); ?> </div>
+                                                </td>
+
+
+                                            </tr>
+
+
+                                            <td colspan="5" class="text-left">
+
+                                                <button class="btn btn-info" onclick="javascript:window.print();"><i class="si si-printer"></i> پرینت صورتحساب</button>
+                                            </td>
+
+
+
+                                        </table>
+                                    </div>
 
                                 </div>
 
 
 
                             </div>
+							</div>
+						</div>
+						<!-- End row-->
 
+					</div>
+				</div><!-- end app-content-->
+			</div>
 
-                    </div>
-
-
-
-
-                </div>
-            </div>
-        </div>
-
-
-            <div class="col-md-12 col-lg-12 mt-5">
-
-                <div class="col-12" style="box-shadow:0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-
-                    <div class="card">
-                        <div class="card-header text-center" style="border-bottom: 2px; border-bottom-style:groove;"><h2> عمل ها</h2></div>
-
-                        <div class="card-body">
-
-                            <div class="col-12">
-
-                                <table class="table card-table table-vcenter text-nowrap table-primary mb-0">
-                                    <thead class="bg-primary text-white">
-                                    <tr>
-                                        <th class="text-white">ردیف</th>
-                                        <th class="text-white"> نام بیمار </th>
-                                        <th class="text-white">کد ملی</th>
-                                        <th class="text-white">شماره پرونده</th>
-                                        <th class="text-white">مبلغ(تومان)</th>
-                                        <th class="text-white">تاریخ ثبت</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <?php $__currentLoopData = $invoice->surgeries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $surgery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
-                                    <tr>
-                                        <th scope="row"><?php echo e($loop->index+1); ?></th>
-                                        <td><?php echo e($surgery->patient_name); ?></td>
-                                        <td><?php echo e($surgery->patient_national_code); ?></td>
-                                        <td><?php echo e($surgery->document_number); ?></td>
-                                        <td><?php echo e(number_format($surgery->getDoctorQuotaInvoice($surgery->pivot->doctor_role_id))); ?></td>
-                                        <td><?php echo e($surgery->jalaliDate()); ?></td>
-                                    </tr>
-
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-    </div>
-    </div>
+            <?php $__env->startSection('content'); ?>
 
 
 <?php $__env->stopSection(); ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\hospital\resources\views/invoice/show.blade.php ENDPATH**/ ?>

@@ -60,6 +60,8 @@ class Invoice extends BaseModel
         if (Cache::has('invoice')){
 
             Cache::forget('invoice');
+            Cache::forget('doctor');
+            Cache::forget('payment');
 
         }
 

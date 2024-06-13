@@ -112,15 +112,6 @@
 
 
 
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view payment')): ?>
-            <li class="slide">
-                <a class="side-menu__item text-white"  href="<?php echo e(route('preinvoice.filter')); ?>">
-                    <i class="sidemenu_icon"></i>
-                    <span class="side-menu__label">پرداختی پزشک</span>
-                </a>
-            </li>
-                <?php endif; ?>
-
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view invoice')): ?>
             <li class="slide">
                 <a class="side-menu__item text-white"  href="<?php echo e(route('invoice.index')); ?>">
@@ -131,6 +122,10 @@
 
                 <?php endif; ?>
 
+
+
+
+
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view payment')): ?>
             <li class="slide">
                 <a class="side-menu__item text-white"  href="<?php echo e(route('payment.index')); ?>">
@@ -138,6 +133,15 @@
                     <span class="side-menu__label">پرداختی</span>
                 </a>
             </li>
+                <?php endif; ?>
+
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view payment')): ?>
+                    <li class="slide">
+                        <a class="side-menu__item text-white"  href="<?php echo e(route('preinvoice.filter')); ?>">
+                            <i class="sidemenu_icon"></i>
+                            <span class="side-menu__label">دستمزد پزشک</span>
+                        </a>
+                    </li>
                 <?php endif; ?>
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view notification')): ?>

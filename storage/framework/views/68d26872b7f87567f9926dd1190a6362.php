@@ -29,6 +29,7 @@
                                     <th>کد ملی بیمار</th>
                                     <th>عمل ها</th>
                                     <th>ملبغ(تومان)</th>
+                                    <th>درصد سهم بیمه</th>
                                     <th>سهم بیمه(تومان)</th>
                                     <th>تاریخ تریخیص</th>
                                 </tr>
@@ -42,6 +43,8 @@
                                     <td><?php echo e($surgery->patient_national_code); ?></td>
                                     <td><?php $__currentLoopData = $surgery->operation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $operation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php echo e($operation->name); ?>-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></td>
                                     <td><?php echo e(number_format($surgery->getTotalPrice())); ?></td>
+
+                                        <td><?php echo e($surgery->insurance($insuranceType)->percentage); ?>%</td>
                                     <td class="text"><?php echo e(number_format($surgery->getDoctorInsuranceAmount($id))); ?></td>
                                     <td class="text"><?php echo e($surgery->jalaliDate('released_at')); ?></td>
                                 </tr>
@@ -62,8 +65,6 @@
                         <div class="col-4"> جمع کل عمل ها(تومان) :  <?php echo e(number_format($totalPrice)); ?></div>
 
                         <div class="col-4 ">   جمع کل پرداختی بیمه(تومان) : <?php echo e(number_format(\App\Models\Surgery::getTotalInsuranceAmount($id,$totalPrice))); ?></div>
-
-                    
 
 
                 </div>

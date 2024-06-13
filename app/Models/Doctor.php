@@ -10,10 +10,11 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class Doctor extends Authenticatable
 {
-    use HasFactory,HasApiTokens;
+    use HasFactory,HasApiTokens,HasRoles;
 
     protected $fillable = [
 
@@ -46,7 +47,7 @@ class Doctor extends Authenticatable
 
     public function surgery(){
 
-        return $this->belongsToMany(DoctorRole::class,'doctor_surgery','doctor_id','surgery_id');
+        return $this->belongsToMany(Surgery::class,'doctor_surgery','doctor_id','surgery_id');
 
 
     }

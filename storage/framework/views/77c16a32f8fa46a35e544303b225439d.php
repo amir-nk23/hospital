@@ -57,7 +57,8 @@
                     <label class="label">تاریخ مبدا</label>
                     <span style="color: red">*</span>
 
-                    <input type="date" class="form-control" name="start_date">
+                    <input type="text" autocomplete="false" class="form-control" id="start_date_show" name="start_date_show">
+                    <input name="start_date" hidden value="<?php echo e(old('surgeried_at')); ?>" id="start_date" type="date" class="form-control">
 
 
                 </div>
@@ -68,8 +69,8 @@
                     <label class="label">تاریخ ترخیص</label>
                     <span style="color: red">*</span>
 
-                    <input type="date" class="form-control" name="end_date">
-
+                    <input type="text" autocomplete="false" class="form-control" id="end_date_show" name="end_date_show">
+                    <input name="end_date" hidden value="<?php echo e(old('surgeried_at')); ?>" id="end_date" type="date" class="form-control">
 
                 </div>
 
@@ -102,6 +103,31 @@
 
     </div>
    </div>
+
+<?php $__env->startSection('script'); ?>
+    <script>
+
+
+        $('#start_date_show').MdPersianDateTimePicker({
+            targetDateSelector: '#start_date',        targetTextSelector: '#start_date_show',
+            englishNumber: false,        toDate:true,
+            enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+            textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+        });
+
+
+        $('#end_date_show').MdPersianDateTimePicker({
+            targetDateSelector: '#end_date',        targetTextSelector: '#end_date_show',
+            englishNumber: false,        toDate:true,
+            enableTimePicker: false,        dateFormat: 'yyyy-MM-dd',
+            textFormat: 'yyyy-MM-dd',        groupId: 'rangeSelector1',
+        });
+
+
+    </script>
+
+<?php $__env->stopSection(); ?>
+
 
 <?php $__env->stopSection(); ?>
 

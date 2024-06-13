@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
 
 class SuperAdminCreateRequest extends FormRequest
 {
@@ -45,5 +46,20 @@ class SuperAdminCreateRequest extends FormRequest
           'mobile.digits'=>'شماره تلفن باید 11 کاراکتر باشد',
 
         ];
+    }
+
+    protected function passedValidation()
+    {
+
+        $permissions = $this->permissions;
+        if(!$permissions){
+
+
+
+            throw ValidationException::withMessages(['لطفا حوضه اختیارات ادمین را مشخص نمایید']);
+
+        }
+
+
     }
 }

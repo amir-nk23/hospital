@@ -98,7 +98,6 @@
         const due_date = document.getElementById('due_date');
 
 
-        console.log(payType)
 
         if(payType.value === 'cheque'){
 
@@ -148,4 +147,4 @@
 
 
 <?php echo $__env->yieldContent('script'); ?>
-<?php /**PATH D:\hospital\resources\views/layout/script.blade.php ENDPATH**/ ?>
+<?php /**PATH E:\hospital\resources\views/layout/script.blade.php ENDPATH**/ ?>

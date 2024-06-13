@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InsuranceStoreFormRequest;
 use App\Http\Requests\InsuranceUpdateFormRequest;
 use App\Models\Insurance;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use function PHPUnit\Framework\isNull;
 
 class InsuranceController extends Controller
 {
@@ -16,7 +18,7 @@ class InsuranceController extends Controller
     public function index()
     {
 
-        $insurances =    Cache::rememberForever('insurance',function (){
+        $insurances = Cache::rememberForever('insurance',function (){
 
             return Insurance::query()->where('status',1)->paginate('10');
 
@@ -76,8 +78,27 @@ class InsuranceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Insurance $insurance)
     {
-        //
+
+
+
+        if($insurance->suppInsuranceSurgeries->isEmpty() && $insurance->basicInsuranceSurgeries->isEmpty()){
+
+
+            toastr()->error('بیمه حذف شد');
+
+            $insurance->delete();
+
+
+        }else{
+
+
+            toastr()->error('بیمه در یک جراحی ثبت شده است');
+
+        }
+
+        return redirect()->route('insurance.index');
+
     }
 }

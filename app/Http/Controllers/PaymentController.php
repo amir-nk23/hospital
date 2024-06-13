@@ -83,6 +83,8 @@ class PaymentController extends Controller
             ]);
         }
         DB::commit();
+
+        Cache::forget('invoice');
             toastr()->success('پرداخت با موفقیت انجام شد');
             return redirect()->route('invoice.index');
     }

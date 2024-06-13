@@ -57,13 +57,20 @@
                                         <td><?php echo e($surgery->jalaliDate('released_at')); ?></td>
                                         <td>
 
-                                            <a href="<?php echo e(route('surgery.edit',$surgery->id)); ?>" class="btn btn-warning">
-                                                <i class="feather feather-edit"></i>
-                                            </a>
+                                                <a href="<?php echo e(route('surgery.edit',$surgery->id)); ?>"  class="btn btn-warning">
+                                                    <i class="feather feather-edit"></i>
+                                                </a>
 
-                                            <a href="<?php echo e(route('surgery.destroy',$surgery->id)); ?>" class="btn btn-danger">
-                                                <i class="feather feather-trash"></i>
-                                            </a>
+                                            <form style="display: inline" action="<?php echo e(route('surgery.destroy',$surgery->id)); ?>" method="post">
+
+                                                <?php echo method_field('delete'); ?>
+                                                <?php echo csrf_field(); ?>
+                                                <button  class="btn btn-danger">
+                                                    <i class="feather feather-trash"></i>
+                                                </button>
+
+                                            </form>
+
 
 
                                         </td>

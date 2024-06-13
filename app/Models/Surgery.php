@@ -75,6 +75,15 @@ class Surgery extends BaseModel
 
         }
 
+
+    public function invoices(){
+
+
+        return $this->belongsToMany(Invoice::class,'doctor_surgery','surgery_id','invoice_id')->withPivot('doctor_role_id','amount');
+
+    }
+
+
     public function getDoctorInsuranceAmount($id):int
     {
 
@@ -113,9 +122,9 @@ class Surgery extends BaseModel
 
     public static function clearAllCaches(){
 
-        if (Cache::has('surgery')){
+        if (Cache::has('Surgery')){
 
-            Cache::forget('surgery');
+            Cache::forget('Surgery');
 
         }
 

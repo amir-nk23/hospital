@@ -112,6 +112,42 @@
 
     </div>
 
+
+
+
+
+
+    <?php $__env->startSection('script'); ?>
+
+
+    <script>
+
+        function checkoption(){
+
+            const payType = document.getElementById('pay_type');
+
+            const due_date = document.getElementById('due_date_show');
+
+
+
+            if(payType.value === 'cheque'){
+
+
+                due_date.disabled = false;
+
+            }else{
+
+                console.log(due_date)
+                due_date.value ='';
+                due_date.disabled = true;
+
+            }
+
+        }
+    </script>
+
+    <?php $__env->stopSection(); ?>
+
 <?php $__env->stopSection(); ?>
 
 

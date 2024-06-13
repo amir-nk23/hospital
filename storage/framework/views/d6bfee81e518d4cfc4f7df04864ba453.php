@@ -26,6 +26,7 @@
                                 <tr>
                                     <th class="text-white">/</th>
                                     <th class="text-white">ردیف</th>
+                                    <th class="text-white">نام بیمار</th>
                                     <th class="text-white">تاریخ عمل</th>
                                     <th class="text-white">تاریخ ترخیص</th>
                                     <th class="text-white">عمل ها</th>
@@ -45,6 +46,7 @@
                                         <input hidden name="doctor_id"  value="<?php echo e($DR->doctor_id); ?>">
                                         <td><input type="checkbox" class="record-checkbox" name="doctor_surgery_id[]" value="<?php echo e($DR->id); ?>"></td>
                                         <th scope="row"><?php echo e($loop->index+1); ?></th>
+                                        <th scope="row"><?php echo e($DR->surgery->patient_name); ?></th>
                                         <td><?php echo e($DR->surgery->surgeried_at); ?></td>
                                         <td><?php echo e($DR->surgery->released_at); ?></td>
                                         <td><?php $__currentLoopData = $DR->surgery->operation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $operation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($operation->name.','); ?> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></td>

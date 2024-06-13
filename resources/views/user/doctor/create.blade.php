@@ -30,7 +30,7 @@
 
                 <div class="col-4 form-group">
 
-                    <label  class="label">نام و نام خانوادگی</label>
+                    <label class="label">نام و نام خانوادگی</label>
                     <span style="color: red">*</span>
 
                     <input type="text" value="{{old('name')}}" name="name" class="form-control">
@@ -51,10 +51,19 @@
 
                     <label class="label">تخصص</label>
                     <span style="color: red">*</span>
-                    <select class="form-control"  name="speciality_id">
+                    <select class="form-control" name="speciality_id">
+
+                        @if(count($specialities) == 0)
+
+                            <option class="text-danger" disabled>هنوز هیج تخصصی ثبت نشده است</option>
+
+                        @endif
+
                         @foreach($specialities as $speciality)
 
-                            <option value="{{$speciality->id}}" >{{$speciality->title}}</option>
+
+
+                            <option value="{{$speciality->id}}">{{$speciality->title}}</option>
 
                         @endforeach
 
@@ -67,9 +76,16 @@
                     <label class="label">نقش</label>
                     <span style="color: red">*</span>
                     <select class="form-control js-example-basic-multiple-limit" multiple name="doctor_roles[]">
+
+                        @if(count($doctorRoles) == 0)
+
+                            <option class="text-danger" disabled>هنوز هیج نقشی ثبت نشده است</option>
+
+                        @endif
+
                         @foreach($doctorRoles as $DR)
 
-                            <option value="{{$DR->id}}" >{{$DR->title}}</option>
+                            <option value="{{$DR->id}}">{{$DR->title}}</option>
 
                         @endforeach
 
@@ -87,9 +103,6 @@
                 </div>
 
 
-
-
-
                 <div class="col-4 form-group">
 
                     <label class="label">کد نظام پزشکی</label>
@@ -97,9 +110,6 @@
                     <input name="medical_number" value="{{old('medical_number')}}" type="text" class="form-control">
 
                 </div>
-
-
-
 
 
                 <div class="col-4 form-group">
@@ -140,7 +150,7 @@
 
                 </div>
 
-                <div  class="col-12">
+                <div class="col-12">
 
                     <div class="mt-5 ml-5" style="text-align: left;">
 
@@ -150,8 +160,6 @@
                     </div>
 
                 </div>
-
-
 
 
             </div>

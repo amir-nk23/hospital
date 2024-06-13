@@ -26,7 +26,7 @@
 
                 <div class="col-6 form-group">
 
-                    <label  class="label">نام و نام خانوادگی</label>
+                    <label  class="label">نام و نام خانوادگی بیمار</label>
                     <span style="color: red">*</span>
 
                     <input type="text" value="<?php echo e(old('patient_name')); ?>" name="patient_name" class="form-control">
@@ -95,7 +95,7 @@
 
                     <label class="label">تاریخ عمل</label>
 
-                    <input name="surgeried_at" value="<?php echo e(old('surgeried_at')); ?>" id="surgeried_at_show" type="text" class="form-control">
+                    <input name="surgeried_at" autocomplete="false" value="<?php echo e(old('surgeried_at')); ?>" id="surgeried_at_show" type="text" class="form-control">
                     <input name="surgeried_at" hidden value="<?php echo e(old('surgeried_at')); ?>" id="surgeried_at" type="date" class="form-control">
 
                 </div>
@@ -105,7 +105,7 @@
 
                     <label class="label">تاریخ تریخیص</label>
 
-                    <input name="released_at" value="<?php echo e(old('released_at_show')); ?>" id="released_at_show" type="text" class="form-control">
+                    <input name="released_at" autocomplete="false" value="<?php echo e(old('released_at_show')); ?>" id="released_at_show" type="text" class="form-control">
                     <input name="released_at" hidden value="<?php echo e(old('released_at')); ?>" id="released_at" type="text" class="form-control">
 
                 </div>

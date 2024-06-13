@@ -39,15 +39,16 @@
                                         <th scope="row">{{$loop->index+1}}</th>
                                         <td>{{$insurance->name}}</td>
                                         <td>{{__('custom.'.$insurance->type)}}</td>
-                                        <td>{{$insurance->percentage}}</td>
+                                        <td>{{$insurance->percentage}}%</td>
+                                        <td>
                                         @if($insurance->status==1)
-                                            <td class="mt-2 badge badge-success">فعال</td>
+                                                <span class="mt-2 badge badge-success">غیر فعال</span>
                                         @endif
                                         @if($insurance->status==0)
-                                            <td class="mt-2 badge badge-danger">غیر فعال</td>
+                                            <span class="mt-2 badge badge-danger">غیر فعال</span>
                                         @endif
+                                        </td>
                                         <td>
-
                                             @can('update insurance')
                                             <a href="{{route('insurance.edit',$insurance->id)}}" class="btn btn-warning">
                                                 <i class="feather feather-edit"></i>
@@ -55,9 +56,15 @@
                                             @endcan
 
                                             @can('delete insurance')
-                                            <a href="{{route('insurance.destroy',$insurance->id)}}" class="btn btn-danger">
-                                                <i class="feather feather-trash"></i>
-                                            </a>
+
+                                                <form style="display: inline" action="{{route('insurance.destroy',$insurance->id)}}" method="post">
+
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button  class="btn btn-danger">
+                                                        <i class="feather feather-trash"></i>
+                                                    </button>
+                                                </form>
 
                                                 @endcan
                                         </td>

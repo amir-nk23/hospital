@@ -112,15 +112,6 @@
 
 
 
-                @can('view payment')
-            <li class="slide">
-                <a class="side-menu__item text-white"  href="{{route('preinvoice.filter')}}">
-                    <i class="sidemenu_icon"></i>
-                    <span class="side-menu__label">پرداختی پزشک</span>
-                </a>
-            </li>
-                @endcan
-
                 @can('view invoice')
             <li class="slide">
                 <a class="side-menu__item text-white"  href="{{route('invoice.index')}}">
@@ -131,6 +122,10 @@
 
                 @endcan
 
+
+
+
+
                 @can('view payment')
             <li class="slide">
                 <a class="side-menu__item text-white"  href="{{route('payment.index')}}">
@@ -138,6 +133,15 @@
                     <span class="side-menu__label">پرداختی</span>
                 </a>
             </li>
+                @endcan
+
+                @can('view payment')
+                    <li class="slide">
+                        <a class="side-menu__item text-white"  href="{{route('preinvoice.filter')}}">
+                            <i class="sidemenu_icon"></i>
+                            <span class="side-menu__label">دستمزد پزشک</span>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('view notification')

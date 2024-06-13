@@ -6,6 +6,7 @@ use App\Http\Requests\SuperAdminUpdateRequest;
 use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Spatie\Permission\Models\Permission;
 use Yoeunes\Toastr\Toastr;
 
@@ -30,6 +31,9 @@ class SuperAdminController extends Controller
     public function store(SuperAdminCreateRequest $request)
     {
 
+
+
+
         $user = User::query()->create([
 
             'name'=>$request->name,
@@ -39,6 +43,7 @@ class SuperAdminController extends Controller
 
         ]);
 
+
         $permissions = $request->permissions;
 
         foreach ($permissions as $permission){
@@ -46,6 +51,7 @@ class SuperAdminController extends Controller
             $user->givePermissionTo($permission);
 
         }
+
 
 
         \toastr()->success('کاربر با موفقیت ایجاد شد');
@@ -124,6 +130,8 @@ class SuperAdminController extends Controller
 
         $user->permissions()->detach();
         $user->delete();
+
+        \toastr()->error('حذف ادمین انجام شد');
 
         return redirect()->back();
 

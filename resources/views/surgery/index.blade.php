@@ -58,13 +58,20 @@
                                         <td>{{$surgery->jalaliDate('released_at')}}</td>
                                         <td>
 
-                                            <a href="{{route('surgery.edit',$surgery->id)}}" class="btn btn-warning">
-                                                <i class="feather feather-edit"></i>
-                                            </a>
+                                                <a href="{{route('surgery.edit',$surgery->id)}}"  class="btn btn-warning">
+                                                    <i class="feather feather-edit"></i>
+                                                </a>
 
-                                            <a href="{{route('surgery.destroy',$surgery->id)}}" class="btn btn-danger">
-                                                <i class="feather feather-trash"></i>
-                                            </a>
+                                            <form style="display: inline" action="{{route('surgery.destroy',$surgery->id)}}" method="post">
+
+                                                @method('delete')
+                                                @csrf
+                                                <button  class="btn btn-danger">
+                                                    <i class="feather feather-trash"></i>
+                                                </button>
+
+                                            </form>
+
 
 
                                         </td>

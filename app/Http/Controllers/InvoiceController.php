@@ -30,20 +30,30 @@ class InvoiceController extends Controller
 
 
 
+
+
         $s_date = $request->start_date;
         $e_date = $request->end_date;
+
 
             $doctor_surgeries =  DoctorSurgery::query()->where('doctor_id',$request->doctor_id)->whereNull('invoice_id')
 
                 ->with(['surgery','doctors'])
                 ->whereHas('surgery',function ($query) use ($s_date){
 
-                    return $query->where('surgeried_at','>=',$s_date);
+                    if ($s_date!=null){
+
+                        return $query->where('surgeried_at','>=',$s_date);
+                    }
 
                 })
                 ->whereHas('surgery',function ($query) use ($e_date){
 
-                    return $query->where('released_at','<=',$e_date);
+                    if ($e_date!=null){
+
+                        return $query->where('released_at','<=',$e_date);
+
+                    }
 
                 })->get()
             ;
@@ -135,19 +145,32 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
 
-        $DR = DoctorSurgery::query()->where('invoice_id',$invoice->id);
 
 
-        $DR->update([
+       if (count($invoice->payments)==0){
 
-            'invoice_id'=>null
-
-        ]);
-
-        $invoice->delete();
+           $DR = DoctorSurgery::query()->where('invoice_id',$invoice->id);
 
 
-        toastr()->error('صورتحساب با موفقیت حذف شد');
+           $DR->update([
+
+               'invoice_id'=>null
+
+           ]);
+
+           $invoice->delete();
+
+
+           toastr()->error('صورتحساب با موفقیت حذف شد');
+
+       }else{
+
+
+           toastr()->error('این صورت حساب دارای مبلغ پرداحتی میباشد');
+
+       }
+
+
 
         return redirect()->route('invoice.index');
 

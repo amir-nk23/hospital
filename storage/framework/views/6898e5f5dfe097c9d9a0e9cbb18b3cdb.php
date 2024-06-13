@@ -147,4 +147,4 @@
 
 
 <?php echo $__env->yieldContent('script'); ?>
-<?php /**PATH E:\hospital\resources\views/layout/scrtipt.blade.php ENDPATH**/ ?>
+<?php /**PATH E:\hospital\resources\views/layout/script.blade.php ENDPATH**/ ?>

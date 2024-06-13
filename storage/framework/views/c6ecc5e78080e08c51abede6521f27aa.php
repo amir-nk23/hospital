@@ -26,7 +26,7 @@
 
                 <div class="col-4 form-group">
 
-                    <label  class="label">نام و نام خانوادگی</label>
+                    <label class="label">نام و نام خانوادگی</label>
                     <span style="color: red">*</span>
 
                     <input type="text" value="<?php echo e(old('name')); ?>" name="name" class="form-control">
@@ -47,10 +47,19 @@
 
                     <label class="label">تخصص</label>
                     <span style="color: red">*</span>
-                    <select class="form-control"  name="speciality_id">
+                    <select class="form-control" name="speciality_id">
+
+                        <?php if(count($specialities) == 0): ?>
+
+                            <option class="text-danger" disabled>هنوز هیج تخصصی ثبت نشده است</option>
+
+                        <?php endif; ?>
+
                         <?php $__currentLoopData = $specialities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $speciality): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                            <option value="<?php echo e($speciality->id); ?>" ><?php echo e($speciality->title); ?></option>
+
+
+                            <option value="<?php echo e($speciality->id); ?>"><?php echo e($speciality->title); ?></option>
 
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -63,9 +72,16 @@
                     <label class="label">نقش</label>
                     <span style="color: red">*</span>
                     <select class="form-control js-example-basic-multiple-limit" multiple name="doctor_roles[]">
+
+                        <?php if(count($doctorRoles) == 0): ?>
+
+                            <option class="text-danger" disabled>هنوز هیج نقشی ثبت نشده است</option>
+
+                        <?php endif; ?>
+
                         <?php $__currentLoopData = $doctorRoles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $DR): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                            <option value="<?php echo e($DR->id); ?>" ><?php echo e($DR->title); ?></option>
+                            <option value="<?php echo e($DR->id); ?>"><?php echo e($DR->title); ?></option>
 
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -83,9 +99,6 @@
                 </div>
 
 
-
-
-
                 <div class="col-4 form-group">
 
                     <label class="label">کد نظام پزشکی</label>
@@ -93,9 +106,6 @@
                     <input name="medical_number" value="<?php echo e(old('medical_number')); ?>" type="text" class="form-control">
 
                 </div>
-
-
-
 
 
                 <div class="col-4 form-group">
@@ -136,7 +146,7 @@
 
                 </div>
 
-                <div  class="col-12">
+                <div class="col-12">
 
                     <div class="mt-5 ml-5" style="text-align: left;">
 
@@ -146,8 +156,6 @@
                     </div>
 
                 </div>
-
-
 
 
             </div>

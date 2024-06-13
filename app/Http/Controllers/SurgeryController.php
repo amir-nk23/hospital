@@ -7,6 +7,7 @@ use App\Models\DoctorRole;
 use App\Models\Insurance;
 use App\Models\Operation;
 use App\Models\Surgery;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,7 @@ class SurgeryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Renderable
     {
 
         $surgeries =  Cache::rememberForever('Surgery',function (){
@@ -48,7 +49,7 @@ class SurgeryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Renderable
     {
 
         $insurance = Insurance::query()->get();
@@ -68,7 +69,8 @@ class SurgeryController extends Controller
 
         $operations = $request->operation_id;
 
-        $surgery = Surgery::query()->create($request->only(['patient_name','patient_national_code','basic_insurance_id','supp_insurance_id','document_number','description','surgeried_at','released_at']));
+        $surgery = Surgery::query()->create($request->
+        only(['patient_name','patient_national_code','basic_insurance_id','supp_insurance_id','document_number','description','surgeried_at','released_at']));
 
         $amounts = Operation::query()->whereIn('id',$operations)->select( 'id' ,'price')->get();
 
@@ -118,7 +120,7 @@ class SurgeryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Surgery $surgery)
+    public function edit(Surgery $surgery):Renderable
     {
         $insurances = Insurance::query()->get();
         $basics = $insurances->where('type','basic');
@@ -183,8 +185,24 @@ class SurgeryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Surgery $surgery)
     {
-        //
+
+        if ($surgery->invoices->isEmpty()){
+
+            $surgery->delete();
+
+        }else{
+
+
+            toastr()->error('این عمل دارای صورتحساب میباشد');
+
+
+        }
+
+        Cache::forget('Surgery');
+
+        return redirect()->back();
+
     }
 }

@@ -99,36 +99,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <!-- Back to top -->
         <a href="#top" id="back-to-top"><span class="feather feather-chevrons-up"></span></a>
 
@@ -170,7 +140,7 @@
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
-    <?php echo $__env->make('layout.scrtipt ', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('layout.script ', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </body>
 </html>
 <?php /**PATH E:\hospital\resources\views/layout/master.blade.php ENDPATH**/ ?>

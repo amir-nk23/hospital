@@ -62,7 +62,7 @@ class DoctorController extends Controller
 
       $doctor->doctor_role()->attach($doctorRoles);
 
-      DoctorEmail::dispatch($doctor);
+//      DoctorEmail::dispatch($doctor);
 
         toastr()->success('دکتر با موفقیت ثبت شد');
         return redirect()->route('doctor.index');

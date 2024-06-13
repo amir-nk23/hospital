@@ -23,8 +23,9 @@ class DoctorStoreFormRequest extends FormRequest
     public function rules(): array
     {
         return [
+
             'mobile'=>'required|numeric|digits:11|',
-            'name'=>'required|min:4',
+            'name'=>'required|min:4|unique:doctors,name',
             'speciality_id'=>'required',
             'national_code'=> ['nullable',new Nationalcode()],
             'medical_number'=>'nullable|digits:5',

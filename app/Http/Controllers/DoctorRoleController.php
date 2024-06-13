@@ -91,7 +91,7 @@ class DoctorRoleController extends Controller
     {
 
         $speciality = DB::table('doctor_role')->where('id',$id)->delete();
-
+        Cache::forget('doctorRole');
         Toastr()->error('نقش دکتر با موفقیت حذف شد');
         return redirect()->route('doctor.role.index');
 

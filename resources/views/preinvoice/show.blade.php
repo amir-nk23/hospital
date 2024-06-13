@@ -28,6 +28,7 @@
                                 <tr>
                                     <th class="text-white">/</th>
                                     <th class="text-white">ردیف</th>
+                                    <th class="text-white">نام بیمار</th>
                                     <th class="text-white">تاریخ عمل</th>
                                     <th class="text-white">تاریخ ترخیص</th>
                                     <th class="text-white">عمل ها</th>
@@ -47,6 +48,7 @@
                                         <input hidden name="doctor_id"  value="{{$DR->doctor_id}}">
                                         <td><input type="checkbox" class="record-checkbox" name="doctor_surgery_id[]" value="{{$DR->id}}"></td>
                                         <th scope="row">{{$loop->index+1}}</th>
+                                        <th scope="row">{{$DR->surgery->patient_name}}</th>
                                         <td>{{$DR->surgery->surgeried_at}}</td>
                                         <td>{{$DR->surgery->released_at}}</td>
                                         <td>@foreach($DR->surgery->operation as $operation) {{$operation->name.','}} @endforeach</td>

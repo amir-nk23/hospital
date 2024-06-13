@@ -21,7 +21,7 @@
 
                                             <div>
 
-                                                <img src="{{asset('storage/'.\App\Helpers\Helpers::setting('img')->value)}}" height="50" width="50">
+                                                <img src="{{asset('storage/'.\App\Helpers\Helpers::setting('img'))}}" height="50" width="50">
 
                                             </div>
 
