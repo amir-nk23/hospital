@@ -127,7 +127,6 @@
         <script src="<?php echo e(asset('style/assets/plugins/sidebar/sidebar.js')); ?>"></script>
 
         <!-- Select2 js -->
-
         <script src="<?php echo e(asset('select2/dist/js/select2.min.js')); ?>"></script>
 
         <!-- Custom js-->
@@ -137,7 +136,7 @@
         <script src="<?php echo e(asset('PersianDateTimePicker-bs4/src/jquery.md.bootstrap.datetimepicker.js')); ?>"
                 type="text/javascript"></script>
 
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 
     <?php echo $__env->make('layout.script ', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

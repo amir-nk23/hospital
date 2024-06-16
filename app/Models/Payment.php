@@ -43,7 +43,7 @@ class Payment extends BaseModel
     {
         static::created(function ($payment){
 
-            activity()->log("کاربر با شناسه".Auth::id()."یک پرداخت جدید با شناسه".$payment->id."ایجاد کرد");
+            activity()->log("کاربر با شناسه".Auth::user()->id()."یک پرداخت جدید با شناسه".$payment->id."ایجاد کرد");
 
             static::clearAllCaches();
         });

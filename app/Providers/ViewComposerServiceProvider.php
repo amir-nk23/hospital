@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Helpers\Helpers;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class ViewComposerServiceProvider extends ServiceProvider
@@ -21,7 +22,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot(): void
     {
 //                View::share('logo',Helpers::setting('img'));
-        \view()->composer('layout.aside',function ($view){
+        View::composer('layout.aside',function ($view){
 
             $logo = Helpers::setting('img');
 

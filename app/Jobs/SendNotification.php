@@ -32,7 +32,9 @@ class SendNotification implements ShouldQueue
 
 
 
-        $payments = Payment::query()->where('pay_type','cheque')->where('status',1)->where('due_date','>=',Carbon::now()->subDay(3))->get();
+        $payments = Payment::query()->where('pay_type','cheque')
+            ->where('status',1)
+            ->where('due_date','>=',Carbon::now()->subDay(3))->get();
 
 
 

@@ -46,7 +46,7 @@
 
         <!-- Select2 css -->
         <link href="{{asset('select2/dist/css/select2.min.css')}}" rel="stylesheet" />
-{{--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
+
 
     <!-- PersianDateTimePicker css -->
         <link rel="stylesheet"      href="{{ asset('PersianDateTimePicker-bs4/src/jquery.md.bootstrap.datetimepicker.style.css') }}"/>
@@ -127,7 +127,6 @@
         <script src="{{asset('style/assets/plugins/sidebar/sidebar.js')}}"></script>
 
         <!-- Select2 js -->
-{{--        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>--}}
         <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
 
         <!-- Custom js-->
@@ -137,7 +136,7 @@
         <script src="{{ asset('PersianDateTimePicker-bs4/src/jquery.md.bootstrap.datetimepicker.js') }}"
                 type="text/javascript"></script>
 
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{--        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>--}}
 
 
     @include('layout.script ')
