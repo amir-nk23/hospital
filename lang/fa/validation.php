@@ -231,6 +231,7 @@ return [
         "doctor_id"=>'دکتر',
         "start_date"=>'تاریخ مبدا',
         "release_date"=>'تاریخ ترخیص',
-        "end_date"=>'تاریخ مقصد'
+        "end_date"=>'تاریخ مقصد',
+        'medical_number'=>'کد نظام پزشکی'
     ],
 ];
